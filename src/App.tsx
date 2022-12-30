@@ -1,23 +1,62 @@
 import React, { useEffect, useState } from 'react';
 import './App.css';
 
+interface TweetablePlay {
+  // {
+  //   "completed_at": 1665941777,
+  //   "game_id": "401437783",
+  //   "letter_match": true,
+  //   "matching_letters": [
+  //       "X"
+  //   ],
+  //   "next_letter": "Y",
+  //   "play_id": "401437783960",
+  //   "player_id": 3116385,
+  //   "player_name": "Joe Mixon",
+  //   "score": "CIN (7) @ NO (7) 1st 0:45",
+  //   "season_period": "season",
+  //   "season_phrase": "in the 2022 season",
+  //   "sport": "NFL",
+  //   "times_cycled": 0,
+  //   "tweet_id": "1581700562185117696",
+  //   "tweet_text": "Joe Mixon just scored a touchdown! #RuleTheJungle  His name has the letter X. The next letter in the Touchdown Alphabet Game is now Y.  We have cycled through the alphabet 0 times since Week 5.  CIN (7) @ NO (7) 1st 0:45"
+  completed_at: number;
+  game_id: string;
+  letter_match: boolean;
+  matching_letters: string[];
+  next_letter: string;
+  play_id: string;
+  player_id: number;
+  player_name: string;
+  score: string;
+  season_period: string;
+  season_phrase: string;
+  sport: string;
+  times_cycled: number;
+  tweet_id: string;
+  tweet_text: string;
+}
+
+interface PlaysResponse {
+  data: TweetablePlay[];
+}
+
 function App() {
-  const [data, setData] = useState(null);
+  const [data, setData] = useState<null | PlaysResponse>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   
   useEffect(() => {
-    fetch(`https://us-central1-greg-finley.cloudfunctions.net/alphabet-game-plays-api?matches_only=true&limit=2&sport=NFL&before_ts=1667525177`)
+    fetch(`https://us-central1-greg-finley.cloudfunctions.net/alphabet-game-plays-api?matches_only=true&limit=3&sport=NFL`)
       .then((response) => {
         if (!response.ok) {
           throw new Error(
             `This is an HTTP error: The status is ${response.status}`
           );
         } 
-        return response.json();
+        return response.json() as Promise<PlaysResponse>;
       })
       .then((actualData) => {
-        console.log(actualData);
         setData(actualData);
         setError(null);
       })
@@ -34,21 +73,10 @@ function App() {
     <div className="App">
       <header className="App-header">
         {loading && <div>A moment please...</div>}
-        {data && <div>{JSON.stringify(data)}</div>}
+        {data && <><div>{JSON.stringify(data)}</div><div>{data.data.map((x) => x.player_name).join(" ")}</div></>}
         {error && (
         <div>{`There is a problem fetching the post data - ${error}`}</div>
       )}
-        <p>
-          TypeScript! Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
       </header>
     </div>
   );

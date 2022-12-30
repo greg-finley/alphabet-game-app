@@ -94,7 +94,7 @@ function App() {
 
   return (
     <div className="App">
-      <header>
+      <header className='App-header'>
         {loading && <div>A moment please...</div>}
         {scoreboard && <><div>{Object.values(scoreboard).map((x) => playerImage(x))}</div></>}
         <div>{/* {plays && <><div>{plays.slice(0, 10).map((x) => playerImage(x))}</div></>}*/}</div>
@@ -113,16 +113,16 @@ const playerImage = (play: Play) => {
       src = `https://cms.nhl.bamgrid.com/images/headshots/current/168x168/${play.player_id}.jpg`;
       break;
     case 'NFL':
-      src = `https://a.espncdn.com/combiner/i?img=/i/headshots/nfl/players/full/${play.player_id}.png`;
+      src = `https://a.espncdn.com/combiner/i?img=/i/headshots/nfl/players/full/${play.player_id}.png&h=80&w=110`;
       break;
     case 'NBA':
-      src = `https://cdn.nba.com/headshots/nba/latest/1040x760/${play.player_id}.png`;
+      src = `https://cdn.nba.com/headshots/nba/latest/1040x760/${play.player_id}.png?imwidth=104&imheight=76`;
       break;
     case 'MLB':
       src = `https://img.mlbstatic.com/mlb-photos/image/upload/d_people:generic:headshot:67:current.png/h_1000,q_auto:best/v1/people/${play.player_id}/headshot/67/current`;
       break;
   }
-  return <div className='Player-image-container' key={play.player_name}><img className='Player-image' src={src} alt={play.player_name}/></div>;
+  return <div className='Player-image-container'><img className='Player-image' src={src} alt={play.player_name}/><div>{play.next_letter}</div><div>{play.matching_letters}</div><div>{play.times_cycled}</div><div>{play.completed_at}</div></div>;
 }
 
 export default App;

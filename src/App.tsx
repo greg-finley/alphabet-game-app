@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import './App.css';
+import TopAppBar from './components/TopAppBar';
 
 type Sport = 'NFL' | 'NBA' | 'NHL' | 'MLB';
 
@@ -93,16 +94,17 @@ function App() {
   }, []);
 
   return (
+    TopAppBar && <><TopAppBar />
     <div className="App">
       <header className='App-header'>
         {loading && <div>A moment please...</div>}
         {scoreboard && <><div>{Object.values(scoreboard).map((x) => playerImage(x))}</div></>}
         <div>{/* {plays && <><div>{plays.slice(0, 10).map((x) => playerImage(x))}</div></>}*/}</div>
         {error && (
-        <div>{`There is a problem fetching the post data - ${error}`}</div>
-      )}
+          <div>{`There is a problem fetching the post data - ${error}`}</div>
+        )}
       </header>
-    </div>
+    </div></>
   );
 }
 

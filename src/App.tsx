@@ -113,7 +113,7 @@ const playerImage = (play: Play) => {
       src = `https://cms.nhl.bamgrid.com/images/headshots/current/168x168/${play.player_id}.jpg`;
       break;
     case 'NFL':
-      src = `https://a.espncdn.com/combiner/i?img=/i/headshots/nfl/players/full/${play.player_id}.png&h=80&w=110`;
+      src = `https://a.espncdn.com/combiner/i?img=/i/headshots/nfl/players/full/${play.player_id}.png&h=110&w=110&scale=crop`;
       break;
     case 'NBA':
       src = `https://cdn.nba.com/headshots/nba/latest/1040x760/${play.player_id}.png?imwidth=104&imheight=76`;

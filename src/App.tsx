@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import './App.css';
 
-interface TweetablePlay {
+type Sport = 'NFL' | 'NBA' | 'NHL' | 'MLB';
+
+interface Play {
   // {
   //   "completed_at": 1665941777,
   //   "game_id": "401437783",
@@ -31,28 +33,31 @@ interface TweetablePlay {
   score: string;
   season_period: string;
   season_phrase: string;
-  sport: string;
+  sport: Sport;
   times_cycled: number;
   tweet_id: string;
   tweet_text: string;
 }
 
+type Scoreboard = Record<Sport, Play>;
+
 function App() {
-  const [data, setData] = useState<null | TweetablePlay[]>(null);
+  // const [plays, setPlays] = useState<null | Play[]>(null);
+  const [scoreboard, setScoreboard] = useState<null | Scoreboard>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<null | string>(null);
   
   useEffect(() => {
-    fetch(`https://us-central1-greg-finley.cloudfunctions.net/alphabet-game-plays-api?matches_only=true&limit=0`)
+    fetch(`https://us-central1-greg-finley.cloudfunctions.net/alphabet-game-plays-api?matches_only=true`)
       .then((response) => {
         if (!response.ok) {
           throw new Error(
             `This is an HTTP error: The status is ${response.status}`
           );
         } 
-        return response.json().then((x => x.data)) as Promise<TweetablePlay[]>;
+        return response.json().then((x => x.data)) as Promise<Play[]>;
       })
-      .then((actualData) => {
+      .then((plays) => {
         // const countSports = actualData.data.reduce((acc, x) => {
         //   if (acc[x.sport]) {
         //     acc[x.sport] += 1;
@@ -64,12 +69,23 @@ function App() {
         // console.log(actualData.data.length);
         // console.log(countSports);
 
-        setData(actualData);
+
+        // setPlays(plays);
+        setScoreboard(plays.reduce((acc, x) => {
+          // Only keep the first play for each sport
+          if (!acc[x.sport]) {
+            acc[x.sport] = x;
+          }
+          return acc;
+        }, {} as Scoreboard)
+
+          );
         setError(null);
       })
       .catch((err) => {
         setError(err.message);
-        setData(null);
+        setScoreboard(null);
+        // setPlays(null);
       })
       .finally(() => {
         setLoading(false);
@@ -78,15 +94,35 @@ function App() {
 
   return (
     <div className="App">
-      <header className="App-header">
+      <header>
         {loading && <div>A moment please...</div>}
-        {data && <><div>{data.slice(0, 5).map((x) => x.player_name).join(" ")}</div></>}
+        {scoreboard && <><div>{Object.values(scoreboard).map((x) => playerImage(x))}</div></>}
+        <div>{/* {plays && <><div>{plays.slice(0, 10).map((x) => playerImage(x))}</div></>}*/}</div>
         {error && (
         <div>{`There is a problem fetching the post data - ${error}`}</div>
       )}
       </header>
     </div>
   );
+}
+
+const playerImage = (play: Play) => {
+  let src = '';
+  switch (play.sport) {
+    case 'NHL':
+      src = `https://cms.nhl.bamgrid.com/images/headshots/current/168x168/${play.player_id}.jpg`;
+      break;
+    case 'NFL':
+      src = `https://a.espncdn.com/combiner/i?img=/i/headshots/nfl/players/full/${play.player_id}.png`;
+      break;
+    case 'NBA':
+      src = `https://cdn.nba.com/headshots/nba/latest/1040x760/${play.player_id}.png`;
+      break;
+    case 'MLB':
+      src = `https://img.mlbstatic.com/mlb-photos/image/upload/d_people:generic:headshot:67:current.png/h_1000,q_auto:best/v1/people/${play.player_id}/headshot/67/current`;
+      break;
+  }
+  return <div className='Player-image-container' key={play.player_name}><img className='Player-image' src={src} alt={play.player_name}/></div>;
 }
 
 export default App;

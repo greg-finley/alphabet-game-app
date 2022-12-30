@@ -37,26 +37,33 @@ interface TweetablePlay {
   tweet_text: string;
 }
 
-interface PlaysResponse {
-  data: TweetablePlay[];
-}
-
 function App() {
-  const [data, setData] = useState<null | PlaysResponse>(null);
+  const [data, setData] = useState<null | TweetablePlay[]>(null);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const [error, setError] = useState<null | string>(null);
   
   useEffect(() => {
-    fetch(`https://us-central1-greg-finley.cloudfunctions.net/alphabet-game-plays-api?matches_only=true&limit=3&sport=NFL`)
+    fetch(`https://us-central1-greg-finley.cloudfunctions.net/alphabet-game-plays-api?matches_only=true&limit=0`)
       .then((response) => {
         if (!response.ok) {
           throw new Error(
             `This is an HTTP error: The status is ${response.status}`
           );
         } 
-        return response.json() as Promise<PlaysResponse>;
+        return response.json().then((x => x.data)) as Promise<TweetablePlay[]>;
       })
       .then((actualData) => {
+        // const countSports = actualData.data.reduce((acc, x) => {
+        //   if (acc[x.sport]) {
+        //     acc[x.sport] += 1;
+        //   } else {
+        //     acc[x.sport] = 1;
+        //   }
+        //   return acc;
+        // }, {} as Record<string, number>);
+        // console.log(actualData.data.length);
+        // console.log(countSports);
+
         setData(actualData);
         setError(null);
       })
@@ -73,7 +80,7 @@ function App() {
     <div className="App">
       <header className="App-header">
         {loading && <div>A moment please...</div>}
-        {data && <><div>{JSON.stringify(data)}</div><div>{data.data.map((x) => x.player_name).join(" ")}</div></>}
+        {data && <><div>{data.slice(0, 5).map((x) => x.player_name).join(" ")}</div></>}
         {error && (
         <div>{`There is a problem fetching the post data - ${error}`}</div>
       )}

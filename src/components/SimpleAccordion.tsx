@@ -15,7 +15,7 @@ export default function SimpleAccordion(props: SimpleAccordionProps) {
   const { defaultExpanded, title, content } = props;
   return (
     <div>
-      <Accordion defaultExpanded={defaultExpanded} sx={{}}>
+      <Accordion defaultExpanded={defaultExpanded}>
         <AccordionSummary
           expandIcon={<ExpandMoreIcon />}
           aria-controls="panel1a-content"

@@ -62,7 +62,7 @@ function App() {
     <div className="App">
       <TopAppBar />
       <header className="App-header">
-        <p className="App-text">
+        <p className="App-text" style={{ padding: "0px 0px 15px 0px" }}>
           Let's play the Alphabet Game, looking for the next letter in player
           names as they hit MLB home runs, score NHL goals, dunk in the NBA, and
           score NFL touchdowns.
@@ -89,17 +89,17 @@ function App() {
         <SimpleAccordion
           defaultExpanded={false}
           title={"All Scores"}
-          content={<p>To come!</p>}
+          content={<p className="App-text">Coming soon</p>}
         />
         <SimpleAccordion
           defaultExpanded={false}
           title={"About"}
-          content={<p>To come!</p>}
+          content={<p className="App-text">Coming soon</p>}
         />
         <SimpleAccordion
           defaultExpanded={false}
           title={"Source Code"}
-          content={<p>To come! </p>}
+          content={<p className="App-text">Coming soon </p>}
         />
       </header>
     </div>

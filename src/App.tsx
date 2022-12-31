@@ -42,11 +42,12 @@ interface Play {
   tweet_text: string;
 }
 
-type Scoreboard = Record<Sport, Play>;
+type MostRecentScores = Record<Sport, Play>;
 
 function App() {
   // const [plays, setPlays] = useState<null | Play[]>(null);
-  const [scoreboard, setScoreboard] = useState<null | Scoreboard>(null);
+  const [mostRecentScores, setMostRecentScores] =
+    useState<null | MostRecentScores>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<null | string>(null);
 
@@ -75,20 +76,20 @@ function App() {
         // console.log(countSports);
 
         // setPlays(plays);
-        setScoreboard(
+        setMostRecentScores(
           plays.reduce((acc, x) => {
             // Only keep the first play for each sport
             if (!acc[x.sport]) {
               acc[x.sport] = x;
             }
             return acc;
-          }, {} as Scoreboard)
+          }, {} as MostRecentScores)
         );
         setError(null);
       })
       .catch((err) => {
         setError(err.message);
-        setScoreboard(null);
+        setMostRecentScores(null);
         // setPlays(null);
       })
       .finally(() => {
@@ -110,9 +111,11 @@ function App() {
             <CircularProgress color="info" />
           </Box>
         )}
-        {scoreboard && (
+        {mostRecentScores && (
           <>
-            <div>{Object.values(scoreboard).map((x) => playerImage(x))}</div>
+            <div>
+              {Object.values(mostRecentScores).map((x) => playerImage(x))}
+            </div>
           </>
         )}
         <div>

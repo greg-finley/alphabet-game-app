@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./App.css";
 import LoadingCircle from "./components/LoadingCircle";
+import SimpleAccordion from "./components/SimpleAccordion";
 import TopAppBar from "./components/TopAppBar";
 import { MostRecentScores, Play } from "./types";
 
@@ -66,6 +67,11 @@ function App() {
           names as they hit MLB home runs, score NHL goals, dunk in the NBA, and
           score NFL touchdowns.
         </p>
+        <SimpleAccordion
+          defaultExpanded={true}
+          title={"Most Recent Scores"}
+          content={<LoadingCircle />}
+        />
         {loading && <LoadingCircle />}
         {mostRecentScores && (
           <>

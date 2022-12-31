@@ -94,9 +94,10 @@ function App() {
   }, []);
 
   return (
-    TopAppBar && <><TopAppBar />
     <div className="App">
+          <TopAppBar />
       <header className='App-header'>
+    <p className='App-text'>Let's play the Alphabet Game, looking for the next letter in player names as they hit MLB home runs, score NHL goals, dunk in the NBA, and score NFL touchdowns.</p>
         {loading && <div>A moment please...</div>}
         {scoreboard && <><div>{Object.values(scoreboard).map((x) => playerImage(x))}</div></>}
         <div>{/* {plays && <><div>{plays.slice(0, 10).map((x) => playerImage(x))}</div></>}*/}</div>
@@ -104,7 +105,7 @@ function App() {
           <div>{`There is a problem fetching the post data - ${error}`}</div>
         )}
       </header>
-    </div></>
+    </div>
   );
 }
 

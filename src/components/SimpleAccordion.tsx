@@ -24,7 +24,7 @@ export default function SimpleAccordion(props: SimpleAccordionProps) {
         >
           <Typography color={"white"}>{title}</Typography>
         </AccordionSummary>
-        <AccordionDetails sx={{ backgroundColor: "#676b72" }}>
+        <AccordionDetails sx={{ backgroundColor: "#999ca1" }}>
           {content}
         </AccordionDetails>
       </Accordion>

@@ -1,4 +1,3 @@
-import { Typography } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import "./App.css";
 import LoadingCircle from "./components/LoadingCircle";
@@ -71,22 +70,22 @@ function App() {
         <SimpleAccordion
           defaultExpanded={true}
           title={"Most Recent Scores"}
-          content={<Typography color={"white"}>Nothing yet</Typography>}
-        />
-        {loading && <LoadingCircle />}
-        {mostRecentScores && (
-          <>
+          content={
             <div>
-              {Object.values(mostRecentScores).map((x) => playerImage(x))}
+              {loading && <LoadingCircle />}
+              {mostRecentScores && (
+                <>
+                  <div>
+                    {Object.values(mostRecentScores).map((x) => playerImage(x))}
+                  </div>
+                </>
+              )}
+              {error && (
+                <p>{`There is a problem fetching the data - ${error}`}</p>
+              )}
             </div>
-          </>
-        )}
-        <div>
-          {/* {plays && <><div>{plays.slice(0, 10).map((x) => playerImage(x))}</div></>}*/}
-        </div>
-        {error && (
-          <div>{`There is a problem fetching the post data - ${error}`}</div>
-        )}
+          }
+        />
       </header>
     </div>
   );

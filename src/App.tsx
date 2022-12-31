@@ -86,6 +86,21 @@ function App() {
             </div>
           }
         />
+        <SimpleAccordion
+          defaultExpanded={false}
+          title={"All Scores"}
+          content={<p>To come!</p>}
+        />
+        <SimpleAccordion
+          defaultExpanded={false}
+          title={"About"}
+          content={<p>To come!</p>}
+        />
+        <SimpleAccordion
+          defaultExpanded={false}
+          title={"Source Code"}
+          content={<p>To come! </p>}
+        />
       </header>
     </div>
   );

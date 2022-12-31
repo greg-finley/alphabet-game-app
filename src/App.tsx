@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react';
-import './App.css';
-import TopAppBar from './components/TopAppBar';
+import React, { useEffect, useState } from "react";
+import "./App.css";
+import TopAppBar from "./components/TopAppBar";
 
-type Sport = 'NFL' | 'NBA' | 'NHL' | 'MLB';
+type Sport = "NFL" | "NBA" | "NHL" | "MLB";
 
 interface Play {
   // {
@@ -47,16 +47,18 @@ function App() {
   const [scoreboard, setScoreboard] = useState<null | Scoreboard>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<null | string>(null);
-  
+
   useEffect(() => {
-    fetch(`https://us-central1-greg-finley.cloudfunctions.net/alphabet-game-plays-api?matches_only=true`)
+    fetch(
+      `https://us-central1-greg-finley.cloudfunctions.net/alphabet-game-plays-api?matches_only=true`
+    )
       .then((response) => {
         if (!response.ok) {
           throw new Error(
             `This is an HTTP error: The status is ${response.status}`
           );
-        } 
-        return response.json().then((x => x.data)) as Promise<Play[]>;
+        }
+        return response.json().then((x) => x.data) as Promise<Play[]>;
       })
       .then((plays) => {
         // const countSports = actualData.data.reduce((acc, x) => {
@@ -70,17 +72,16 @@ function App() {
         // console.log(actualData.data.length);
         // console.log(countSports);
 
-
         // setPlays(plays);
-        setScoreboard(plays.reduce((acc, x) => {
-          // Only keep the first play for each sport
-          if (!acc[x.sport]) {
-            acc[x.sport] = x;
-          }
-          return acc;
-        }, {} as Scoreboard)
-
-          );
+        setScoreboard(
+          plays.reduce((acc, x) => {
+            // Only keep the first play for each sport
+            if (!acc[x.sport]) {
+              acc[x.sport] = x;
+            }
+            return acc;
+          }, {} as Scoreboard)
+        );
         setError(null);
       })
       .catch((err) => {
@@ -95,12 +96,22 @@ function App() {
 
   return (
     <div className="App">
-          <TopAppBar />
-      <header className='App-header'>
-    <p className='App-text'>Let's play the Alphabet Game, looking for the next letter in player names as they hit MLB home runs, score NHL goals, dunk in the NBA, and score NFL touchdowns.</p>
+      <TopAppBar />
+      <header className="App-header">
+        <p className="App-text">
+          Let's play the Alphabet Game, looking for the next letter in player
+          names as they hit MLB home runs, score NHL goals, dunk in the NBA, and
+          score NFL touchdowns.
+        </p>
         {loading && <div>A moment please...</div>}
-        {scoreboard && <><div>{Object.values(scoreboard).map((x) => playerImage(x))}</div></>}
-        <div>{/* {plays && <><div>{plays.slice(0, 10).map((x) => playerImage(x))}</div></>}*/}</div>
+        {scoreboard && (
+          <>
+            <div>{Object.values(scoreboard).map((x) => playerImage(x))}</div>
+          </>
+        )}
+        <div>
+          {/* {plays && <><div>{plays.slice(0, 10).map((x) => playerImage(x))}</div></>}*/}
+        </div>
         {error && (
           <div>{`There is a problem fetching the post data - ${error}`}</div>
         )}
@@ -110,22 +121,30 @@ function App() {
 }
 
 const playerImage = (play: Play) => {
-  let src = '';
+  let src = "";
   switch (play.sport) {
-    case 'NHL':
+    case "NHL":
       src = `https://cms.nhl.bamgrid.com/images/headshots/current/168x168/${play.player_id}.jpg`;
       break;
-    case 'NFL':
+    case "NFL":
       src = `https://a.espncdn.com/combiner/i?img=/i/headshots/nfl/players/full/${play.player_id}.png&h=110&w=110&scale=crop`;
       break;
-    case 'NBA':
+    case "NBA":
       src = `https://cdn.nba.com/headshots/nba/latest/1040x760/${play.player_id}.png?imwidth=104&imheight=76`;
       break;
-    case 'MLB':
+    case "MLB":
       src = `https://img.mlbstatic.com/mlb-photos/image/upload/d_people:generic:headshot:67:current.png/h_1000,q_auto:best/v1/people/${play.player_id}/headshot/67/current`;
       break;
   }
-  return <div className='Player-image-container'><img className='Player-image' src={src} alt={play.player_name}/><div>{play.next_letter}</div><div>{play.matching_letters}</div><div>{play.times_cycled}</div><div>{play.completed_at}</div></div>;
-}
+  return (
+    <div className="Player-image-container">
+      <img className="Player-image" src={src} alt={play.player_name} />
+      <div>{play.next_letter}</div>
+      <div>{play.matching_letters}</div>
+      <div>{play.times_cycled}</div>
+      <div>{play.completed_at}</div>
+    </div>
+  );
+};
 
 export default App;

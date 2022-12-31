@@ -3,6 +3,7 @@
 https://www.sportsalphabetgame.com/
 
 # Main repo
+
 The main repo powering the Alphabet Game is https://github.com/greg-finley/mlb-alphabet-game .
 
 # Getting Started with Create React App

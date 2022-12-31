@@ -11,6 +11,8 @@
   color: white;
   padding-top: 2vh;
   padding-left: 2vw;
+  padding-right: 2vw;
+  padding-bottom: 2vh;
 }
 
 .App-link {

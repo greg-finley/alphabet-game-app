@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import "./App.css";
 import TopAppBar from "./components/TopAppBar";
+import CircularProgress from "@mui/material/CircularProgress";
+import Box from "@mui/material/Box";
 
 type Sport = "NFL" | "NBA" | "NHL" | "MLB";
 
@@ -103,7 +105,11 @@ function App() {
           names as they hit MLB home runs, score NHL goals, dunk in the NBA, and
           score NFL touchdowns.
         </p>
-        {loading && <div>A moment please...</div>}
+        {loading && (
+          <Box sx={{ display: "flex", justifyContent: "center" }}>
+            <CircularProgress color="info" />
+          </Box>
+        )}
         {scoreboard && (
           <>
             <div>{Object.values(scoreboard).map((x) => playerImage(x))}</div>

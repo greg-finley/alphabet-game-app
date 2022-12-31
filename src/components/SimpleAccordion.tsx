@@ -20,10 +20,13 @@ export default function SimpleAccordion(props: SimpleAccordionProps) {
           expandIcon={<ExpandMoreIcon />}
           aria-controls="panel1a-content"
           id="panel1a-header"
+          sx={{ backgroundColor: "primary.main" }}
         >
-          <Typography>{title}</Typography>
+          <Typography color={"white"}>{title}</Typography>
         </AccordionSummary>
-        <AccordionDetails>{content}</AccordionDetails>
+        <AccordionDetails sx={{ backgroundColor: "#676b72" }}>
+          {content}
+        </AccordionDetails>
       </Accordion>
     </div>
   );

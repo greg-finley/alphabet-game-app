@@ -1,3 +1,4 @@
+import { Typography } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import "./App.css";
 import LoadingCircle from "./components/LoadingCircle";
@@ -70,7 +71,7 @@ function App() {
         <SimpleAccordion
           defaultExpanded={true}
           title={"Most Recent Scores"}
-          content={<LoadingCircle />}
+          content={<Typography color={"white"}>Nothing yet</Typography>}
         />
         {loading && <LoadingCircle />}
         {mostRecentScores && (

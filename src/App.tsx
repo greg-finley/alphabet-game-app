@@ -124,7 +124,16 @@ const playerImage = (play: Play) => {
   }
   return (
     <div className="Player-image-container" key={play.sport + play.player_id}>
-      <img className="Player-image" src={src} alt={play.player_name} />
+      <img
+        className="Player-image"
+        src={src}
+        alt={play.player_name}
+        onError={({ currentTarget }) => {
+          currentTarget.onerror = null;
+          currentTarget.src =
+            "https://a.espncdn.com/combiner/i?img=/i/headshots/nophoto.png&h=110&w=110&scale=crop";
+        }}
+      />
       <div>{play.next_letter}</div>
       <div>{play.matching_letters}</div>
       <div>{play.times_cycled}</div>

@@ -72,16 +72,20 @@ function App() {
           title={"Most Recent Scores"}
           content={
             <div>
-              {loading && <LoadingCircle />}
-              {mostRecentScores && (
-                <>
-                  <div>
-                    {Object.values(mostRecentScores).map((x) => playerImage(x))}
-                  </div>
-                </>
-              )}
-              {error && (
+              {loading ? (
+                <LoadingCircle />
+              ) : error ? (
                 <p>{`There is a problem fetching the data - ${error}`}</p>
+              ) : (
+                mostRecentScores && (
+                  <>
+                    <div>
+                      {Object.values(mostRecentScores).map((x) =>
+                        playerImage(x)
+                      )}
+                    </div>
+                  </>
+                )
               )}
             </div>
           }

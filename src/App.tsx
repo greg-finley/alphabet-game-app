@@ -62,7 +62,7 @@ function App() {
     <div className="App">
       <TopAppBar />
       <header className="App-header">
-        <p className="App-text" style={{ padding: "0px 0px 15px 0px" }}>
+        <p className="App-text-intro">
           Let's play the Alphabet Game, looking for the next letter in player
           names as they hit MLB home runs, score NHL goals, dunk in the NBA, and
           score NFL touchdowns.

@@ -102,7 +102,7 @@ const playerImage = (play: Play) => {
       break;
   }
   return (
-    <div className="Player-image-container">
+    <div className="Player-image-container" key={play.sport + play.player_id}>
       <img className="Player-image" src={src} alt={play.player_name} />
       <div>{play.next_letter}</div>
       <div>{play.matching_letters}</div>

@@ -135,7 +135,7 @@ const playerImage = (play: Play) => {
         }}
       />
       <div>{play.next_letter}</div>
-      <div>{play.matching_letters}</div>
+      <div>{play.matching_letters.join(", ")}</div>
       <div>{play.times_cycled}</div>
       <div>{play.completed_at}</div>
     </div>

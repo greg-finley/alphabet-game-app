@@ -1,5 +1,9 @@
 import * as React from "react";
 import { MostRecentScores, Play } from "../types";
+import dayjs from "dayjs";
+import relativeTime from "dayjs/plugin/relativeTime";
+
+dayjs.extend(relativeTime);
 
 interface MostRecentScoresProps {
   mostRecentScores: MostRecentScores;
@@ -46,6 +50,7 @@ const playerImage = (play: Play) => {
       <div>{play.matching_letters.join(", ")}</div>
       <div>{play.times_cycled}</div>
       <div>{play.completed_at}</div>
+      <div>{dayjs().to(dayjs.unix(play.completed_at))}</div>
     </div>
   );
 };

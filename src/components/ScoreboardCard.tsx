@@ -49,7 +49,7 @@ export default function ScoreboardCard(props: ScoreboardCardProps) {
           </Typography>
           <Typography>Next letter: {play.next_letter}.</Typography>
           <Typography>
-            Cycled {play.times_cycled} {play.season_phrase}.
+            Cycled {play.times_cycled} times {play.season_phrase}.
           </Typography>
           <Typography>{dayjs().to(dayjs.unix(play.completed_at))}</Typography>
           <TwitterFollowButton

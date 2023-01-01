@@ -5,7 +5,7 @@ import Stack from "@mui/material/Stack";
 
 export default function Contact() {
   return (
-    <Stack direction="row" spacing={2} justifyContent="center">
+    <Stack direction="row" spacing={2}>
       <a href="mailto:gregory.finley@gmail.com">
         <EmailIcon />
       </a>

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./App.css";
 import Contact from "./components/Contact";
+import CSV from "./components/CSV";
 import ErrorMessage from "./components/ErrorMessage";
 import GitHubLinks from "./components/GitHubLinks";
 import LoadingCircle from "./components/LoadingCircle";
@@ -64,12 +65,22 @@ function App() {
           }
         />
         <SimpleAccordion
-          defaultExpanded={false}
+          defaultExpanded={true}
           title={"All Scores"}
-          content={<p className="App-text">Coming soon</p>}
+          content={
+            <div style={{ display: "flex", justifyContent: "left" }}>
+              {loading ? (
+                <LoadingCircle />
+              ) : error ? (
+                <ErrorMessage error={error} />
+              ) : (
+                plays && <CSV data={plays} filename={"all_scores"} />
+              )}
+            </div>
+          }
         />
         <SimpleAccordion
-          defaultExpanded={false}
+          defaultExpanded={true}
           title={"Source Code"}
           content={<GitHubLinks />}
         />

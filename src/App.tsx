@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./App.css";
+import Contact from "./components/Contact";
 import ErrorMessage from "./components/ErrorMessage";
 import GitHubLinks from "./components/GitHubLinks";
 import LoadingCircle from "./components/LoadingCircle";
@@ -74,8 +75,8 @@ function App() {
         />
         <SimpleAccordion
           defaultExpanded={false}
-          title={"About"}
-          content={<p className="App-text">Coming soon</p>}
+          title={"Contact"}
+          content={<Contact />}
         />
       </header>
     </div>

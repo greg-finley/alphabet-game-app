@@ -19,16 +19,20 @@ export default function ScoreboardCard(props: ScoreboardCardProps) {
   return (
     <Card sx={{ display: "flex", maxWidth: "800px" }}>
       <div className="Player-image-container">
-        <img
-          className="Player-image"
-          src={playerImageSrc(play)}
-          alt={play.player_name}
-          onError={({ currentTarget }) => {
-            currentTarget.onerror = null;
-            currentTarget.src =
-              "https://a.espncdn.com/combiner/i?img=/i/headshots/nophoto.png&h=110&w=110&scale=crop";
-          }}
-        />
+        <a
+          href={`https://twitter.com/${play.sport}AlphabetGame/status/${play.tweet_id}`}
+        >
+          <img
+            className="Player-image"
+            src={playerImageSrc(play)}
+            alt={play.player_name}
+            onError={({ currentTarget }) => {
+              currentTarget.onerror = null;
+              currentTarget.src =
+                "https://a.espncdn.com/combiner/i?img=/i/headshots/nophoto.png&h=110&w=110&scale=crop";
+            }}
+          />
+        </a>
       </div>
 
       <Box

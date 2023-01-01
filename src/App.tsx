@@ -5,12 +5,10 @@ import LoadingCircle from "./components/LoadingCircle";
 import MostRecentScoreboard from "./components/MostRecentScoreboard";
 import SimpleAccordion from "./components/SimpleAccordion";
 import TopAppBar from "./components/TopAppBar";
-import { MostRecentScores, Play } from "./types";
+import { Play } from "./types";
 
 function App() {
-  // const [plays, setPlays] = useState<null | Play[]>(null);
-  const [mostRecentScores, setMostRecentScores] =
-    useState<null | MostRecentScores>(null);
+  const [plays, setPlays] = useState<null | Play[]>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<null | string>(null);
 
@@ -27,33 +25,12 @@ function App() {
         return response.json().then((x) => x.data) as Promise<Play[]>;
       })
       .then((plays) => {
-        // const countSports = actualData.data.reduce((acc, x) => {
-        //   if (acc[x.sport]) {
-        //     acc[x.sport] += 1;
-        //   } else {
-        //     acc[x.sport] = 1;
-        //   }
-        //   return acc;
-        // }, {} as Record<string, number>);
-        // console.log(actualData.data.length);
-        // console.log(countSports);
-
-        // setPlays(plays);
-        setMostRecentScores(
-          plays.reduce((acc, x) => {
-            // Only keep the first play for each sport
-            if (!acc[x.sport]) {
-              acc[x.sport] = x;
-            }
-            return acc;
-          }, {} as MostRecentScores)
-        );
+        setPlays(plays);
         setError(null);
       })
       .catch((err) => {
         setError(err.message);
-        setMostRecentScores(null);
-        // setPlays(null);
+        setPlays(null);
       })
       .finally(() => {
         setLoading(false);
@@ -79,9 +56,7 @@ function App() {
               ) : error ? (
                 <ErrorMessage error={error} />
               ) : (
-                mostRecentScores && (
-                  <MostRecentScoreboard mostRecentScores={mostRecentScores} />
-                )
+                plays && <MostRecentScoreboard plays={plays} />
               )}
             </div>
           }

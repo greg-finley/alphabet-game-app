@@ -35,5 +35,3 @@ export interface Play {
   tweet_id: string;
   tweet_text: string;
 }
-
-export type MostRecentScores = Record<Sport, Play>;

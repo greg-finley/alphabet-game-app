@@ -1,13 +1,20 @@
 import * as React from "react";
-import { MostRecentScores } from "../types";
+import { Play } from "../types";
 import ScoreboardCard from "./ScoreboardCard";
 
 interface MostRecentScoresProps {
-  mostRecentScores: MostRecentScores;
+  plays: Play[];
 }
 
 function MostRecentScoreboard(props: MostRecentScoresProps) {
-  const { mostRecentScores } = props;
+  const { plays } = props;
+  const mostRecentScores = plays.reduce((acc, x) => {
+    // Only keep the first play for each sport
+    if (!acc[x.sport]) {
+      acc[x.sport] = x;
+    }
+    return acc;
+  }, {} as Record<string, Play>);
   return (
     <>
       <div>

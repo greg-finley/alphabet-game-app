@@ -17,7 +17,7 @@ interface ScoreboardCardProps {
 export default function ScoreboardCard(props: ScoreboardCardProps) {
   const { play } = props;
   return (
-    <Card sx={{ display: "flex" }}>
+    <Card sx={{ display: "flex", maxWidth: "800px" }}>
       <div className="Player-image-container">
         <img
           className="Player-image"

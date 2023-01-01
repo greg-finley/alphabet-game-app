@@ -72,9 +72,7 @@ function App() {
               ) : state.type === "error" ? (
                 <ErrorMessage error={state.error} />
               ) : (
-                state.type === "success" && (
-                  <MostRecentScoreboard plays={state.plays} />
-                )
+                <MostRecentScoreboard plays={state.plays} />
               )}
             </div>
           }
@@ -89,9 +87,7 @@ function App() {
               ) : state.type === "error" ? (
                 <ErrorMessage error={state.error} />
               ) : (
-                state.type === "success" && (
-                  <CSV data={state.plays} filename={"all_scores"} />
-                )
+                <CSV data={state.plays} filename={"all_scores"} />
               )}
             </div>
           }

@@ -41,6 +41,7 @@
   height: 10vh;
   width: 10vh;
   border-radius: 50%;
+  padding-top: 1vh;
 }
 
 .Player-image {

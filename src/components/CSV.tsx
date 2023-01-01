@@ -9,18 +9,6 @@ interface CSVProps {
 
 export default function CSV(props: CSVProps) {
   const { data, filename } = props;
-  // return (
-  //   <CsvDownloader
-  //     datas={data}
-  //     filename={filename}
-  //     suffix={true}
-  //     wrapColumnChar={'"'}
-  //   >
-  //     <button>Download CSV</button>
-  //   </CsvDownloader>
-  // );
-
-  // Same as the above comment, but left justify the button
   return (
     <CsvDownloader
       datas={data}

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useReducer } from "react";
 import "./App.css";
 import Contact from "./components/Contact";
 import CSV from "./components/CSV";
@@ -10,10 +10,28 @@ import SimpleAccordion from "./components/SimpleAccordion";
 import TopAppBar from "./components/TopAppBar";
 import { Play } from "./types";
 
+type State =
+  | { type: "loading" }
+  | { type: "error"; error: string }
+  | { type: "success"; plays: Play[] };
+
+type Action =
+  | { type: "FETCH_SUCCESS"; payload: Play[] }
+  | { type: "FETCH_ERROR"; payload: string };
+
+const initialState: State = { type: "loading" };
+
+function reducer(state: State, action: Action): State {
+  switch (action.type) {
+    case "FETCH_SUCCESS":
+      return { type: "success", plays: action.payload };
+    case "FETCH_ERROR":
+      return { type: "error", error: action.payload };
+  }
+}
+
 function App() {
-  const [plays, setPlays] = useState<null | Play[]>(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<null | string>(null);
+  const [state, dispatch] = useReducer(reducer, initialState);
 
   useEffect(() => {
     fetch(
@@ -28,15 +46,10 @@ function App() {
         return response.json().then((x) => x.data) as Promise<Play[]>;
       })
       .then((plays) => {
-        setPlays(plays);
-        setError(null);
+        dispatch({ type: "FETCH_SUCCESS", payload: plays });
       })
       .catch((err) => {
-        setError(err.message);
-        setPlays(null);
-      })
-      .finally(() => {
-        setLoading(false);
+        dispatch({ type: "FETCH_ERROR", payload: err.message });
       });
   }, []);
 
@@ -54,12 +67,14 @@ function App() {
           title={"Most Recent Scores"}
           content={
             <div>
-              {loading ? (
+              {state.type === "loading" ? (
                 <LoadingCircle />
-              ) : error ? (
-                <ErrorMessage error={error} />
+              ) : state.type === "error" ? (
+                <ErrorMessage error={state.error} />
               ) : (
-                plays && <MostRecentScoreboard plays={plays} />
+                state.type === "success" && (
+                  <MostRecentScoreboard plays={state.plays} />
+                )
               )}
             </div>
           }
@@ -69,12 +84,14 @@ function App() {
           title={"All Scores"}
           content={
             <div style={{ display: "flex", justifyContent: "left" }}>
-              {loading ? (
+              {state.type === "loading" ? (
                 <LoadingCircle />
-              ) : error ? (
-                <ErrorMessage error={error} />
+              ) : state.type === "error" ? (
+                <ErrorMessage error={state.error} />
               ) : (
-                plays && <CSV data={plays} filename={"all_scores"} />
+                state.type === "success" && (
+                  <CSV data={state.plays} filename={"all_scores"} />
+                )
               )}
             </div>
           }

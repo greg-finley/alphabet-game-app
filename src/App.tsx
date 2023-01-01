@@ -74,7 +74,7 @@ function App() {
           content={<GitHubLinks />}
         />
         <SimpleAccordion
-          defaultExpanded={false}
+          defaultExpanded={true}
           title={"Contact"}
           content={<Contact />}
         />

@@ -60,7 +60,7 @@ function App() {
         <p className="App-text-intro">
           Let's play the Alphabet Game, looking for the next letter in player
           names as they hit MLB home runs, score NHL goals, dunk in the NBA, and
-          score NFL touchdowns.
+          score NFL touchdowns. Follow along on Twitter!
         </p>
         <SimpleAccordion
           defaultExpanded={true}

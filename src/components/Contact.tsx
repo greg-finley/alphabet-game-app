@@ -5,15 +5,15 @@ import Stack from "@mui/material/Stack";
 
 export default function Contact() {
   return (
-    <Stack direction="row" spacing={2}>
-      <a href="mailto:gregory.finley@gmail.com">
-        <EmailIcon />
-      </a>
+    <Stack direction="row" spacing={3}>
       <a href="https://twitter.com/gregoryfinley">
         <TwitterIcon />
       </a>
       <a href="https://www.linkedin.com/in/greg-finley-73294920/">
         <LinkedInIcon />
+      </a>
+      <a href="mailto:gregory.finley@gmail.com">
+        <EmailIcon />
       </a>
     </Stack>
   );

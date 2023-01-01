@@ -1,0 +1,25 @@
+name: deploy
+on:
+  push:
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v3
+      - id: "auth"
+        uses: "google-github-actions/auth@v0"
+        with:
+          credentials_json: "${{ secrets.gcp_credentials }}"
+
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18
+      - id: "install"
+        run: npm install
+      - id: "tsc"
+        run: npx tsc
+      - id: "deploy"
+        run: npm run deploy
+      - id: "clean_old_versions"
+        run: npm run clean_old_versions

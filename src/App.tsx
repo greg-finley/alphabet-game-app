@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./App.css";
 import ErrorMessage from "./components/ErrorMessage";
+import GitHubLinks from "./components/GitHubLinks";
 import LoadingCircle from "./components/LoadingCircle";
 import MostRecentScoreboard from "./components/MostRecentScoreboard";
 import SimpleAccordion from "./components/SimpleAccordion";
@@ -68,13 +69,13 @@ function App() {
         />
         <SimpleAccordion
           defaultExpanded={false}
-          title={"About"}
-          content={<p className="App-text">Coming soon</p>}
+          title={"Source Code"}
+          content={<GitHubLinks />}
         />
         <SimpleAccordion
           defaultExpanded={false}
-          title={"Source Code"}
-          content={<p className="App-text">Coming soon </p>}
+          title={"About"}
+          content={<p className="App-text">Coming soon</p>}
         />
       </header>
     </div>

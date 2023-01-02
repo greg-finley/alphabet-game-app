@@ -1,4 +1,5 @@
 import React, { useEffect, useReducer } from "react";
+import ReactGA from "react-ga";
 import "./App.css";
 import Contact from "./components/Contact";
 import CSV from "./components/CSV";
@@ -31,6 +32,9 @@ function reducer(state: State, action: Action): State {
 }
 
 function App() {
+  ReactGA.initialize("G-8MTY2HPTR0");
+  ReactGA.pageview(window.location.pathname);
+
   const [state, dispatch] = useReducer(reducer, initialState);
 
   useEffect(() => {

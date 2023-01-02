@@ -33,6 +33,10 @@ function reducer(state: State, action: Action): State {
 
 function App() {
   ReactGA.initialize("G-8MTY2HPTR0");
+  ReactGA.event({
+    category: "User",
+    action: "Visited home page",
+  });
   ReactGA.pageview(window.location.pathname);
 
   const [state, dispatch] = useReducer(reducer, initialState);

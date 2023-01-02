@@ -7,6 +7,7 @@ import ErrorMessage from "./components/ErrorMessage";
 import GitHubLinks from "./components/GitHubLinks";
 import LoadingCircle from "./components/LoadingCircle";
 import MostRecentScoreboard from "./components/MostRecentScoreboard";
+import ScoreCalendar from "./components/ScoreCalendar";
 import SimpleAccordion from "./components/SimpleAccordion";
 import TopAppBar from "./components/TopAppBar";
 import { Play } from "./types";
@@ -95,9 +96,14 @@ function App() {
               ) : state.type === "error" ? (
                 <ErrorMessage error={state.error} />
               ) : (
-                <div style={{ display: "flex", justifyContent: "left" }}>
-                  <CSV data={state.plays} filename={"all_scores"} />
-                </div>
+                <>
+                  <div style={{ display: "flex", justifyContent: "left" }}>
+                    <ScoreCalendar plays={state.plays} />
+                  </div>
+                  <div style={{ display: "flex", justifyContent: "left" }}>
+                    <CSV data={state.plays} filename={"all_scores"} />
+                  </div>
+                </>
               )}
             </div>
           }

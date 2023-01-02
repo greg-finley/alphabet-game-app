@@ -81,13 +81,15 @@ function App() {
           defaultExpanded={true}
           title={"All Scores"}
           content={
-            <div style={{ display: "flex", justifyContent: "left" }}>
+            <div>
               {state.type === "loading" ? (
                 <LoadingCircle />
               ) : state.type === "error" ? (
                 <ErrorMessage error={state.error} />
               ) : (
-                <CSV data={state.plays} filename={"all_scores"} />
+                <div style={{ display: "flex", justifyContent: "left" }}>
+                  <CSV data={state.plays} filename={"all_scores"} />
+                </div>
               )}
             </div>
           }

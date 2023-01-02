@@ -1,4 +1,5 @@
 import * as React from "react";
+import Avatar from "@mui/material/Avatar";
 import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
@@ -18,19 +19,6 @@ export default function ScoreboardCard(props: ScoreboardCardProps) {
   const { play } = props;
   return (
     <Card sx={{ display: "flex", maxWidth: "800px" }}>
-      <div className="Player-image-container">
-        <img
-          className="Player-image"
-          src={playerImageSrc(play)}
-          alt={play.player_name}
-          onError={({ currentTarget }) => {
-            currentTarget.onerror = null;
-            currentTarget.src =
-              "https://a.espncdn.com/combiner/i?img=/i/headshots/nophoto.png&h=110&w=110&scale=crop";
-          }}
-        />
-      </div>
-
       <Box
         sx={{
           display: "flex",
@@ -40,7 +28,12 @@ export default function ScoreboardCard(props: ScoreboardCardProps) {
         }}
       >
         <CardContent sx={{ flex: "1 0 auto", textAlign: "left" }}>
-          <Typography variant="h6">{play.player_name}</Typography>
+          <Typography variant="h6">
+            <div className="Player-name-and-image">
+              <Avatar src={playerImageSrc(play)} alt={play.player_name} />
+              {play.player_name}
+            </div>
+          </Typography>
           <a
             href={`https://twitter.com/${play.sport}AlphabetGame/status/${play.tweet_id}`}
           >

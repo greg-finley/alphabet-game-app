@@ -95,7 +95,7 @@ function App() {
           }
         />
         <SimpleAccordion
-          defaultExpanded={true}
+          defaultExpanded={false}
           title={"Source Code"}
           content={<GitHubLinks />}
         />

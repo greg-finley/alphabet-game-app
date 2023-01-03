@@ -8,6 +8,7 @@ import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 import { Play, Sport } from "../types";
 import { TwitterFollowButton } from "react-twitter-embed";
+import TwitterIcon from "@mui/icons-material/Twitter";
 
 dayjs.extend(relativeTime);
 
@@ -38,11 +39,15 @@ export default function ScoreboardCard(props: ScoreboardCardProps) {
               {play.player_name}
             </div>
           </Typography>
-          <a
-            href={`https://twitter.com/${play.sport}AlphabetGame/status/${play.tweet_id}`}
-          >
+          <div style={{ display: "flex", alignItems: "center" }}>
             <Typography>{sportScore(play.sport) + "!"}</Typography>
-          </a>
+            <a
+              href={`https://twitter.com/${play.sport}AlphabetGame/status/${play.tweet_id}`}
+              style={{ marginLeft: 4 }}
+            >
+              <TwitterIcon />
+            </a>
+          </div>
           <Typography>{dayjs().to(dayjs.unix(play.completed_at))}</Typography>
           <Typography>
             His name has the letter

@@ -15,12 +15,13 @@ export default function ScoreCalendar(props: { plays: Play[] }) {
       minDate={new Date(2022, 9, 1)}
       maxDate={new Date()}
       minDetail={"year"}
-      tileClassName={({ date }) => {
-        if (datesWithPlays.has(dateToKey(date))) {
-          return "highlight";
-        } else {
-          return "";
+      tileContent={({ date, view }) => {
+        if (view === "month" && datesWithPlays.has(dateToKey(date))) {
+          return (
+            <img src="/NHL-Logo.png" alt="Blue dot" style={{ width: "1em" }} />
+          );
         }
+        return null;
       }}
     />
   );

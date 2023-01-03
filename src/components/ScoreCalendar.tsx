@@ -11,6 +11,7 @@ export default function ScoreCalendar(props: { plays: Play[] }) {
 
   return (
     <Calendar
+      calendarType="US"
       minDate={new Date(2022, 9, 1)}
       maxDate={new Date()}
       minDetail={"year"}

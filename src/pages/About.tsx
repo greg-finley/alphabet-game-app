@@ -13,18 +13,20 @@ export default function Home() {
   });
 
   return (
-    <header className="App-header">
+    <>
       <TopAppBar />
-      <SimpleAccordion
-        defaultExpanded={true}
-        title={"Source Code"}
-        content={<GitHubLinks />}
-      />
-      <SimpleAccordion
-        defaultExpanded={true}
-        title={"Contact"}
-        content={<Contact />}
-      />
-    </header>
+      <header className="App-header">
+        <SimpleAccordion
+          defaultExpanded={true}
+          title={"Source Code"}
+          content={<GitHubLinks />}
+        />
+        <SimpleAccordion
+          defaultExpanded={true}
+          title={"Contact"}
+          content={<Contact />}
+        />
+      </header>
+    </>
   );
 }

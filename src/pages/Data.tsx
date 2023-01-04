@@ -57,30 +57,31 @@ export default function Home() {
   }, []);
 
   return (
-    <header className="App-header">
+    <>
       <TopAppBar />
-
-      <p className="App-text-intro">
-        All scores that have been tweeted are available here to download as a
-        CSV.
-      </p>
-      <SimpleAccordion
-        defaultExpanded={true}
-        title={"All Scores"}
-        content={
-          <div>
-            {state.type === "loading" ? (
-              <LoadingCircle />
-            ) : state.type === "error" ? (
-              <ErrorMessage error={state.error} />
-            ) : (
-              <div style={{ display: "flex", justifyContent: "left" }}>
-                <CSV data={state.plays} filename={"all_scores"} />
-              </div>
-            )}
-          </div>
-        }
-      />
-    </header>
+      <header className="App-header">
+        <p className="App-text-intro">
+          All scores that have been tweeted are available here to download as a
+          CSV.
+        </p>
+        <SimpleAccordion
+          defaultExpanded={true}
+          title={"All Scores"}
+          content={
+            <div>
+              {state.type === "loading" ? (
+                <LoadingCircle />
+              ) : state.type === "error" ? (
+                <ErrorMessage error={state.error} />
+              ) : (
+                <div style={{ display: "flex", justifyContent: "left" }}>
+                  <CSV data={state.plays} filename={"all_scores"} />
+                </div>
+              )}
+            </div>
+          }
+        />
+      </header>
+    </>
   );
 }

@@ -17,12 +17,10 @@ function MostRecentScoreboard(props: MostRecentScoresProps) {
     return acc;
   }, {} as Record<string, Play>);
   return (
-    <div className={styles.container}>
-      <div className={styles.grid}>
-        {Object.values(mostRecentScores).map((play) => (
-          <ScoreboardCard play={play} key={play.sport + play.player_id} />
-        ))}
-      </div>
+    <div className={styles.grid}>
+      {Object.values(mostRecentScores).map((play) => (
+        <ScoreboardCard play={play} key={play.sport + play.player_id} />
+      ))}
     </div>
   );
 }

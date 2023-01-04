@@ -7,9 +7,15 @@
   margin-bottom: 12px;
 }
 
-/* get rid of this if you don't want big card */
+@media (max-width: 540px) {
+  .grid {
+    width: 100%;
+  }
+}
+
+/* get rid of this if you don't want big cards */
 @media (min-width: 540px) {
   .grid > * {
-    min-width: 500px;
+    width: 516px;
   }
 }

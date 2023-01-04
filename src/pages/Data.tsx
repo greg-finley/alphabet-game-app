@@ -58,7 +58,7 @@ export default function Data() {
   return (
     <>
       <TopAppBar />
-      <header className="App-header">
+      <div className="App-container">
         <p className="App-text-intro">
           All scores that have been tweeted are available below to download as a
           CSV. They are also available{" "}
@@ -78,7 +78,7 @@ export default function Data() {
             </div>
           )}
         </div>
-      </header>
+      </div>
     </>
   );
 }

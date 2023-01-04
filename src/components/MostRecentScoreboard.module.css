@@ -1,0 +1,15 @@
+.grid {
+  display: grid;
+  grid-template-columns: 1;
+}
+
+.grid > *:not(:last-child) {
+  margin-bottom: 12px;
+}
+
+/* get rid of this if you don't want big card */
+@media (min-width: 540px) {
+  .grid > * {
+    min-width: 500px;
+  }
+}

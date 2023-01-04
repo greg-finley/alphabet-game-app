@@ -1,6 +1,7 @@
 import * as React from "react";
 import { Play } from "../types";
 import ScoreboardCard from "./ScoreboardCard";
+import styles from "./MostRecentScoreboard.module.css";
 
 interface MostRecentScoresProps {
   plays: Play[];
@@ -16,13 +17,13 @@ function MostRecentScoreboard(props: MostRecentScoresProps) {
     return acc;
   }, {} as Record<string, Play>);
   return (
-    <>
-      <div>
+    <div className={styles.container}>
+      <div className={styles.grid}>
         {Object.values(mostRecentScores).map((play) => (
           <ScoreboardCard play={play} key={play.sport + play.player_id} />
         ))}
       </div>
-    </>
+    </div>
   );
 }
 

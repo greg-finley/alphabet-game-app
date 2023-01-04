@@ -1,10 +1,11 @@
 import React, { useEffect, useReducer } from "react";
+import ReactGA from "react-ga4";
 import ErrorMessage from "../components/ErrorMessage";
 import LoadingCircle from "../components/LoadingCircle";
 import MostRecentScoreboard from "../components/MostRecentScoreboard";
 import TopAppBar from "../components/TopAppBar";
 import { Play } from "../types";
-import ReactGA from "react-ga4";
+import styles from "./Home.module.css";
 
 type State =
   | { type: "loading" }
@@ -58,14 +59,14 @@ export default function Home() {
   return (
     <>
       <TopAppBar />
-      <header className="App-header">
+      <div className="App-container">
         <p className="App-text-intro">
           Let's play the Alphabet Game, looking for the next letter in player
           names as they hit MLB home runs, score NHL goals, dunk in the NBA, and
           score NFL touchdowns. Follow along on Twitter!
         </p>
-        <h4 style={{ textAlign: "left" }}>Most Recent Scores</h4>
-        <div>
+        <div className={styles.mostRecentScoresContainer}>
+          <h4 style={{ textAlign: "left" }}>Most Recent Scores</h4>
           {state.type === "loading" ? (
             <LoadingCircle />
           ) : state.type === "error" ? (
@@ -74,7 +75,7 @@ export default function Home() {
             <MostRecentScoreboard plays={state.plays} />
           )}
         </div>
-      </header>
+      </div>
     </>
   );
 }

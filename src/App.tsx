@@ -1,4 +1,5 @@
 import React, { useEffect, useReducer } from "react";
+import ReactGA from "react-ga4";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import "./App.css";
 import Home from "./pages/Home";
@@ -56,6 +57,7 @@ function App() {
     { path: "*", element: <div>Not Found</div> },
   ]);
 
+  ReactGA.initialize("G-8MTY2HPTR0");
   return (
     <div className="App">
       <RouterProvider router={router} />

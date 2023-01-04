@@ -5,10 +5,9 @@ import { TwitterTimelineEmbed } from "react-twitter-embed";
 import LoadingCircle from "../components/LoadingCircle";
 
 export default function OnTwitter() {
-  ReactGA.initialize("G-8MTY2HPTR0");
   ReactGA.event({
     category: "User",
-    action: "Visited about On Twitter page",
+    action: "Visited On Twitter page",
   });
 
   const screenNames = ["NHL", "NBA", "NFL", "MLB"];

@@ -13,7 +13,6 @@ interface HomeProps {
 
 export default function Home(props: HomeProps) {
   const { state } = props;
-  ReactGA.initialize("G-8MTY2HPTR0");
   ReactGA.event({
     category: "User",
     action: "Visited home page",

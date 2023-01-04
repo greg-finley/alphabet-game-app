@@ -6,10 +6,9 @@ import TopAppBar from "../components/TopAppBar";
 import ReactGA from "react-ga4";
 
 export default function About() {
-  ReactGA.initialize("G-8MTY2HPTR0");
   ReactGA.event({
     category: "User",
-    action: "Visited about page",
+    action: "Visited About page",
   });
 
   return (

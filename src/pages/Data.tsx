@@ -12,7 +12,6 @@ interface DataProps {
 
 export default function Data(props: DataProps) {
   const { state } = props;
-  ReactGA.initialize("G-8MTY2HPTR0");
   ReactGA.event({
     category: "User",
     action: "Visited data page",

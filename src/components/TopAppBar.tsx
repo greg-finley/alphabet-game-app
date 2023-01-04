@@ -14,9 +14,8 @@ import Divider from "@mui/material/Divider";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
-import FolderIcon from "@mui/icons-material/Folder";
-import ImageIcon from "@mui/icons-material/Image";
-import DescriptionIcon from "@mui/icons-material/Description";
+import InfoIcon from "@mui/icons-material/Info";
+import StorageIcon from "@mui/icons-material/Storage";
 
 export default function MainNavigation() {
   /*
@@ -46,7 +45,7 @@ export default function MainNavigation() {
       <Container maxWidth="lg">
         <Toolbar>
           <Typography variant="h6" sx={{ flexGrow: 1, fontWeight: 700 }}>
-            Brand
+            Sports Alphabet Game
           </Typography>
 
           <IconButton
@@ -76,7 +75,7 @@ export default function MainNavigation() {
               sx={{
                 p: 2,
                 height: 1,
-                backgroundColor: "#dbc8ff",
+                backgroundColor: "white",
               }}
             >
               {/* 
@@ -92,23 +91,16 @@ export default function MainNavigation() {
               <Box sx={{ mb: 2 }}>
                 <ListItemButton>
                   <ListItemIcon>
-                    <ImageIcon sx={{ color: "primary.main" }} />
+                    <StorageIcon sx={{ color: "primary.main" }} />
                   </ListItemIcon>
-                  <ListItemText primary="Pictures" />
+                  <ListItemText primary="Raw Data" />
                 </ListItemButton>
 
                 <ListItemButton>
                   <ListItemIcon>
-                    <DescriptionIcon sx={{ color: "primary.main" }} />
+                    <InfoIcon sx={{ color: "primary.main" }} />
                   </ListItemIcon>
-                  <ListItemText primary="Documents" />
-                </ListItemButton>
-
-                <ListItemButton>
-                  <ListItemIcon>
-                    <FolderIcon sx={{ color: "primary.main" }} />
-                  </ListItemIcon>
-                  <ListItemText primary="Other" />
+                  <ListItemText primary="About" />
                 </ListItemButton>
               </Box>
             </Box>

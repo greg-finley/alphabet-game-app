@@ -15,6 +15,7 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import InfoIcon from "@mui/icons-material/Info";
 import StorageIcon from "@mui/icons-material/Storage";
+import HomeIcon from "@mui/icons-material/Home";
 
 export default function MainNavigation() {
   /*
@@ -74,7 +75,7 @@ export default function MainNavigation() {
             sx={{
               p: 2,
               height: 1,
-              backgroundColor: "white",
+              backgroundColor: "#C2BFC0",
             }}
           >
             {/* 
@@ -90,11 +91,16 @@ export default function MainNavigation() {
             <Box sx={{ mb: 2 }}>
               <ListItemButton>
                 <ListItemIcon>
+                  <HomeIcon sx={{ color: "primary.main" }} />
+                </ListItemIcon>
+                <ListItemText primary="Home" />
+              </ListItemButton>
+              <ListItemButton>
+                <ListItemIcon>
                   <StorageIcon sx={{ color: "primary.main" }} />
                 </ListItemIcon>
                 <ListItemText primary="Raw Data" />
               </ListItemButton>
-
               <ListItemButton>
                 <ListItemIcon>
                   <InfoIcon sx={{ color: "primary.main" }} />

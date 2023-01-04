@@ -19,7 +19,7 @@ interface ScoreboardCardProps {
 export default function ScoreboardCard(props: ScoreboardCardProps) {
   const { play } = props;
   return (
-    <Card sx={{ display: "flex", maxWidth: "800px" }}>
+    <Card sx={{ display: "flex", maxWidth: "500px" }}>
       <Box
         sx={{
           display: "flex",

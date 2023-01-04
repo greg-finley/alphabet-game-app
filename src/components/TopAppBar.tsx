@@ -5,6 +5,7 @@ import Typography from "@mui/material/Typography";
 import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
 import Box from "@mui/material/Box";
+import { Link } from "react-router-dom";
 
 //drawer elements used
 import Drawer from "@mui/material/Drawer";
@@ -89,24 +90,30 @@ export default function MainNavigation() {
             <Divider sx={{ mb: 2 }} />
 
             <Box sx={{ mb: 2 }}>
-              <ListItemButton>
-                <ListItemIcon>
-                  <HomeIcon sx={{ color: "primary.main" }} />
-                </ListItemIcon>
-                <ListItemText primary="Home" />
-              </ListItemButton>
-              <ListItemButton>
-                <ListItemIcon>
-                  <StorageIcon sx={{ color: "primary.main" }} />
-                </ListItemIcon>
-                <ListItemText primary="Raw Data" />
-              </ListItemButton>
-              <ListItemButton>
-                <ListItemIcon>
-                  <InfoIcon sx={{ color: "primary.main" }} />
-                </ListItemIcon>
-                <ListItemText primary="About" />
-              </ListItemButton>
+              <Link to="/">
+                <ListItemButton>
+                  <ListItemIcon>
+                    <HomeIcon sx={{ color: "primary.main" }} />
+                  </ListItemIcon>
+                  <ListItemText primary="Home" />
+                </ListItemButton>
+              </Link>
+              <Link to="/data">
+                <ListItemButton>
+                  <ListItemIcon>
+                    <StorageIcon sx={{ color: "primary.main" }} />
+                  </ListItemIcon>
+                  <ListItemText primary="Raw Data" />
+                </ListItemButton>
+              </Link>
+              <Link to="/about">
+                <ListItemButton>
+                  <ListItemIcon>
+                    <InfoIcon sx={{ color: "primary.main" }} />
+                  </ListItemIcon>
+                  <ListItemText primary="About" />
+                </ListItemButton>
+              </Link>
             </Box>
           </Box>
         </Drawer>

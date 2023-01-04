@@ -4,7 +4,6 @@ import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
-import Container from "@mui/material/Container";
 import Box from "@mui/material/Box";
 
 //drawer elements used
@@ -41,72 +40,71 @@ export default function MainNavigation() {
   };
 
   return (
-    <AppBar position="static">
-      <Container maxWidth="lg">
-        <Toolbar>
-          <Typography variant="h6" sx={{ flexGrow: 1, fontWeight: 700 }}>
-            Sports Alphabet Game
-          </Typography>
+    <AppBar position="sticky">
+      <Toolbar>
+        <div>
+          <a href="/">
+            <img src="logo192.png" alt="Icon" height={"35vh"} />
+          </a>
+        </div>
+        <Typography variant="h6" sx={{ flexGrow: 1, fontWeight: 700 }}>
+          Sports Alphabet Game
+        </Typography>
 
-          <IconButton
-            edge="start"
-            color="inherit"
-            aria-label="open drawer"
-            onClick={toggleDrawer(true)}
+        <IconButton
+          edge="start"
+          color="inherit"
+          aria-label="open drawer"
+          onClick={toggleDrawer(true)}
+        >
+          <MenuIcon />
+        </IconButton>
+
+        {/* The outside of the drawer */}
+        <Drawer
+          //from which side the drawer slides in
+          anchor="right"
+          //if open is true --> drawer is shown
+          open={open}
+          //function that is called when the drawer should close
+          onClose={toggleDrawer(false)}
+        >
+          {/* The inside of the drawer */}
+          <Box
             sx={{
-              mr: 2,
-              display: "block",
+              p: 2,
+              height: 1,
+              backgroundColor: "white",
             }}
           >
-            <MenuIcon />
-          </IconButton>
-
-          {/* The outside of the drawer */}
-          <Drawer
-            //from which side the drawer slides in
-            anchor="right"
-            //if open is true --> drawer is shown
-            open={open}
-            //function that is called when the drawer should close
-            onClose={toggleDrawer(false)}
-          >
-            {/* The inside of the drawer */}
-            <Box
-              sx={{
-                p: 2,
-                height: 1,
-                backgroundColor: "white",
-              }}
-            >
-              {/* 
+            {/* 
                   when clicking the icon it calls the function toggleDrawer 
                   and closes the drawer by setting the variable open to false
                   */}
-              <IconButton sx={{ mb: 2 }}>
-                <CloseIcon onClick={toggleDrawer(false)} />
-              </IconButton>
+            <IconButton sx={{ mb: 2 }}>
+              <CloseIcon onClick={toggleDrawer(false)} />
+            </IconButton>
 
-              <Divider sx={{ mb: 2 }} />
+            <Divider sx={{ mb: 2 }} />
 
-              <Box sx={{ mb: 2 }}>
-                <ListItemButton>
-                  <ListItemIcon>
-                    <StorageIcon sx={{ color: "primary.main" }} />
-                  </ListItemIcon>
-                  <ListItemText primary="Raw Data" />
-                </ListItemButton>
+            <Box sx={{ mb: 2 }}>
+              <ListItemButton>
+                <ListItemIcon>
+                  <StorageIcon sx={{ color: "primary.main" }} />
+                </ListItemIcon>
+                <ListItemText primary="Raw Data" />
+              </ListItemButton>
 
-                <ListItemButton>
-                  <ListItemIcon>
-                    <InfoIcon sx={{ color: "primary.main" }} />
-                  </ListItemIcon>
-                  <ListItemText primary="About" />
-                </ListItemButton>
-              </Box>
+              <ListItemButton>
+                <ListItemIcon>
+                  <InfoIcon sx={{ color: "primary.main" }} />
+                </ListItemIcon>
+                <ListItemText primary="About" />
+              </ListItemButton>
             </Box>
-          </Drawer>
-        </Toolbar>
-      </Container>
+          </Box>
+        </Drawer>
+      </Toolbar>
     </AppBar>
   );
 }

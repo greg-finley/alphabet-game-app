@@ -1,5 +1,5 @@
 import React, { useEffect, useReducer } from "react";
-import ReactGA from "react-ga";
+import ReactGA from "react-ga4";
 import "./App.css";
 import Contact from "./components/Contact";
 import CSV from "./components/CSV";
@@ -37,7 +37,7 @@ function App() {
     category: "User",
     action: "Visited home page",
   });
-  ReactGA.pageview(window.location.pathname);
+  ReactGA.send("pageview");
 
   const [state, dispatch] = useReducer(reducer, initialState);
 

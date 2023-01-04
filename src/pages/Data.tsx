@@ -2,7 +2,6 @@ import React, { useEffect, useReducer } from "react";
 import CSV from "../components/CSV";
 import ErrorMessage from "../components/ErrorMessage";
 import LoadingCircle from "../components/LoadingCircle";
-import SimpleAccordion from "../components/SimpleAccordion";
 import TopAppBar from "../components/TopAppBar";
 import { Play } from "../types";
 import ReactGA from "react-ga4";
@@ -64,23 +63,17 @@ export default function Home() {
           All scores that have been tweeted are available here to download as a
           CSV.
         </p>
-        <SimpleAccordion
-          defaultExpanded={true}
-          title={"All Scores"}
-          content={
-            <div>
-              {state.type === "loading" ? (
-                <LoadingCircle />
-              ) : state.type === "error" ? (
-                <ErrorMessage error={state.error} />
-              ) : (
-                <div style={{ display: "flex", justifyContent: "left" }}>
-                  <CSV data={state.plays} filename={"all_scores"} />
-                </div>
-              )}
+        <div>
+          {state.type === "loading" ? (
+            <LoadingCircle />
+          ) : state.type === "error" ? (
+            <ErrorMessage error={state.error} />
+          ) : (
+            <div style={{ display: "flex", justifyContent: "left" }}>
+              <CSV data={state.plays} filename={"all_scores"} />
             </div>
-          }
-        />
+          )}
+        </div>
       </header>
     </>
   );

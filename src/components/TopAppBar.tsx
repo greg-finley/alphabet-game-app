@@ -17,7 +17,6 @@ import ListItemText from "@mui/material/ListItemText";
 import FolderIcon from "@mui/icons-material/Folder";
 import ImageIcon from "@mui/icons-material/Image";
 import DescriptionIcon from "@mui/icons-material/Description";
-import Button from "@mui/material/Button";
 
 export default function MainNavigation() {
   /*
@@ -111,24 +110,6 @@ export default function MainNavigation() {
                   </ListItemIcon>
                   <ListItemText primary="Other" />
                 </ListItemButton>
-              </Box>
-
-              <Box
-                sx={{
-                  display: "flex",
-                  justifyContent: "center",
-                  position: "absolute",
-                  bottom: "0",
-                  left: "50%",
-                  transform: "translate(-50%, 0)",
-                }}
-              >
-                <Button variant="contained" sx={{ m: 1, width: 0.5 }}>
-                  Register
-                </Button>
-                <Button variant="outlined" sx={{ m: 1, width: 0.5 }}>
-                  Login
-                </Button>
               </Box>
             </Box>
           </Drawer>

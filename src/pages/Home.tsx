@@ -28,7 +28,6 @@ function reducer(state: State, action: Action): State {
 }
 
 export default function Home() {
-  ReactGA.initialize("G-8MTY2HPTR0");
   ReactGA.event({
     category: "User",
     action: "Visited home page",

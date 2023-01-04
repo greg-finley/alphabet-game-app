@@ -1,4 +1,5 @@
 import React from "react";
+import ReactGA from "react-ga4";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import "./App.css";
 import Home from "./pages/Home";
@@ -18,6 +19,7 @@ const router = createBrowserRouter([
 ]);
 
 function App() {
+  ReactGA.initialize("G-8MTY2HPTR0");
   return (
     <div className="App">
       <RouterProvider router={router} />

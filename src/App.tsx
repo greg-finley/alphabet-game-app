@@ -4,6 +4,7 @@ import "./App.css";
 import Home from "./pages/Home";
 import Data from "./pages/Data";
 import About from "./pages/About";
+import OnTwitter from "./pages/OnTwitter";
 
 const router = createBrowserRouter([
   {
@@ -12,6 +13,7 @@ const router = createBrowserRouter([
   },
   { path: "/about", element: <About /> },
   { path: "/data", element: <Data /> },
+  { path: "/twitter", element: <OnTwitter /> },
   { path: "*", element: <div>Not Found</div> },
 ]);
 

@@ -26,7 +26,7 @@ function reducer(state: State, action: Action): State {
   }
 }
 
-export default function Home() {
+export default function Data() {
   ReactGA.initialize("G-8MTY2HPTR0");
   ReactGA.event({
     category: "User",

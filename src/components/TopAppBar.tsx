@@ -17,6 +17,7 @@ import ListItemText from "@mui/material/ListItemText";
 import InfoIcon from "@mui/icons-material/Info";
 import StorageIcon from "@mui/icons-material/Storage";
 import HomeIcon from "@mui/icons-material/Home";
+import TwitterIcon from "@mui/icons-material/Twitter";
 
 export default function MainNavigation() {
   /*
@@ -96,6 +97,14 @@ export default function MainNavigation() {
                     <HomeIcon sx={{ color: "primary.main" }} />
                   </ListItemIcon>
                   <ListItemText primary="Home" />
+                </ListItemButton>
+              </Link>
+              <Link to="/twitter">
+                <ListItemButton>
+                  <ListItemIcon>
+                    <TwitterIcon sx={{ color: "primary.main" }} />
+                  </ListItemIcon>
+                  <ListItemText primary="On Twitter" />
                 </ListItemButton>
               </Link>
               <Link to="/data">

@@ -15,7 +15,7 @@ export default function About() {
   return (
     <>
       <TopAppBar />
-      <header className="App-header">
+      <div className="App-container">
         <SimpleAccordion
           defaultExpanded={true}
           title={"Source Code"}
@@ -26,7 +26,7 @@ export default function About() {
           title={"Contact"}
           content={<Contact />}
         />
-      </header>
+      </div>
     </>
   );
 }

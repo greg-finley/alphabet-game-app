@@ -16,7 +16,7 @@ export default function OnTwitter() {
   return (
     <>
       <TopAppBar />
-      <header className="App-header">
+      <div className="App-container">
         <p className="App-text-intro">
           The Sports Alphabet Game is played on Twitter. Check out the accounts
           below.
@@ -32,7 +32,7 @@ export default function OnTwitter() {
             />
           </div>
         ))}
-      </header>
+      </div>
     </>
   );
 }

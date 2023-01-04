@@ -60,8 +60,12 @@ export default function Data() {
       <TopAppBar />
       <header className="App-header">
         <p className="App-text-intro">
-          All scores that have been tweeted are available here to download as a
-          CSV.
+          All scores that have been tweeted are available below to download as a
+          CSV. They are also available{" "}
+          <a href="https://github.com/greg-finley/alphabet-game-plays-api#api">
+            via an API
+          </a>
+          .
         </p>
         <div>
           {state.type === "loading" ? (

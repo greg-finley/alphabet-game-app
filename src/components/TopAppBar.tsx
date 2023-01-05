@@ -46,9 +46,9 @@ export default function MainNavigation() {
     <AppBar position="sticky">
       <Toolbar>
         <div>
-          <a href="/">
+          <Link to="/">
             <img src="logo192.png" alt="Icon" height={"35vh"} />
-          </a>
+          </Link>
         </div>
         <Typography variant="h6" sx={{ flexGrow: 1, fontWeight: 700 }}>
           Sports Alphabet Game

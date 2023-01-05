@@ -3,6 +3,7 @@ import { Play } from "../types";
 import ScoreboardCard from "./ScoreboardCard";
 import styles from "./MostRecentScoreboard.module.css";
 import InfiniteScroll from "react-infinite-scroll-component";
+import LoadingCircle from "./LoadingCircle";
 
 interface MostRecentScoresProps {
   plays: Play[];
@@ -32,7 +33,7 @@ function MostRecentScoreboard(props: MostRecentScoresProps) {
         dataLength={items.length} //This is important field to render the next data
         next={fetchData}
         hasMore={items.length < plays.length}
-        loader={<h4>Loading...</h4>}
+        loader={<LoadingCircle />}
         endMessage={
           <p style={{ textAlign: "center" }}>
             <b>Yay! You have seen it all</b>

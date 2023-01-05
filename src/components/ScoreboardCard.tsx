@@ -36,18 +36,16 @@ export default function ScoreboardCard(props: ScoreboardCardProps) {
                 alt={`${play.sport} logo`}
               />
               <Avatar src={playerImageSrc(play)} alt={play.player_name}>
-                {
-                  // fallback image
-                  <img
-                    style={{
-                      width: "100%",
-                      height: "100%",
-                      objectFit: "cover",
-                    }}
-                    src="https://a.espncdn.com/combiner/i?img=/i/headshots/nophoto.png&h=110&w=110&scale=crop"
-                    alt={play.player_name}
-                  />
-                }
+                {/* Fallback image */}
+                <img
+                  style={{
+                    width: "100%",
+                    height: "100%",
+                    objectFit: "cover",
+                  }}
+                  src="https://a.espncdn.com/combiner/i?img=/i/headshots/nophoto.png&h=110&w=110&scale=crop"
+                  alt={play.player_name}
+                />
               </Avatar>
               {play.player_name}
             </div>

@@ -23,9 +23,8 @@ export default function OnTwitter() {
           below.
         </p>
         {screenNames.map((screenName) => (
-          <div style={{ padding: "10px" }}>
+          <div style={{ padding: "10px" }} key={screenName}>
             <TwitterTimelineEmbed
-              key={screenName}
               sourceType="profile"
               screenName={`${screenName}AlphabetGame`}
               options={{ height: 200 }}

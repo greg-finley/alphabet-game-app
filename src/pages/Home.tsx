@@ -1,59 +1,22 @@
-import React, { useEffect, useReducer } from "react";
+import React from "react";
 import ReactGA from "react-ga4";
 import ErrorMessage from "../components/ErrorMessage";
 import LoadingCircle from "../components/LoadingCircle";
 import MostRecentScoreboard from "../components/MostRecentScoreboard";
 import TopAppBar from "../components/TopAppBar";
-import { Play } from "../types";
+import { State } from "../types";
 import styles from "./Home.module.css";
 
-type State =
-  | { type: "loading" }
-  | { type: "error"; error: string }
-  | { type: "success"; plays: Play[] };
-
-type Action =
-  | { type: "FETCH_SUCCESS"; payload: Play[] }
-  | { type: "FETCH_ERROR"; payload: string };
-
-const initialState: State = { type: "loading" };
-
-function reducer(state: State, action: Action): State {
-  switch (action.type) {
-    case "FETCH_SUCCESS":
-      return { type: "success", plays: action.payload };
-    case "FETCH_ERROR":
-      return { type: "error", error: action.payload };
-  }
+interface HomeProps {
+  state: State;
 }
 
-export default function Home() {
+export default function Home(props: HomeProps) {
+  const { state } = props;
   ReactGA.event({
     category: "User",
     action: "Visited home page",
   });
-
-  const [state, dispatch] = useReducer(reducer, initialState);
-
-  useEffect(() => {
-    fetch(
-      `https://us-central1-greg-finley.cloudfunctions.net/alphabet-game-plays-api?matches_only=true&limit=0`
-    )
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error(
-            `This is an HTTP error: The status is ${response.status}`
-          );
-        }
-        return response.json().then((x) => x.data) as Promise<Play[]>;
-      })
-      .then((plays) => {
-        dispatch({ type: "FETCH_SUCCESS", payload: plays });
-      })
-      .catch((err) => {
-        dispatch({ type: "FETCH_ERROR", payload: err.message });
-      });
-  }, []);
 
   return (
     <>

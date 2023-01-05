@@ -4,6 +4,7 @@ import GitHubLinks from "../components/GitHubLinks";
 import SimpleAccordion from "../components/SimpleAccordion";
 import TopAppBar from "../components/TopAppBar";
 import ReactGA from "react-ga4";
+import { ScrollRestoration } from "react-router-dom";
 
 export default function About() {
   ReactGA.event({
@@ -13,6 +14,7 @@ export default function About() {
 
   return (
     <>
+      <ScrollRestoration />
       <TopAppBar />
       <div className="App-container">
         <SimpleAccordion

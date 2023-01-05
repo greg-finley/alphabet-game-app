@@ -5,6 +5,7 @@ import LoadingCircle from "../components/LoadingCircle";
 import TopAppBar from "../components/TopAppBar";
 import { State } from "../types";
 import ReactGA from "react-ga4";
+import { ScrollRestoration } from "react-router-dom";
 
 interface DataProps {
   state: State;
@@ -19,6 +20,7 @@ export default function Data(props: DataProps) {
 
   return (
     <>
+      <ScrollRestoration />
       <TopAppBar />
       <div className="App-container">
         <p className="App-text-intro">

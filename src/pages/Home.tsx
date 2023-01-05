@@ -6,6 +6,7 @@ import MostRecentScoreboard from "../components/MostRecentScoreboard";
 import TopAppBar from "../components/TopAppBar";
 import { State } from "../types";
 import styles from "./Home.module.css";
+import { ScrollRestoration } from "react-router-dom";
 
 interface HomeProps {
   state: State;
@@ -20,6 +21,7 @@ export default function Home(props: HomeProps) {
 
   return (
     <>
+      <ScrollRestoration />
       <TopAppBar />
       <div className="App-container">
         <p className="App-text-intro">

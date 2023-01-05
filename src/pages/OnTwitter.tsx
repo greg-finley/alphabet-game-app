@@ -3,6 +3,7 @@ import TopAppBar from "../components/TopAppBar";
 import ReactGA from "react-ga4";
 import { TwitterTimelineEmbed } from "react-twitter-embed";
 import LoadingCircle from "../components/LoadingCircle";
+import { ScrollRestoration } from "react-router-dom";
 
 export default function OnTwitter() {
   ReactGA.event({
@@ -14,6 +15,7 @@ export default function OnTwitter() {
 
   return (
     <>
+      <ScrollRestoration />
       <TopAppBar />
       <div className="App-container">
         <p className="App-text-intro">

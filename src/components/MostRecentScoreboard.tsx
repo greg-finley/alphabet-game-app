@@ -24,7 +24,7 @@ function MostRecentScoreboard(props: MostRecentScoresProps) {
   const [sportIndex, setSportIndex] = React.useState(0);
 
   const [items, setItems] = React.useState(
-    playsBySport[sports[sportIndex]]
+    (playsBySport[sports[sportIndex]] || [])
       .slice(0, 6)
       .map((play, i) => <ScoreboardCard play={play} key={i} />)
   );
@@ -32,7 +32,7 @@ function MostRecentScoreboard(props: MostRecentScoresProps) {
   const handleTabClick = (event: React.SyntheticEvent, newValue: number) => {
     setSportIndex(newValue);
     setItems(
-      playsBySport[sports[newValue]]
+      (playsBySport[sports[newValue]] || [])
         .slice(0, 6)
         .map((play, i) => <ScoreboardCard play={play} key={i} />)
     );
@@ -41,7 +41,7 @@ function MostRecentScoreboard(props: MostRecentScoresProps) {
   const fetchData = () => {
     setItems(
       items.concat(
-        playsBySport[sports[sportIndex]]
+        (playsBySport[sports[sportIndex]] || [])
           .slice(items.length, items.length + 6)
           .map((play, i) => (
             <ScoreboardCard play={play} key={i + items.length} />

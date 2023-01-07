@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Play, Sport, sports } from "../types";
+import { Play, sports } from "../types";
 import ScoreboardCard from "./ScoreboardCard";
 import InfiniteScroll from "react-infinite-scroll-component";
 import LoadingCircle from "./LoadingCircle";
@@ -9,12 +9,10 @@ import Tab from "@mui/material/Tab";
 
 interface MostRecentScoresProps {
   plays: Play[];
-  currentTabSport: Sport;
-  setCurrentTabSport: (sport: Sport) => void;
 }
 
 function MostRecentScoreboard(props: MostRecentScoresProps) {
-  const { plays, currentTabSport, setCurrentTabSport } = props;
+  const { plays } = props;
   const playsBySport = plays.reduce((acc, play) => {
     if (acc[play.sport]) {
       acc[play.sport].push(play);
@@ -23,22 +21,23 @@ function MostRecentScoreboard(props: MostRecentScoresProps) {
     }
     return acc;
   }, {} as Record<string, Play[]>);
+  const [sportIndex, setSportIndex] = React.useState(0);
 
   const [items, setItems] = React.useState(
-    (playsBySport[currentTabSport] || [])
+    (playsBySport[sports[sportIndex]] || [])
       .slice(0, 6)
       .map((play, i) => (
-        <ScoreboardCard play={play} key={currentTabSport + "_" + i} />
+        <ScoreboardCard play={play} key={sportIndex + "_" + i} />
       ))
   );
 
   const handleTabClick = (event: React.SyntheticEvent, newValue: number) => {
-    setCurrentTabSport(sports[newValue]);
+    setSportIndex(newValue);
     setItems(
       (playsBySport[sports[newValue]] || [])
         .slice(0, 6)
         .map((play, i) => (
-          <ScoreboardCard play={play} key={currentTabSport + "_" + i} />
+          <ScoreboardCard play={play} key={sportIndex + "_" + i} />
         ))
     );
   };
@@ -46,12 +45,12 @@ function MostRecentScoreboard(props: MostRecentScoresProps) {
   const fetchData = () => {
     setItems(
       items.concat(
-        (playsBySport[currentTabSport] || [])
+        (playsBySport[sports[sportIndex]] || [])
           .slice(items.length, items.length + 6)
           .map((play, i) => (
             <ScoreboardCard
               play={play}
-              key={currentTabSport + "_" + i + items.length}
+              key={sportIndex + "_" + i + items.length}
             />
           ))
       )
@@ -61,7 +60,7 @@ function MostRecentScoreboard(props: MostRecentScoresProps) {
   return (
     <div>
       <Tabs
-        value={sports.indexOf(currentTabSport)}
+        value={sportIndex}
         onChange={handleTabClick}
         centered
         sx={{
@@ -74,9 +73,7 @@ function MostRecentScoreboard(props: MostRecentScoresProps) {
             key={sport}
             sx={{
               backgroundColor:
-                sports.indexOf(currentTabSport) === index
-                  ? "currentColor"
-                  : "#676b72",
+                sportIndex === index ? "currentColor" : "#676b72",
               border: "1px solid black",
             }}
           />

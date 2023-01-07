@@ -13,6 +13,7 @@ interface MostRecentScoresProps {
 
 function MostRecentScoreboard(props: MostRecentScoresProps) {
   const { plays } = props;
+
   const playsBySport = plays.reduce((acc, play) => {
     if (acc[play.sport]) {
       acc[play.sport].push(play);
@@ -21,40 +22,13 @@ function MostRecentScoreboard(props: MostRecentScoresProps) {
     }
     return acc;
   }, {} as Record<string, Play[]>);
-  const [sportIndex, setSportIndex] = React.useState(0);
 
-  const [items, setItems] = React.useState(
-    (playsBySport[sports[sportIndex]] || [])
-      .slice(0, 6)
-      .map((play, i) => (
-        <ScoreboardCard play={play} key={sportIndex + "_" + i} />
-      ))
-  );
+  const [sportIndex, setSportIndex] = React.useState(0);
+  const [sportPlays, setSportPlays] = React.useState(playsBySport[sports[0]]);
 
   const handleTabClick = (event: React.SyntheticEvent, newValue: number) => {
     setSportIndex(newValue);
-    setItems(
-      (playsBySport[sports[newValue]] || [])
-        .slice(0, 6)
-        .map((play, i) => (
-          <ScoreboardCard play={play} key={sportIndex + "_" + i} />
-        ))
-    );
-  };
-
-  const fetchData = () => {
-    setItems(
-      items.concat(
-        (playsBySport[sports[sportIndex]] || [])
-          .slice(items.length, items.length + 6)
-          .map((play, i) => (
-            <ScoreboardCard
-              play={play}
-              key={sportIndex + "_" + i + items.length}
-            />
-          ))
-      )
-    );
+    setSportPlays(playsBySport[sports[newValue]] || []);
   };
 
   return (
@@ -79,26 +53,60 @@ function MostRecentScoreboard(props: MostRecentScoresProps) {
           />
         ))}
       </Tabs>
-      {items.length ? (
-        <InfiniteScroll
-          dataLength={items.length}
-          next={fetchData}
-          hasMore={items.length < plays.length}
-          loader={<LoadingCircle />}
-          endMessage={
-            <p style={{ textAlign: "center" }}>
-              <b>Yay! You have seen it all</b>
-            </p>
-          }
-        >
-          {items}
-        </InfiniteScroll>
-      ) : (
-        <p style={{ textAlign: "center" }}>
-          <b>See you when spring training starts!</b>
-        </p>
-      )}
+      <Scores sportPlays={sportPlays} sportIndex={sportIndex} />
     </div>
+  );
+}
+
+interface ScoresProps {
+  sportPlays: Play[];
+  sportIndex: number;
+}
+
+function Scores(props: ScoresProps) {
+  const { sportPlays, sportIndex } = props;
+
+  const [items, setItems] = React.useState(
+    (sportPlays || [])
+      .slice(0, 6)
+      .map((play, i) => (
+        <ScoreboardCard play={play} key={sportIndex + "_" + i} />
+      ))
+  );
+
+  const fetchData = () => {
+    setItems(
+      items.concat(
+        (sportPlays || [])
+          .slice(items.length, items.length + 6)
+          .map((play, i) => (
+            <ScoreboardCard
+              play={play}
+              key={sportIndex + "_" + i + items.length}
+            />
+          ))
+      )
+    );
+  };
+
+  return items.length ? (
+    <InfiniteScroll
+      dataLength={items.length}
+      next={fetchData}
+      hasMore={items.length < sportPlays.length}
+      loader={<LoadingCircle />}
+      endMessage={
+        <p style={{ textAlign: "center" }}>
+          <b>Yay! You have seen it all</b>
+        </p>
+      }
+    >
+      {items}
+    </InfiniteScroll>
+  ) : (
+    <p style={{ textAlign: "center" }}>
+      <b>See you when spring training starts!</b>
+    </p>
   );
 }
 

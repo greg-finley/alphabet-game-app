@@ -4,9 +4,10 @@ import ErrorMessage from "../components/ErrorMessage";
 import LoadingCircle from "../components/LoadingCircle";
 import MostRecentScoreboard from "../components/MostRecentScoreboard";
 import TopAppBar from "../components/TopAppBar";
-import { State } from "../types";
+import { Sport, State } from "../types";
 import styles from "./Home.module.css";
 import { ScrollRestoration } from "react-router-dom";
+import { useLocalStorageState } from "../hooks/useLocalStorage";
 
 interface HomeProps {
   state: State;
@@ -14,6 +15,10 @@ interface HomeProps {
 
 export default function Home(props: HomeProps) {
   const { state } = props;
+  const [currentTabSport, setCurrentTabSport] = useLocalStorageState(
+    "currentTabSport",
+    "NHL"
+  ) as [Sport, (sport: Sport) => void];
   ReactGA.event({
     category: "User",
     action: "Visited home page",
@@ -35,7 +40,11 @@ export default function Home(props: HomeProps) {
           ) : state.type === "error" ? (
             <ErrorMessage error={state.error} />
           ) : (
-            <MostRecentScoreboard plays={state.plays} />
+            <MostRecentScoreboard
+              plays={state.plays}
+              currentTabSport={currentTabSport}
+              setCurrentTabSport={setCurrentTabSport}
+            />
           )}
         </div>
       </div>

@@ -30,7 +30,6 @@ export default function Home(props: HomeProps) {
           score NFL touchdowns. Follow along on Twitter!
         </p>
         <div className={styles.mostRecentScoresContainer}>
-          <h4 style={{ textAlign: "left" }}>Most Recent Scores</h4>
           {state.type === "loading" ? (
             <LoadingCircle />
           ) : state.type === "error" ? (

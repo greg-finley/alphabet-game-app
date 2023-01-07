@@ -7,7 +7,6 @@ import Typography from "@mui/material/Typography";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 import { Play, Sport } from "../types";
-import { TwitterFollowButton } from "react-twitter-embed";
 import TwitterIcon from "@mui/icons-material/Twitter";
 
 dayjs.extend(relativeTime);
@@ -31,10 +30,6 @@ export default function ScoreboardCard(props: ScoreboardCardProps) {
         <CardContent sx={{ flex: "1 0 auto", textAlign: "left" }}>
           <Typography variant="h6">
             <div className="Player-name-and-image">
-              <Avatar
-                src={`${play.sport}-Logo.png`}
-                alt={`${play.sport} logo`}
-              />
               <Avatar src={playerImageSrc(play)} alt={play.player_name}>
                 {/* Fallback image */}
                 <img
@@ -69,10 +64,6 @@ export default function ScoreboardCard(props: ScoreboardCardProps) {
           <Typography>
             Cycled {play.times_cycled} times {play.season_phrase}.
           </Typography>
-          <TwitterFollowButton
-            screenName={`${play.sport}AlphabetGame`}
-            options={{ showCount: false }}
-          />
         </CardContent>
       </Box>
     </Card>

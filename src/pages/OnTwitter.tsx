@@ -4,14 +4,13 @@ import ReactGA from "react-ga4";
 import { TwitterTimelineEmbed } from "react-twitter-embed";
 import LoadingCircle from "../components/LoadingCircle";
 import { ScrollRestoration } from "react-router-dom";
+import { sports } from "../types";
 
 export default function OnTwitter() {
   ReactGA.event({
     category: "User",
     action: "Visited On Twitter page",
   });
-
-  const screenNames = ["NHL", "NBA", "NFL", "MLB"];
 
   return (
     <>
@@ -22,7 +21,7 @@ export default function OnTwitter() {
           The Sports Alphabet Game is played on Twitter. Check out the accounts
           below.
         </p>
-        {screenNames.map((screenName) => (
+        {sports.map((screenName) => (
           <div style={{ padding: "10px" }} key={screenName}>
             <TwitterTimelineEmbed
               sourceType="profile"

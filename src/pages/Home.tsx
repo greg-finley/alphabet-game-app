@@ -7,15 +7,18 @@ import TopAppBar from "../components/TopAppBar";
 import { Sport, State } from "../types";
 import styles from "./Home.module.css";
 import { ScrollRestoration } from "react-router-dom";
+import { useLocalStorageState } from "../hooks/useLocalStorage";
 
 interface HomeProps {
   state: State;
-  currentTabSport: Sport;
-  setCurrentTabSport: (sport: Sport) => void;
 }
 
 export default function Home(props: HomeProps) {
-  const { state, currentTabSport, setCurrentTabSport } = props;
+  const { state } = props;
+  const [currentTabSport, setCurrentTabSport] = useLocalStorageState(
+    "currentTabSport",
+    "NHL"
+  ) as [Sport, (sport: Sport) => void];
   ReactGA.event({
     category: "User",
     action: "Visited home page",

@@ -6,8 +6,7 @@ import Home from "./pages/Home";
 import Data from "./pages/Data";
 import About from "./pages/About";
 import OnTwitter from "./pages/OnTwitter";
-import { Play, Sport, State } from "./types";
-import { useLocalStorageState } from "./hooks/useLocalStorage";
+import { Play, State } from "./types";
 
 type Action =
   | { type: "FETCH_SUCCESS"; payload: Play[] }
@@ -26,10 +25,6 @@ function reducer(state: State, action: Action): State {
 
 function App() {
   const [state, dispatch] = useReducer(reducer, initialState);
-  const [currentTabSport, setCurrentTabSport] = useLocalStorageState(
-    "currentTabSport",
-    "NHL"
-  ) as [Sport, (sport: Sport) => void];
 
   useEffect(() => {
     fetch(
@@ -54,13 +49,7 @@ function App() {
   const router = createBrowserRouter([
     {
       path: "/",
-      element: (
-        <Home
-          state={state}
-          currentTabSport={currentTabSport}
-          setCurrentTabSport={setCurrentTabSport}
-        />
-      ),
+      element: <Home state={state} />,
     },
     { path: "/about", element: <About /> },
     { path: "/data", element: <Data state={state} /> },

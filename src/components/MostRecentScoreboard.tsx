@@ -88,7 +88,7 @@ function MostRecentScoreboard(props: MostRecentScoresProps) {
         </InfiniteScroll>
       ) : (
         <p style={{ textAlign: "center" }}>
-          <b>See you when the season starts!</b>
+          <b>See you when spring training starts!</b>
         </p>
       )}
     </div>

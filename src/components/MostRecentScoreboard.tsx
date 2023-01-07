@@ -1,18 +1,21 @@
 import * as React from "react";
-import { Play, sports } from "../types";
+import { Play, sports, State } from "../types";
 import ScoreboardCard from "./ScoreboardCard";
 import InfiniteScroll from "react-infinite-scroll-component";
 import LoadingCircle from "./LoadingCircle";
+import ErrorMessage from "../components/ErrorMessage";
 import { Avatar } from "@mui/material";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 
 interface MostRecentScoresProps {
-  plays: Play[];
+  state: State;
 }
 
-function MostRecentScoreboard(props: MostRecentScoresProps) {
-  const { plays } = props;
+export default function MostRecentScoreboard(props: MostRecentScoresProps) {
+  const { state } = props;
+  const plays = state.type === "success" ? state.plays : [];
+
   const playsBySport = plays.reduce((acc, play) => {
     if (acc[play.sport]) {
       acc[play.sport].push(play);
@@ -23,7 +26,7 @@ function MostRecentScoreboard(props: MostRecentScoresProps) {
   }, {} as Record<string, Play[]>);
 
   const [items, setItems] = React.useState(
-    playsBySport[sports[0]]
+    (playsBySport[sports[0]] || [])
       .slice(0, 6)
       .map((play, i) => <ScoreboardCard play={play} key={i} />)
   );
@@ -31,9 +34,8 @@ function MostRecentScoreboard(props: MostRecentScoresProps) {
 
   const handleTabClick = (event: React.SyntheticEvent, newValue: number) => {
     setTabIndex(newValue);
-    const sport = sports[newValue];
     setItems(
-      (sport in playsBySport ? playsBySport[sports[newValue]] : [])
+      (playsBySport[sports[newValue]] || [])
         .slice(0, 6)
         .map((play, i) => <ScoreboardCard play={play} key={i} />)
     );
@@ -72,7 +74,11 @@ function MostRecentScoreboard(props: MostRecentScoresProps) {
           />
         ))}
       </Tabs>
-      {items.length ? (
+      {state.type === "loading" ? (
+        <LoadingCircle />
+      ) : state.type === "error" ? (
+        <ErrorMessage error={state.error} />
+      ) : items.length ? (
         <InfiniteScroll
           dataLength={items.length}
           next={fetchData}
@@ -94,5 +100,3 @@ function MostRecentScoreboard(props: MostRecentScoresProps) {
     </div>
   );
 }
-
-export default MostRecentScoreboard;

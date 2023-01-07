@@ -4,8 +4,10 @@ import ScoreboardCard from "./ScoreboardCard";
 import styles from "./MostRecentScoreboard.module.css";
 import InfiniteScroll from "react-infinite-scroll-component";
 import LoadingCircle from "./LoadingCircle";
-import { Avatar, Button } from "@mui/material";
+import { Avatar } from "@mui/material";
 import { Box } from "@mui/system";
+import Tabs from "@mui/material/Tabs";
+import Tab from "@mui/material/Tab";
 
 interface MostRecentScoresProps {
   plays: Play[];
@@ -16,6 +18,11 @@ function MostRecentScoreboard(props: MostRecentScoresProps) {
   const [items, setItems] = React.useState(
     plays.slice(0, 6).map((play, i) => <ScoreboardCard play={play} key={i} />)
   );
+  const [tabIndex, setTabIndex] = React.useState(0);
+
+  const handleTabClick = (event: React.SyntheticEvent, newValue: number) => {
+    setTabIndex(newValue);
+  };
 
   const fetchData = () => {
     setItems(
@@ -31,40 +38,21 @@ function MostRecentScoreboard(props: MostRecentScoresProps) {
 
   return (
     <>
-      <Box
-        sx={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          width: "100%",
-          maxWidth: "500px",
-          paddingBottom: "2px",
-        }}
-      >
-        {sports.map((sport) => (
-          <Button
-            sx={{
-              backgroundColor: "currentColor",
-              width: "250%",
-              height: "100%",
-              border: "2px solid #676b72",
-              borderRadius: "4px",
-            }}
-            key={sport}
-            onClick={() => {
-              console.log(sport);
-              // Change the background color, filter the plays to add or remove that sport
-              // By default, include all sports
-              // OR ... make them different tabs and you can only have one open at a time (see all the NHL scores only, etc.)
-            }}
-          >
-            <Avatar src={`${sport}.jpeg`} alt={`${sport} logo`} />
-          </Button>
-        ))}
+      <Box sx={{ width: "100%", bgcolor: "background.paper" }}>
+        <Tabs value={tabIndex} onChange={handleTabClick} centered>
+          {sports.map((sport) => (
+            <Tab
+              icon={<Avatar src={`${sport}.jpeg`} />}
+              label={sport}
+              key={sport}
+            />
+          ))}
+        </Tabs>
       </Box>
+
       <div className={styles.grid}>
         <InfiniteScroll
-          dataLength={items.length} //This is important field to render the next data
+          dataLength={items.length}
           next={fetchData}
           hasMore={items.length < plays.length}
           loader={<LoadingCircle />}

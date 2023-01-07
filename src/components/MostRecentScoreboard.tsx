@@ -66,7 +66,7 @@ function MostRecentScoreboard(props: MostRecentScoresProps) {
             icon={<Avatar src={`${sport}.jpeg`} variant="square" />}
             key={sport}
             sx={{
-              backgroundColor: tabIndex === index ? "currentColor" : "#B7CEF3",
+              backgroundColor: tabIndex === index ? "currentColor" : "#676b72",
               border: "1px solid black",
             }}
           />

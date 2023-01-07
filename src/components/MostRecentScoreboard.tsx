@@ -65,8 +65,7 @@ function MostRecentScoreboard(props: MostRecentScoresProps) {
         >
           {sports.map((sport) => (
             <Tab
-              icon={<Avatar src={`${sport}.jpeg`} />}
-              label={sport}
+              icon={<Avatar src={`${sport}.jpeg`} variant="square" />}
               key={sport}
               sx={{ color: "white", border: "1px solid black" }}
             />

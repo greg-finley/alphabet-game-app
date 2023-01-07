@@ -91,7 +91,9 @@ function Scores(props: ScoresProps) {
           <ScoreboardCard play={play} key={sportIndex + "_" + i} />
         ))
     );
-  }, [sportPlays, sportIndex]);
+    // don't add sportsPlay else infinite loop
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [sportIndex]);
 
   return items.length ? (
     <InfiniteScroll

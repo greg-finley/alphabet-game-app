@@ -21,19 +21,18 @@ function MostRecentScoreboard(props: MostRecentScoresProps) {
     }
     return acc;
   }, {} as Record<string, Play[]>);
+  const [sportIndex, setSportIndex] = React.useState(0);
 
   const [items, setItems] = React.useState(
-    playsBySport[sports[0]]
+    playsBySport[sports[sportIndex]]
       .slice(0, 6)
       .map((play, i) => <ScoreboardCard play={play} key={i} />)
   );
-  const [tabIndex, setTabIndex] = React.useState(0);
 
   const handleTabClick = (event: React.SyntheticEvent, newValue: number) => {
-    setTabIndex(newValue);
-    const sport = sports[newValue];
+    setSportIndex(newValue);
     setItems(
-      (sport in playsBySport ? playsBySport[sports[newValue]] : [])
+      playsBySport[sports[newValue]]
         .slice(0, 6)
         .map((play, i) => <ScoreboardCard play={play} key={i} />)
     );
@@ -42,7 +41,7 @@ function MostRecentScoreboard(props: MostRecentScoresProps) {
   const fetchData = () => {
     setItems(
       items.concat(
-        plays
+        playsBySport[sports[sportIndex]]
           .slice(items.length, items.length + 6)
           .map((play, i) => (
             <ScoreboardCard play={play} key={i + items.length} />
@@ -54,7 +53,7 @@ function MostRecentScoreboard(props: MostRecentScoresProps) {
   return (
     <div>
       <Tabs
-        value={tabIndex}
+        value={sportIndex}
         onChange={handleTabClick}
         centered
         sx={{
@@ -66,7 +65,8 @@ function MostRecentScoreboard(props: MostRecentScoresProps) {
             icon={<Avatar src={`${sport}.jpeg`} variant="square" />}
             key={sport}
             sx={{
-              backgroundColor: tabIndex === index ? "currentColor" : "#676b72",
+              backgroundColor:
+                sportIndex === index ? "currentColor" : "#676b72",
               border: "1px solid black",
             }}
           />

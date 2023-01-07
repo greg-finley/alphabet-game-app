@@ -1,20 +1,18 @@
 import * as React from "react";
-import { Play, sports, State } from "../types";
+import { Play, sports } from "../types";
 import ScoreboardCard from "./ScoreboardCard";
 import InfiniteScroll from "react-infinite-scroll-component";
 import LoadingCircle from "./LoadingCircle";
-import ErrorMessage from "../components/ErrorMessage";
 import { Avatar } from "@mui/material";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 
 interface MostRecentScoresProps {
-  state: State;
+  plays: Play[];
 }
 
 export default function MostRecentScoreboard(props: MostRecentScoresProps) {
-  const { state } = props;
-  const plays = state.type === "success" ? state.plays : [];
+  const { plays } = props;
 
   const playsBySport = plays.reduce((acc, play) => {
     if (acc[play.sport]) {
@@ -74,10 +72,8 @@ export default function MostRecentScoreboard(props: MostRecentScoresProps) {
           />
         ))}
       </Tabs>
-      {state.type === "loading" ? (
+      {!plays ? (
         <LoadingCircle />
-      ) : state.type === "error" ? (
-        <ErrorMessage error={state.error} />
       ) : items.length ? (
         <InfiniteScroll
           dataLength={items.length}

@@ -1,18 +1,17 @@
 import React from "react";
 import CSV from "../components/CSV";
-import ErrorMessage from "../components/ErrorMessage";
 import LoadingCircle from "../components/LoadingCircle";
 import TopAppBar from "../components/TopAppBar";
-import { State } from "../types";
+import { Play } from "../types";
 import ReactGA from "react-ga4";
 import { ScrollRestoration } from "react-router-dom";
 
 interface DataProps {
-  state: State;
+  plays: Play[];
 }
 
 export default function Data(props: DataProps) {
-  const { state } = props;
+  const { plays } = props;
   ReactGA.event({
     category: "User",
     action: "Visited data page",
@@ -32,13 +31,11 @@ export default function Data(props: DataProps) {
           .
         </p>
         <div>
-          {state.type === "loading" ? (
+          {!plays ? (
             <LoadingCircle />
-          ) : state.type === "error" ? (
-            <ErrorMessage error={state.error} />
           ) : (
             <div style={{ display: "flex", justifyContent: "left" }}>
-              <CSV data={state.plays} filename={"all_scores"} />
+              <CSV data={plays} filename={"all_scores"} />
             </div>
           )}
         </div>

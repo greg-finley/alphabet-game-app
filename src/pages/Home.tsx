@@ -2,16 +2,16 @@ import React from "react";
 import ReactGA from "react-ga4";
 import MostRecentScoreboard from "../components/MostRecentScoreboard";
 import TopAppBar from "../components/TopAppBar";
-import { State } from "../types";
+import { Play } from "../types";
 import styles from "./Home.module.css";
 import { ScrollRestoration } from "react-router-dom";
 
 interface HomeProps {
-  state: State;
+  plays: Play[];
 }
 
 export default function Home(props: HomeProps) {
-  const { state } = props;
+  const { plays } = props;
   ReactGA.event({
     category: "User",
     action: "Visited home page",
@@ -28,7 +28,7 @@ export default function Home(props: HomeProps) {
           score NFL touchdowns. Follow along on Twitter!
         </p>
         <div className={styles.mostRecentScoresContainer}>
-          <MostRecentScoreboard state={state} />
+          <MostRecentScoreboard plays={plays} />
         </div>
       </div>
     </>

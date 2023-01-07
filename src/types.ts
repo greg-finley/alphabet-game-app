@@ -36,8 +36,3 @@ export interface Play {
   tweet_id: string;
   tweet_text: string;
 }
-
-export type State =
-  | { type: "loading" }
-  | { type: "error"; error: string }
-  | { type: "success"; plays: Play[] };

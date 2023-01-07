@@ -1,7 +1,5 @@
 import React from "react";
 import ReactGA from "react-ga4";
-import ErrorMessage from "../components/ErrorMessage";
-import LoadingCircle from "../components/LoadingCircle";
 import MostRecentScoreboard from "../components/MostRecentScoreboard";
 import TopAppBar from "../components/TopAppBar";
 import { State } from "../types";
@@ -30,13 +28,7 @@ export default function Home(props: HomeProps) {
           score NFL touchdowns. Follow along on Twitter!
         </p>
         <div className={styles.mostRecentScoresContainer}>
-          {state.type === "loading" ? (
-            <LoadingCircle />
-          ) : state.type === "error" ? (
-            <ErrorMessage error={state.error} />
-          ) : (
-            <MostRecentScoreboard plays={state.plays} />
-          )}
+          <MostRecentScoreboard state={state} />
         </div>
       </div>
     </>

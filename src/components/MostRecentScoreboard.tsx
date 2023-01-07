@@ -1,34 +1,24 @@
 import * as React from "react";
-import { Play, sports } from "../types";
+import { Play, sports, State } from "../types";
 import ScoreboardCard from "./ScoreboardCard";
 import InfiniteScroll from "react-infinite-scroll-component";
 import LoadingCircle from "./LoadingCircle";
 import { Avatar } from "@mui/material";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
+import ErrorMessage from "./ErrorMessage";
 
 interface MostRecentScoresProps {
-  plays: Play[];
+  state: State;
 }
 
 function MostRecentScoreboard(props: MostRecentScoresProps) {
-  const { plays } = props;
-
-  const playsBySport = plays.reduce((acc, play) => {
-    if (acc[play.sport]) {
-      acc[play.sport].push(play);
-    } else {
-      acc[play.sport] = [play];
-    }
-    return acc;
-  }, {} as Record<string, Play[]>);
+  const { state } = props;
 
   const [sportIndex, setSportIndex] = React.useState(0);
-  const [sportPlays, setSportPlays] = React.useState(playsBySport[sports[0]]);
 
   const handleTabClick = (event: React.SyntheticEvent, newValue: number) => {
     setSportIndex(newValue);
-    setSportPlays(playsBySport[sports[newValue]] || []);
   };
 
   return (
@@ -53,18 +43,26 @@ function MostRecentScoreboard(props: MostRecentScoresProps) {
           />
         ))}
       </Tabs>
-      <Scores sportPlays={sportPlays} sportIndex={sportIndex} />
+      {state.type === "loading" ? (
+        <LoadingCircle />
+      ) : state.type === "error" ? (
+        <ErrorMessage error={state.error} />
+      ) : (
+        <Scores plays={state.plays} sportIndex={sportIndex} />
+      )}
     </div>
   );
 }
 
 interface ScoresProps {
-  sportPlays: Play[];
+  plays: Play[];
   sportIndex: number;
 }
 
 function Scores(props: ScoresProps) {
-  const { sportPlays, sportIndex } = props;
+  const { plays, sportIndex } = props;
+
+  const sportPlays = plays.filter((play) => play.sport === sports[sportIndex]);
 
   const [items, setItems] = React.useState(
     [] as React.ReactElement<typeof ScoreboardCard>[]
@@ -73,7 +71,7 @@ function Scores(props: ScoresProps) {
   const fetchData = () => {
     setItems(
       items.concat(
-        (sportPlays || [])
+        sportPlays
           .slice(items.length, items.length + 6)
           .map((play, i) => (
             <ScoreboardCard
@@ -87,7 +85,7 @@ function Scores(props: ScoresProps) {
 
   React.useEffect(() => {
     setItems(
-      (sportPlays || [])
+      sportPlays
         .slice(0, 6)
         .map((play, i) => (
           <ScoreboardCard play={play} key={sportIndex + "_" + i} />
@@ -109,10 +107,13 @@ function Scores(props: ScoresProps) {
     >
       {items}
     </InfiniteScroll>
-  ) : (
+  ) : // Don't flicker the message; this can be removed once MLB has plays
+  sports[sportIndex] === "MLB" ? (
     <p style={{ textAlign: "center" }}>
       <b>See you when spring training starts!</b>
     </p>
+  ) : (
+    <></>
   );
 }
 

@@ -1,4 +1,4 @@
-export const sports = ["NFL", "NBA", "NHL", "MLB"] as const;
+export const sports = ["NHL", "NBA", "NFL", "MLB"] as const;
 export type Sport = typeof sports[number];
 
 export interface Play {

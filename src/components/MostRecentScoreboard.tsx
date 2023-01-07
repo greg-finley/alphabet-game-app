@@ -5,7 +5,6 @@ import styles from "./MostRecentScoreboard.module.css";
 import InfiniteScroll from "react-infinite-scroll-component";
 import LoadingCircle from "./LoadingCircle";
 import { Avatar } from "@mui/material";
-import { Box } from "@mui/system";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 
@@ -15,13 +14,30 @@ interface MostRecentScoresProps {
 
 function MostRecentScoreboard(props: MostRecentScoresProps) {
   const { plays } = props;
+  const playsBySport = plays.reduce((acc, play) => {
+    if (acc[play.sport]) {
+      acc[play.sport].push(play);
+    } else {
+      acc[play.sport] = [play];
+    }
+    return acc;
+  }, {} as Record<string, Play[]>);
+
   const [items, setItems] = React.useState(
-    plays.slice(0, 6).map((play, i) => <ScoreboardCard play={play} key={i} />)
+    playsBySport[sports[0]]
+      .slice(0, 6)
+      .map((play, i) => <ScoreboardCard play={play} key={i} />)
   );
   const [tabIndex, setTabIndex] = React.useState(0);
 
   const handleTabClick = (event: React.SyntheticEvent, newValue: number) => {
     setTabIndex(newValue);
+    const sport = sports[newValue];
+    setItems(
+      (sport in playsBySport ? playsBySport[sports[newValue]] : [])
+        .slice(0, 6)
+        .map((play, i) => <ScoreboardCard play={play} key={i} />)
+    );
   };
 
   const fetchData = () => {
@@ -38,32 +54,43 @@ function MostRecentScoreboard(props: MostRecentScoresProps) {
 
   return (
     <>
-      <Box sx={{ width: "100%", bgcolor: "background.paper" }}>
-        <Tabs value={tabIndex} onChange={handleTabClick} centered>
+      <div className={styles.grid}>
+        <Tabs
+          value={tabIndex}
+          onChange={handleTabClick}
+          centered
+          sx={{
+            maxWidth: "500px",
+          }}
+        >
           {sports.map((sport) => (
             <Tab
               icon={<Avatar src={`${sport}.jpeg`} />}
               label={sport}
               key={sport}
+              sx={{ color: "white", border: "1px solid black" }}
             />
           ))}
         </Tabs>
-      </Box>
-
-      <div className={styles.grid}>
-        <InfiniteScroll
-          dataLength={items.length}
-          next={fetchData}
-          hasMore={items.length < plays.length}
-          loader={<LoadingCircle />}
-          endMessage={
-            <p style={{ textAlign: "center" }}>
-              <b>Yay! You have seen it all</b>
-            </p>
-          }
-        >
-          {items}
-        </InfiniteScroll>
+        {items.length ? (
+          <InfiniteScroll
+            dataLength={items.length}
+            next={fetchData}
+            hasMore={items.length < plays.length}
+            loader={<LoadingCircle />}
+            endMessage={
+              <p style={{ textAlign: "center" }}>
+                <b>Yay! You have seen it all</b>
+              </p>
+            }
+          >
+            {items}
+          </InfiniteScroll>
+        ) : (
+          <p style={{ textAlign: "center" }}>
+            <b>See you when the season starts!</b>
+          </p>
+        )}
       </div>
     </>
   );

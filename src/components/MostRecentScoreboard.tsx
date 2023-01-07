@@ -67,11 +67,7 @@ function Scores(props: ScoresProps) {
   const { sportPlays, sportIndex } = props;
 
   const [items, setItems] = React.useState(
-    (sportPlays || [])
-      .slice(0, 6)
-      .map((play, i) => (
-        <ScoreboardCard play={play} key={sportIndex + "_" + i} />
-      ))
+    [] as React.ReactElement<typeof ScoreboardCard>[]
   );
 
   const fetchData = () => {
@@ -88,6 +84,16 @@ function Scores(props: ScoresProps) {
       )
     );
   };
+
+  React.useEffect(() => {
+    setItems(
+      (sportPlays || [])
+        .slice(0, 6)
+        .map((play, i) => (
+          <ScoreboardCard play={play} key={sportIndex + "_" + i} />
+        ))
+    );
+  }, [sportPlays, sportIndex]);
 
   return items.length ? (
     <InfiniteScroll

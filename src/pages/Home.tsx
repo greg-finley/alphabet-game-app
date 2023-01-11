@@ -29,7 +29,7 @@ export default function Home(props: HomeProps) {
           score NFL touchdowns. Follow along on Twitter!
         </p>
         <div>
-          <ScoreBox letters={["A", null]} />
+          <ScoreBox letters={["A", "B", "C", null, null, null]} />
         </div>
         <div className={styles.mostRecentScoresContainer}>
           <MostRecentScoreboard state={state} />

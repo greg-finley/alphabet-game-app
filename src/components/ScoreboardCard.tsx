@@ -43,7 +43,7 @@ export default function ScoreboardCard(props: ScoreboardCardProps) {
               <Avatar
                 src={playerImageSrc(play)}
                 alt={play.player_name}
-                sx={{ marginRight: "0.5rem" }}
+                sx={{ marginRight: "0.5rem", bgcolor: "white" }}
               >
                 {/* Fallback image */}
                 <img

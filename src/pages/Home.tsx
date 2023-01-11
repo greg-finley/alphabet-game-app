@@ -18,19 +18,6 @@ export default function Home(props: HomeProps) {
     action: "Visited home page",
   });
 
-  const digitStyle: React.CSSProperties = {
-    fontFamily: "DS-Digital",
-    fontWeight: 400,
-    color: "#f9bc32",
-    fontSize: "3rem",
-    lineHeight: "3rem",
-    top: 0,
-    right: 0,
-    WebkitTextSizeAdjust: "100%",
-    textAlign: "right",
-    boxSizing: "border-box",
-  };
-
   return (
     <>
       <ScrollRestoration />
@@ -58,15 +45,19 @@ export default function Home(props: HomeProps) {
             flexWrap: "wrap",
           }}
         >
-          <div style={{ ...digitStyle, paddingLeft: "6px" }}>ABC</div>
           <div
             style={{
-              ...digitStyle,
-              opacity: 0.08,
-              paddingRight: "6px",
+              fontFamily: "DS-Digital",
+              fontWeight: 400,
+              color: "#f9bc32",
+              fontSize: "3rem",
+              lineHeight: "3rem",
+              padding: "0 6px",
+              WebkitTextSizeAdjust: "100%",
+              boxSizing: "border-box",
             }}
           >
-            888
+            QKL___
           </div>
         </div>
         <div className={styles.mostRecentScoresContainer}>

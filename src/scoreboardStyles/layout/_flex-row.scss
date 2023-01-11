@@ -1,0 +1,18 @@
+/*
+ * flex-row layout
+ *
+ * Defines a flex-row layout
+ *
+ * @return {mixin} The flex-row
+ */
+@import '../helpers/mixins/_flex.scss';
+@import '_flex-auxiliary.scss';
+
+@mixin flex-row() {
+	// styles
+	.flex-row {
+		@include flex();
+		@include flex-auxiliary($box-model-padding);
+	  white-space: no-wrap;
+	}
+}

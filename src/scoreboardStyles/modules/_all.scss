@@ -1,0 +1,27 @@
+/*
+ * SASS Modules Bundle
+ *
+ * Collects all of the other partial files in this directory
+ *
+ */
+
+@import '_scoreboard.scss';
+@import '_integer-box.scss';
+@import '_single-digit-box.scss';
+@import '_colon-box.scss';
+@import '_label-box.scss';
+@import '_team-logo.scss';
+@import '_possession-indicators.scss';
+@import '_period-indicators.scss';
+
+@mixin load-all-modules() {
+  @include scoreboard();
+  @include integer-box();
+  @include single-digit-box();
+  @include label-box();
+  @include colon-box();
+  @include team-logo();
+  @include possession-indicators();
+  @include period-indicators();
+}
+

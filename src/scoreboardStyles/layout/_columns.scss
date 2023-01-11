@@ -1,0 +1,64 @@
+/*
+ * columns layout
+ * Defines the column grid system
+ *
+ * @return {mixin} The columns
+ */
+
+@mixin columns() {
+	.col-content {
+		width: 100%;
+		@include center();
+	}
+	.col-content[data-layout="with-logos"] {
+		width: 64%;
+	}
+	.col-logo {
+		width: 18%;
+	}
+	.col-score {
+		width: 50%;
+	}
+	.col-score.col-home {
+		padding-right: 15px;
+	}
+	.col-score.col-away {
+		padding-left: 15px;
+	}
+  .col-minutes,
+  .col-seconds {
+    width: 44%;
+  }
+  .colon-box {
+    width: 12%;
+    text-align: center;
+  }
+	.col-period {
+		width: 50%;
+		@include center();
+		@include text-center();
+	}
+	.period-box {
+		width: 54px;
+		@include center();
+	}
+
+  @media($screen-md-less) {
+		.period-box {
+			width: 50px;
+		}
+  }
+
+  @media($screen-sm-less) {
+		.period-box {
+			width: 48px;
+		}
+		.col-content[data-layout="with-logos"] {
+			width: $full-width;
+		}
+		.col-logo[data-layout="with-logos"] {
+			display: none;
+		}
+  }
+}
+

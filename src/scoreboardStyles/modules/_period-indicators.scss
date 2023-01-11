@@ -1,0 +1,51 @@
+/*
+ * period-indicators module
+ *
+ * Defines a period-indicators module
+ *
+ * @return {mixin} The period-indicators
+ */
+
+@import 'helpers/mixins/_circle';
+@import 'helpers/mixins/_set-theme';
+
+@mixin period-indicators() {
+	$item-size: 9px;
+	$item-display: inline-block;
+	$item-bg-color: $grey;
+	$item-margin: 0 5px;
+	$item-padding: 0;
+	$item-active-color: $yellow;
+	$item-size--sm: 8px;
+	$item-margin--sm: 0 4px;
+
+	.period-indicators {
+    @include render-component-theme('period-indicators');
+		@include text-center();
+		margin-top: 5px;
+
+		> .indicator-item {
+			@include circle(
+				$item-size,
+				$item-display,
+				$item-bg-color,
+				$item-margin,
+				$item-padding
+			);
+			&[data-active="true"] {
+				background-color: $item-active-color;
+			}
+		}
+
+		@media($screen-sm-less) {
+			> .indicator-item {
+				@include circle(
+					$item-size--sm,
+					null,
+					null,
+					$item-margin--sm
+				);
+			}
+		}
+	}
+}

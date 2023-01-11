@@ -1,0 +1,37 @@
+/*
+ * integer-box module
+ * Defines a integer-box module
+ *
+ * @return {mixin} The integer-box
+ */
+
+@import 'helpers/mixins/_inset-box-shadow.scss';
+@import 'helpers/mixins/_rectangle.scss';
+@import 'helpers/mixins/_set-theme.scss';
+@import 'helpers/mixins/_flex.scss';
+
+@mixin integer-box() {
+  $integer-box-display: inline-block;
+  $integer-box-radius: $default-rounded;
+  $integer-box-bg-color: $charcoal;
+  $integer-box-padding: 0 6px;
+  $integer-box-border: 1px solid $charcoal--light;
+  $integer-box-txt-align: center;
+
+  .integer-box {
+    @include render-component-theme('integer-box');
+    @include rectangle(
+      null,
+      null,
+      $integer-box-display,
+      $integer-box-radius,
+      $integer-box-bg-color,
+      null,
+      $integer-box-padding,
+      $integer-box-border,
+      $integer-box-txt-align
+    );
+    @include inset-box-shadow(15px, .7);
+    @include flex();
+  }
+}

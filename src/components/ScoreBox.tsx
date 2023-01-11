@@ -1,6 +1,8 @@
 import React from "react";
 import SingleDigitBox from "./SingleDigitBox";
 
+import "../scoreboardStyles/index.css";
+
 interface ScoreBoxProps {
   theme: string;
   letter: string;

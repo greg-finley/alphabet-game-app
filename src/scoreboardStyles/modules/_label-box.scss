@@ -1,0 +1,60 @@
+/*
+ * label-box module
+ *
+ * Defines a label-box module
+ *
+ * @return {mixin} The label-box
+ */
+
+@import 'helpers/mixins/_box-helpers';
+@import 'helpers/mixins/_font-constructor';
+@import 'helpers/mixins/_rectangle';
+@import 'helpers/mixins/_set-theme';
+
+@mixin label-box() {
+  $label-box-bg-color: rgba(0, 0, 0, 0.4);
+  $label-box-margin: 10px 0;
+  $label-box-padding: 4px 0;
+  $label-box-border: 0;
+  $label-box-text-align: center;
+  $label-text-color: $grey;
+  $label-text-weight: 300;
+  $label-box-padding--md: 4px 0;
+
+  .label-box {
+    @include render-component-theme('label-box');
+    @include rectangle(
+      null,
+      null,
+      null,
+      $default-rounded,
+      $label-box-bg-color,
+      $label-box-margin,
+      $label-box-padding,
+      $label-box-border,
+      $label-box-text-align
+    )
+
+    > .label-text {
+      @include font-constructor(1.6rem, 1.6rem, $label-text-weight, $label-text-color, $ds-digital, null, uppercase);
+    }
+    &.period-label {
+      @include center();
+      width: 55%;
+    }
+
+    @media($screen-md-less) {
+      padding: $label-box-padding--md;
+
+      > .label-text {
+        @include font-constructor(1.2rem, 1.2rem);
+      }
+    }
+
+    @media($screen-sm-less) {
+      &.period-label {
+        width: 90%;
+      }
+    }
+  }
+}

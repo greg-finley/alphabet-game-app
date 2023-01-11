@@ -1,0 +1,14 @@
+/*
+ * The base SASS file
+ */
+
+@import "helpers/_all.scss";
+@import "base/_all.scss";
+@import "layout/_all.scss";
+@import "modules/_all.scss";
+
+// top level namespace
+.react-scoreboard {
+  @include load-all-modules();
+  @include load-all-helpers();
+}

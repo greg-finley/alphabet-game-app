@@ -1,0 +1,28 @@
+/*
+ * Triangle mixin
+ * defines a generic rectangle to be used in any component
+ *
+ * @param @direction {string} The value that sets the direction of the triangle
+ * @param @tri-size  {number} The value that sets the size of the triangle
+ * @param @color     {color}  The value that sets the color of an element
+ * @param @margin    {number} The value of the amount of spacing outside of a element
+ *
+ * @return {mixin} triangle
+ */
+
+@mixin triangle($direction, $tri-size, $color, $margin) {
+  @include triangle-size($tri-size);
+  @include triangle-color($direction, $color);
+  margin: $margin;
+}
+
+@mixin triangle-color($direction, $color) {
+  @if $direction == 'left' {
+    border-color: transparent $color transparent transparent;
+  } @else if $direction == 'right' {
+    border-color: transparent transparent transparent $color;
+  }
+}
+@mixin triangle-size($tri-size) {
+  border-width: $tri-size;
+}

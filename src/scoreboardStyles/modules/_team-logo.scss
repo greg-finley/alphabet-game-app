@@ -1,0 +1,12 @@
+/*
+ * team-logo module
+ * Defines a team-logo image module
+ *
+ * @return {mixin} team-logo
+ */
+
+@mixin team-logo() {
+	.team-logo {
+		@include text-center();
+	}
+}

@@ -1,0 +1,49 @@
+/*
+ * scoreboard module
+ * Defines the base scoreboard module
+ *
+ * @param @bg-theme {string} The value that sets the overall theme of the scoreboard
+ *
+ * @return {mixin} scoreboard
+ */
+
+@import 'helpers/mixins/_rectangle';
+@import 'helpers/mixins/_set-theme';
+
+@mixin scoreboard() {
+  @include render-component-theme('scoreboard');
+
+  $sb-display: block;
+  $sb-radius: $default-rounded;
+  $sb-bg: $charcoal;
+  $sb-max-width: 450px;
+  $sb-padding: 35px 15px;
+  $sb-inner-brd-color: $charcoal--light;
+  $sb-max-width--md: 400px;
+  $sb-padding--md: 30px 20px;
+  $sb-max-width--sm: $full-width;
+  $sb-padding--sm: 30px 10px;
+  $sb-max-width--with-logos: 650px;
+
+  @include rectangle($full-width, null, $sb-display, $sb-radius, $sb-bg, null, $sb-padding, null);
+  @include box-inner-border(2px, $sb-inner-brd-color, -13px);
+  @include center();
+  max-width: $sb-max-width;
+
+  &[data-layout="with-logos"] {
+    max-width: $sb-max-width--with-logos;
+  }
+
+  @media($screen-md-less) {
+    max-width: $sb-max-width--md;
+    padding: $sb-padding--md;
+  }
+
+  @media($screen-sm-less) {
+    max-width: $sb-max-width--sm;
+    padding: $sb-padding--sm;
+    &[data-layout="with-logos"] {
+      max-width: $full-width;
+    }
+  }
+}

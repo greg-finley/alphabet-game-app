@@ -1,0 +1,22 @@
+/*
+ * colon-box module
+ * Defines a colon-box module
+ *
+ * @return {mixin} The colon-box
+ */
+
+@import '../helpers/mixins/_font-constructor.scss';
+@import '../helpers/mixins/_set-theme.scss';
+
+@mixin colon-box() {
+  .colon-box {
+    @include render-component-theme('colon-box');
+    @include font-constructor(4.8rem, 4.8rem, 400, $yellow, $ds-digital);
+    @media($screen-md-less) {
+      @include font-constructor(4.4rem, 4.4rem);
+    }
+    @media($screen-sm-less) {
+      @include font-constructor(3.7rem, 3.7rem);
+    }
+  }
+}

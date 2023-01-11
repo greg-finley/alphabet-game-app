@@ -70,7 +70,7 @@ export default function ScoreboardCard(props: ScoreboardCardProps) {
             {play.matching_letters.length === 1 ? "" : "s"} :
           </Typography>
           <ScoreBox
-            str={play.matching_letters.join()}
+            str={play.matching_letters.join("")}
             padWithUnderscores={true}
           />
           <Typography>Next letter:</Typography>

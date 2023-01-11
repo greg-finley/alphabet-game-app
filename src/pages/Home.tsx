@@ -5,7 +5,7 @@ import TopAppBar from "../components/TopAppBar";
 import { State } from "../types";
 import styles from "./Home.module.css";
 import { ScrollRestoration } from "react-router-dom";
-import "../fonts/ds-digital.css";
+import ScoreBox from "../components/ScoreBox";
 
 interface HomeProps {
   state: State;
@@ -28,38 +28,8 @@ export default function Home(props: HomeProps) {
           names as they hit MLB home runs, score NHL goals, dunk in the NBA, and
           score NFL touchdowns. Follow along on Twitter!
         </p>
-        <div
-          style={{
-            lineHeight: 1.15,
-            WebkitTextSizeAdjust: "100%",
-            fontSize: "16px",
-            fontFamily: "Open Sans,sans-serif",
-            boxSizing: "border-box",
-            border: "1px solid #434343",
-            backgroundColor: "#313131",
-            borderRadius: "4px",
-            textAlign: "left",
-            boxShadow: "inset 0 0 15px 0 rgba(0,0,0,.7)",
-            display: "flex",
-            width: "fit-content",
-            flexWrap: "wrap",
-          }}
-        >
-          <div
-            style={{
-              fontFamily: "DS-Digital",
-              fontWeight: 400,
-              color: "#f9bc32",
-              fontSize: "3rem",
-              lineHeight: "3rem",
-              padding: "0 6px",
-              WebkitTextSizeAdjust: "100%",
-              boxSizing: "border-box",
-            }}
-          >
-            QKL___
-          </div>
-        </div>
+        <ScoreBox padWithUnderscores={true} str="QKL" />
+        <ScoreBox padWithUnderscores={false} str="QKL" />
         <div className={styles.mostRecentScoresContainer}>
           <MostRecentScoreboard state={state} />
         </div>

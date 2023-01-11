@@ -40,7 +40,11 @@ export default function ScoreboardCard(props: ScoreboardCardProps) {
         <CardContent sx={{ flex: "1 0 auto", textAlign: "left" }}>
           <Typography variant="h6">
             <div className="Player-name-and-image">
-              <Avatar src={playerImageSrc(play)} alt={play.player_name}>
+              <Avatar
+                src={playerImageSrc(play)}
+                alt={play.player_name}
+                sx={{ marginRight: "0.5rem" }}
+              >
                 {/* Fallback image */}
                 <img
                   style={{

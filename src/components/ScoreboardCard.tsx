@@ -19,7 +19,16 @@ interface ScoreboardCardProps {
 export default function ScoreboardCard(props: ScoreboardCardProps) {
   const { play } = props;
   return (
-    <Card sx={{ display: "flex", maxWidth: "500px" }}>
+    <Card
+      sx={{
+        display: "flex",
+        maxWidth: "500px",
+        backgroundColor: "#97929c",
+        color: "white",
+        border: "1px solid black",
+        marginBottom: "0.5rem",
+      }}
+    >
       <Box
         sx={{
           display: "flex",

@@ -23,12 +23,14 @@ export default function Home(props: HomeProps) {
       <ScrollRestoration />
       <TopAppBar />
       <div className="App-container">
-        <ScoreBox theme="theme--dark" letter="A" />
         <p className="App-text-intro">
           Let's play the Alphabet Game, looking for the next letter in player
           names as they hit MLB home runs, score NHL goals, dunk in the NBA, and
           score NFL touchdowns. Follow along on Twitter!
         </p>
+        <div>
+          <ScoreBox theme="theme--dark" letter="A" />
+        </div>
         <div className={styles.mostRecentScoresContainer}>
           <MostRecentScoreboard state={state} />
         </div>

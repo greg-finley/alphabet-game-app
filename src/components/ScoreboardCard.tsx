@@ -8,6 +8,7 @@ import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 import { Play, Sport } from "../types";
 import TwitterIcon from "@mui/icons-material/Twitter";
+import ScoreBox from "./ScoreBox";
 
 dayjs.extend(relativeTime);
 
@@ -57,13 +58,19 @@ export default function ScoreboardCard(props: ScoreboardCardProps) {
           <Typography>{dayjs().to(dayjs.unix(play.completed_at))}</Typography>
           <Typography>
             His name has the letter
-            {play.matching_letters.length === 1 ? "" : "s"}{" "}
-            {play.matching_letters.join(", ")}.
+            {play.matching_letters.length === 1 ? "" : "s"} :
           </Typography>
-          <Typography>Next letter: {play.next_letter}.</Typography>
-          <Typography>
-            Cycled {play.times_cycled} times {play.season_phrase}.
-          </Typography>
+          <ScoreBox
+            str={play.matching_letters.join()}
+            padWithUnderscores={true}
+          />
+          <Typography>Next letter:</Typography>
+          <ScoreBox str={play.next_letter} padWithUnderscores={false} />
+          <Typography>Cycles {play.season_phrase}:</Typography>
+          <ScoreBox
+            str={play.times_cycled.toString()}
+            padWithUnderscores={false}
+          />
         </CardContent>
       </Box>
     </Card>

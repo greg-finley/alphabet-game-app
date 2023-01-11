@@ -5,7 +5,6 @@ import TopAppBar from "../components/TopAppBar";
 import { State } from "../types";
 import styles from "./Home.module.css";
 import { ScrollRestoration } from "react-router-dom";
-import ScoreBox from "../components/ScoreBox";
 
 interface HomeProps {
   state: State;
@@ -28,8 +27,6 @@ export default function Home(props: HomeProps) {
           names as they hit MLB home runs, score NHL goals, dunk in the NBA, and
           score NFL touchdowns. Follow along on Twitter!
         </p>
-        <ScoreBox padWithUnderscores={true} str="QKL" />
-        <ScoreBox padWithUnderscores={false} str="QKL" />
         <div className={styles.mostRecentScoresContainer}>
           <MostRecentScoreboard state={state} />
         </div>

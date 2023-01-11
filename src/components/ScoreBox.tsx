@@ -2,16 +2,22 @@ import React from "react";
 import SingleDigitBox from "./SingleDigitBox";
 
 interface ScoreBoxProps {
-  theme: string;
-  letter: string;
+  letters: (string | null)[];
 }
 
 export default function ScoreBox(props: ScoreBoxProps) {
-  const { theme, letter } = props;
+  const { letters } = props;
   const type = "score";
   return (
-    <div className={"integer-box " + theme}>
-      <SingleDigitBox digit={letter} type={type} digits="1"></SingleDigitBox>
+    <div>
+      {letters.map((letter, index) => (
+        <SingleDigitBox
+          key={index}
+          digit={letter}
+          type={type}
+          digits={(letters.length + 1).toString()}
+        ></SingleDigitBox>
+      ))}
     </div>
   );
 }

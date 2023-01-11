@@ -2,7 +2,7 @@ import React from "react";
 import "../fonts/ds-digital.css";
 
 interface SingleDigitBoxProps {
-  digit: string;
+  digit: string | null;
   type: string;
   digits: string;
 }

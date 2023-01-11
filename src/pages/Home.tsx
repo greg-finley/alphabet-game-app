@@ -5,6 +5,7 @@ import TopAppBar from "../components/TopAppBar";
 import { State } from "../types";
 import styles from "./Home.module.css";
 import { ScrollRestoration } from "react-router-dom";
+import ScoreBox from "../components/ScoreBox";
 
 interface HomeProps {
   state: State;
@@ -22,6 +23,7 @@ export default function Home(props: HomeProps) {
       <ScrollRestoration />
       <TopAppBar />
       <div className="App-container">
+        <ScoreBox theme="theme--dark" letter="A" />
         <p className="App-text-intro">
           Let's play the Alphabet Game, looking for the next letter in player
           names as they hit MLB home runs, score NHL goals, dunk in the NBA, and

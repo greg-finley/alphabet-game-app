@@ -26,7 +26,6 @@ export default function Home(props: HomeProps) {
     lineHeight: "3rem",
     top: 0,
     right: 0,
-    padding: "0 6px",
     WebkitTextSizeAdjust: "100%",
     textAlign: "right",
     boxSizing: "border-box",
@@ -49,7 +48,6 @@ export default function Home(props: HomeProps) {
             fontSize: "16px",
             fontFamily: "Open Sans,sans-serif",
             boxSizing: "border-box",
-            padding: "0 6px",
             border: "1px solid #434343",
             backgroundColor: "#313131",
             borderRadius: "4px",
@@ -60,14 +58,15 @@ export default function Home(props: HomeProps) {
             flexWrap: "wrap",
           }}
         >
-          <div style={digitStyle}>ABCDEF</div>
+          <div style={{ ...digitStyle, paddingLeft: "6px" }}>ABC</div>
           <div
             style={{
               ...digitStyle,
               opacity: 0.08,
+              paddingRight: "6px",
             }}
           >
-            888888
+            888
           </div>
         </div>
         <div className={styles.mostRecentScoresContainer}>

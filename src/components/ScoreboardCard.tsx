@@ -2,7 +2,6 @@ import * as React from "react";
 import Avatar from "@mui/material/Avatar";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
-import Typography from "@mui/material/Typography";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 import { Play, Sport } from "../types";
@@ -20,7 +19,6 @@ export default function ScoreboardCard(props: ScoreboardCardProps) {
   return (
     <Card
       sx={{
-        display: "flex",
         maxWidth: "500px",
         backgroundColor: "#97929c",
         color: "white",
@@ -28,12 +26,21 @@ export default function ScoreboardCard(props: ScoreboardCardProps) {
         marginBottom: "0.5rem",
       }}
     >
-      <CardContent sx={{ flex: "1 0 auto", textAlign: "left" }}>
+      <CardContent
+        sx={{
+          flex: "1 0 auto",
+          textAlign: "center",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
         <div className="Centered">
           <Avatar
             src={playerImageSrc(play)}
             alt={play.player_name}
-            sx={{ bgcolor: "white" }}
+            sx={{
+              bgcolor: "white",
+            }}
           >
             {/* Fallback image */}
             <img
@@ -47,20 +54,22 @@ export default function ScoreboardCard(props: ScoreboardCardProps) {
             />
           </Avatar>
         </div>
-        <div className="Centered">
+        <div>
           <PlayerNameTextBox name={play.player_name} />
         </div>
-        <Typography>
-          His name has the letter
-          {play.matching_letters.length === 1 ? "" : "s"} :
-        </Typography>
+        <TextBox
+          text={[
+            "His name has the letter" +
+              (play.matching_letters.length === 1 ? "" : "s"),
+          ]}
+        />
         <ScoreBox
           str={play.matching_letters.join("")}
           padWithUnderscores={true}
         />
-        <Typography>Next letter:</Typography>
+        <TextBox text={["Next letter:"]} />
         <ScoreBox str={play.next_letter} padWithUnderscores={false} />
-        <Typography>Cycles:</Typography>
+        <TextBox text={["Cycles:"]} />
         <ScoreBox
           str={play.times_cycled.toString()}
           padWithUnderscores={false}
@@ -72,12 +81,13 @@ export default function ScoreboardCard(props: ScoreboardCardProps) {
             play.season_phrase.replace("in the ", ""),
           ]}
         />
-        <a
-          href={`https://twitter.com/${play.sport}AlphabetGame/status/${play.tweet_id}`}
-          style={{ marginLeft: 4 }}
-        >
-          <TwitterIcon />
-        </a>
+        <div style={{ marginTop: "0.5rem" }}>
+          <a
+            href={`https://twitter.com/${play.sport}AlphabetGame/status/${play.tweet_id}`}
+          >
+            <TwitterIcon />
+          </a>
+        </div>
       </CardContent>
     </Card>
   );

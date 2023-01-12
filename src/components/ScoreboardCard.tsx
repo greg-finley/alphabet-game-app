@@ -72,17 +72,14 @@ export default function ScoreboardCard(props: ScoreboardCardProps) {
           />
         </div>
         <TextBox text={["Next letter:"]} />
-        <ScoreBox str={play.next_letter} padWithUnderscores={false} />
-        <TextBox text={["Cycles:"]} />
-        <ScoreBox
-          str={play.times_cycled.toString()}
-          padWithUnderscores={false}
-        />
+        <div className="Centered">
+          <ScoreBox str={play.next_letter} padWithUnderscores={false} />
+        </div>
         <TextBox
           text={[
             sportScore(play.sport) + "!",
             dayjs().to(dayjs.unix(play.completed_at)),
-            play.season_phrase.replace("in the ", ""),
+            play.times_cycled.toString() + " cycles " + play.season_phrase,
           ]}
         />
         <div style={{ marginTop: "0.5rem" }}>

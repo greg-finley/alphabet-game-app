@@ -4,7 +4,11 @@ https://www.sportsalphabetgame.com/
 
 # Main repo
 
-The main repo powering the Alphabet Game is https://github.com/greg-finley/mlb-alphabet-game .
+The main repo powering the Alphabet Game is https://github.com/greg-finley/mlb-alphabet-game.
+
+# Thanks
+
+The scoreboard component was lovingly stolen from https://github.com/michaelferrell/react-scoreboard.
 
 # Getting Started with Create React App
 

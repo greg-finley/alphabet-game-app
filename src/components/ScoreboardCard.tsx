@@ -84,11 +84,23 @@ export default function ScoreboardCard(props: ScoreboardCardProps) {
             play.times_cycled.toString() + " cycles " + play.season_phrase,
           ]}
         />
-        <div style={{ marginTop: "0.5rem" }}>
+        <div
+          style={{
+            marginTop: "0.5rem",
+            justifyContent: "center",
+            display: "flex",
+          }}
+        >
           <a
             href={`https://twitter.com/${play.sport}AlphabetGame/status/${play.tweet_id}`}
+            style={{
+              textDecoration: "none",
+              color: "white",
+              fontSize: "0.8rem",
+            }}
           >
             <TwitterIcon />
+            <div>{`@${play.sport}AlphabetGame`}</div>
           </a>
         </div>
       </CardContent>

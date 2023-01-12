@@ -29,35 +29,29 @@ export default function ScoreboardCard(props: ScoreboardCardProps) {
       }}
     >
       <CardContent sx={{ flex: "1 0 auto", textAlign: "left" }}>
-        <Typography variant="h6">
-          <div className="Player-name-and-image">
-            <Avatar
-              src={playerImageSrc(play)}
-              alt={play.player_name}
-              sx={{ bgcolor: "white" }}
-            >
-              {/* Fallback image */}
-              <img
-                style={{
-                  width: "100%",
-                  height: "100%",
-                  objectFit: "cover",
-                }}
-                src="https://a.espncdn.com/combiner/i?img=/i/headshots/nophoto.png&h=110&w=110&scale=crop"
-                alt={play.player_name}
-              />
-            </Avatar>
-          </div>
-          <div className="Player-name-and-image">{play.player_name}</div>
-        </Typography>
-        <div style={{ display: "flex", alignItems: "center" }}>
-          <Typography>{sportScore(play.sport) + "!"}</Typography>
-          <a
-            href={`https://twitter.com/${play.sport}AlphabetGame/status/${play.tweet_id}`}
-            style={{ marginLeft: 4 }}
+        <div className="Centered">
+          <Avatar
+            src={playerImageSrc(play)}
+            alt={play.player_name}
+            sx={{ bgcolor: "white" }}
           >
-            <TwitterIcon />
-          </a>
+            {/* Fallback image */}
+            <img
+              style={{
+                width: "100%",
+                height: "100%",
+                objectFit: "cover",
+              }}
+              src="https://a.espncdn.com/combiner/i?img=/i/headshots/nophoto.png&h=110&w=110&scale=crop"
+              alt={play.player_name}
+            />
+          </Avatar>
+        </div>
+        <div className="Centered">
+          <TextBox text={[play.player_name]} />
+        </div>
+        <div className="Centered">
+          <Typography>{sportScore(play.sport) + "!"}</Typography>
         </div>
         <Typography>{dayjs().to(dayjs.unix(play.completed_at))}</Typography>
         <Typography>
@@ -75,10 +69,47 @@ export default function ScoreboardCard(props: ScoreboardCardProps) {
           str={play.times_cycled.toString()}
           padWithUnderscores={false}
         />
+        <a
+          href={`https://twitter.com/${play.sport}AlphabetGame/status/${play.tweet_id}`}
+          style={{ marginLeft: 4 }}
+        >
+          <TwitterIcon />
+        </a>
       </CardContent>
     </Card>
   );
 }
+
+interface TextBoxProps {
+  text: string[];
+}
+
+const TextBox = (props: TextBoxProps) => {
+  const { text } = props;
+  return (
+    <div
+      style={{
+        WebkitTextSizeAdjust: "100%",
+        textAlign: "center",
+        boxSizing: "border-box",
+        fontWeight: 300,
+        color: "#f9bc32",
+        fontFamily: "Verdana,sans-serif",
+        fontSize: "1.4rem",
+        lineHeight: "1.4rem",
+        backgroundColor: "#00000066",
+        padding: "0.5rem",
+        borderRadius: "0.5rem",
+        marginTop: "0.5rem",
+        whiteSpace: "pre-wrap",
+      }}
+    >
+      {text.map((line, index) => (
+        <div key={index}>{line}</div>
+      ))}
+    </div>
+  );
+};
 
 const playerImageSrc = (play: Play) => {
   switch (play.sport) {

@@ -30,7 +30,7 @@ export default function ScoreBox(props: ScoreBoxProps) {
         style={{
           fontFamily: "DS-Digital",
           fontWeight: 400,
-          color: "#f9bc32",
+          color: "#d10505",
           fontSize: "3rem",
           lineHeight: "3rem",
           padding: "0 6px",

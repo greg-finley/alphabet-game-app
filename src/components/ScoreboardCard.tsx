@@ -57,16 +57,20 @@ export default function ScoreboardCard(props: ScoreboardCardProps) {
         <div>
           <PlayerNameTextBox name={play.player_name} />
         </div>
-        <TextBox
-          text={[
-            "His name has the letter" +
-              (play.matching_letters.length === 1 ? "" : "s"),
-          ]}
-        />
-        <ScoreBox
-          str={play.matching_letters.join("")}
-          padWithUnderscores={true}
-        />
+        <div style={{ paddingBottom: "0.2rem" }}>
+          <TextBox
+            text={[
+              "His name has the letter" +
+                (play.matching_letters.length === 1 ? "" : "s"),
+            ]}
+          />
+        </div>
+        <div className="Centered">
+          <ScoreBox
+            str={play.matching_letters.join("")}
+            padWithUnderscores={true}
+          />
+        </div>
         <TextBox text={["Next letter:"]} />
         <ScoreBox str={play.next_letter} padWithUnderscores={false} />
         <TextBox text={["Cycles:"]} />
@@ -109,7 +113,6 @@ const PlayerNameTextBox = (props: PlayerNameTextBoxProps) => {
         fontSize: "1.4rem",
         lineHeight: "1.4rem",
         marginTop: "0.7rem",
-        marginBottom: "0.7rem",
       }}
     >
       {name}
@@ -134,12 +137,12 @@ const TextBox = (props: TextBoxProps) => {
         fontWeight: 300,
         color: "#f9bc32",
         fontFamily: "Verdana,sans-serif",
-        fontSize: "1rem",
-        lineHeight: "1rem",
+        fontSize: "0.8rem",
+        lineHeight: "0.8rem",
         backgroundColor: "#00000066",
-        padding: "0.5rem",
-        borderRadius: "0.5rem",
-        marginTop: "0.5rem",
+        padding: "0.3rem",
+        borderRadius: "0.3rem",
+        marginTop: "0.3rem",
         whiteSpace: "pre-wrap",
       }}
     >

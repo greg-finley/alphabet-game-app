@@ -48,12 +48,8 @@ export default function ScoreboardCard(props: ScoreboardCardProps) {
           </Avatar>
         </div>
         <div className="Centered">
-          <TextBox text={[play.player_name]} />
+          <PlayerNameTextBox name={play.player_name} />
         </div>
-        <div className="Centered">
-          <Typography>{sportScore(play.sport) + "!"}</Typography>
-        </div>
-        <Typography>{dayjs().to(dayjs.unix(play.completed_at))}</Typography>
         <Typography>
           His name has the letter
           {play.matching_letters.length === 1 ? "" : "s"} :
@@ -64,10 +60,17 @@ export default function ScoreboardCard(props: ScoreboardCardProps) {
         />
         <Typography>Next letter:</Typography>
         <ScoreBox str={play.next_letter} padWithUnderscores={false} />
-        <Typography>Cycles {play.season_phrase}:</Typography>
+        <Typography>Cycles:</Typography>
         <ScoreBox
           str={play.times_cycled.toString()}
           padWithUnderscores={false}
+        />
+        <TextBox
+          text={[
+            sportScore(play.sport) + "!",
+            dayjs().to(dayjs.unix(play.completed_at)),
+            play.season_phrase.replace("in the ", ""),
+          ]}
         />
         <a
           href={`https://twitter.com/${play.sport}AlphabetGame/status/${play.tweet_id}`}
@@ -80,6 +83,30 @@ export default function ScoreboardCard(props: ScoreboardCardProps) {
   );
 }
 
+interface PlayerNameTextBoxProps {
+  name: string;
+}
+
+const PlayerNameTextBox = (props: PlayerNameTextBoxProps) => {
+  const { name } = props;
+  return (
+    <div
+      style={{
+        WebkitTextSizeAdjust: "100%",
+        textAlign: "center",
+        fontWeight: 300,
+        fontFamily: "Verdana,sans-serif",
+        fontSize: "1.4rem",
+        lineHeight: "1.4rem",
+        marginTop: "0.7rem",
+        marginBottom: "0.7rem",
+      }}
+    >
+      {name}
+    </div>
+  );
+};
+
 interface TextBoxProps {
   text: string[];
 }
@@ -89,14 +116,16 @@ const TextBox = (props: TextBoxProps) => {
   return (
     <div
       style={{
+        maxWidth: "100%",
+        display: "inline-block",
         WebkitTextSizeAdjust: "100%",
         textAlign: "center",
         boxSizing: "border-box",
         fontWeight: 300,
         color: "#f9bc32",
         fontFamily: "Verdana,sans-serif",
-        fontSize: "1.4rem",
-        lineHeight: "1.4rem",
+        fontSize: "1rem",
+        lineHeight: "1rem",
         backgroundColor: "#00000066",
         padding: "0.5rem",
         borderRadius: "0.5rem",

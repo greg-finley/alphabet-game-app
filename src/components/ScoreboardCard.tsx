@@ -72,7 +72,7 @@ export default function ScoreboardCard(props: ScoreboardCardProps) {
           />
         </div>
         <div style={{ paddingBottom: "0.2rem" }}>
-          <TextBox text={["Next letter"]} />
+          <TextBox text={["Next letter in the Alphabet Game"]} />
         </div>
         <div className="Centered">
           <ScoreBox str={play.next_letter} padWithUnderscores={false} />

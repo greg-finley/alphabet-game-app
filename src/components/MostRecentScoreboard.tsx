@@ -72,7 +72,7 @@ function Scores(props: ScoresProps) {
     setItems(
       items.concat(
         sportPlays
-          .slice(items.length, items.length + 6)
+          .slice(items.length, items.length + 3)
           .map((play, i) => (
             <ScoreboardCard
               play={play}
@@ -86,7 +86,7 @@ function Scores(props: ScoresProps) {
   React.useEffect(() => {
     setItems(
       sportPlays
-        .slice(0, 6)
+        .slice(0, 3)
         .map((play, i) => (
           <ScoreboardCard play={play} key={sportIndex + "_" + i} />
         ))

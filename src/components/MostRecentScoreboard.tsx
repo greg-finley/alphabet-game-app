@@ -23,14 +23,7 @@ function MostRecentScoreboard(props: MostRecentScoresProps) {
 
   return (
     <div>
-      <Tabs
-        value={sportIndex}
-        onChange={handleTabClick}
-        centered
-        sx={{
-          maxWidth: "500px",
-        }}
-      >
+      <Tabs value={sportIndex} onChange={handleTabClick} centered>
         {sports.map((sport, index) => (
           <Tab
             icon={<Avatar src={`${sport}.jpeg`} variant="square" />}

@@ -19,11 +19,11 @@ export default function ScoreboardCard(props: ScoreboardCardProps) {
   return (
     <Card
       sx={{
-        maxWidth: "500px",
         backgroundColor: "#97929c",
         color: "white",
         border: "1px solid black",
         marginBottom: "0.5rem",
+        aspectRatio: "1.91/1",
       }}
     >
       <CardContent

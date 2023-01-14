@@ -50,7 +50,10 @@ export default function MainNavigation() {
             <img src="logo192.png" alt="Icon" height={"35vh"} />
           </Link>
         </div>
-        <Typography variant="h6" sx={{ flexGrow: 1, fontWeight: 700 }}>
+        <Typography
+          variant="h6"
+          sx={{ flexGrow: 1, fontWeight: 700, paddingLeft: "1rem" }}
+        >
           Sports Alphabet Game
         </Typography>
 

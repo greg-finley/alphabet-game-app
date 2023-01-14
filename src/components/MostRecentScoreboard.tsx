@@ -23,14 +23,7 @@ function MostRecentScoreboard(props: MostRecentScoresProps) {
 
   return (
     <div>
-      <Tabs
-        value={sportIndex}
-        onChange={handleTabClick}
-        centered
-        sx={{
-          maxWidth: "500px",
-        }}
-      >
+      <Tabs value={sportIndex} onChange={handleTabClick} centered>
         {sports.map((sport, index) => (
           <Tab
             icon={<Avatar src={`${sport}.jpeg`} variant="square" />}
@@ -72,7 +65,7 @@ function Scores(props: ScoresProps) {
     setItems(
       items.concat(
         sportPlays
-          .slice(items.length, items.length + 3)
+          .slice(items.length, items.length + 5)
           .map((play, i) => (
             <ScoreboardCard
               play={play}
@@ -86,7 +79,7 @@ function Scores(props: ScoresProps) {
   React.useEffect(() => {
     setItems(
       sportPlays
-        .slice(0, 3)
+        .slice(0, 5)
         .map((play, i) => (
           <ScoreboardCard play={play} key={sportIndex + "_" + i} />
         ))

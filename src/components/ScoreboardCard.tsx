@@ -5,7 +5,6 @@ import { Play, Sport } from "../types";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import ScoreBox from "./ScoreBox";
 import TextBox from "./TextBox";
-import { CardContent } from "@mui/material";
 
 dayjs.extend(relativeTime);
 
@@ -16,11 +15,7 @@ interface ScoreboardCardProps {
 export default function ScoreboardCard(props: ScoreboardCardProps) {
   const { play } = props;
   return (
-    <CardContent
-      sx={{
-        color: "#f9bc32",
-      }}
-    >
+    <>
       <div className="player-rect">
         <img
           style={{
@@ -98,7 +93,7 @@ export default function ScoreboardCard(props: ScoreboardCardProps) {
           </a>
         </div>
       </div>
-    </CardContent>
+    </>
   );
 }
 

@@ -5,6 +5,7 @@ import "./App.css";
 import Home from "./pages/Home";
 import Data from "./pages/Data";
 import About from "./pages/About";
+import CustomScorecard from "./pages/CustomScorecard";
 import OnTwitter from "./pages/OnTwitter";
 import { Play, State } from "./types";
 
@@ -54,6 +55,7 @@ function App() {
     { path: "/about", element: <About /> },
     { path: "/data", element: <Data state={state} /> },
     { path: "/twitter", element: <OnTwitter /> },
+    { path: "/custom-scorecard", element: <CustomScorecard /> },
     { path: "*", element: <div>Not Found</div> },
   ]);
 

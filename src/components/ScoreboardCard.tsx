@@ -4,14 +4,14 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
-import { Play, Sport } from "../types";
+import { PlayLite, Sport } from "../types";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import ScoreBox from "./ScoreBox";
 
 dayjs.extend(relativeTime);
 
 interface ScoreboardCardProps {
-  play: Play;
+  play: PlayLite;
 }
 
 export default function ScoreboardCard(props: ScoreboardCardProps) {
@@ -164,7 +164,7 @@ const TextBox = (props: TextBoxProps) => {
   );
 };
 
-const playerImageSrc = (play: Play) => {
+const playerImageSrc = (play: PlayLite) => {
   switch (play.sport) {
     case "NHL":
       return `https://cms.nhl.bamgrid.com/images/headshots/current/168x168/${play.player_id}.jpg`;

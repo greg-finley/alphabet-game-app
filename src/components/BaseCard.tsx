@@ -1,13 +1,9 @@
 import * as React from "react";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
-import dayjs from "dayjs";
-import relativeTime from "dayjs/plugin/relativeTime";
 import { Play } from "../types";
 import AspectRatio from "@mui/joy/AspectRatio";
 import ScoreboardCard from "./ScoreboardCard";
-
-dayjs.extend(relativeTime);
 
 interface BaseCardProps {
   content: Play;

@@ -26,7 +26,7 @@ export default function ScoreboardCard(props: ScoreboardCardProps) {
     >
       <AspectRatio variant="outlined" ratio="1.91/1">
         <CardContent className="card-content">
-          <div className="rect1 transparent-bg">
+          <div className="player-rect transparent-bg">
             <img
               style={{
                 width: "100%",
@@ -42,62 +42,57 @@ export default function ScoreboardCard(props: ScoreboardCardProps) {
               alt={play.player_name}
             />
           </div>
-          <div className="rect2 transparent-bg"></div>
-          <div className="rect3 transparent-bg"></div>
-          <div className="flex-parent-element">
-            <div className="flex-child-element"></div>
-            <div className="flex-child-element">
-              <div>
-                <PlayerNameTextBox name={play.player_name} />
-              </div>
-              <div style={{ paddingBottom: "0.2rem" }}>
-                <TextBox
-                  text={[
-                    "His name has the letter" +
-                      (play.matching_letters.length === 1 ? "" : "s"),
-                  ]}
-                />
-              </div>
-              <div className="Centered">
-                <ScoreBox
-                  str={play.matching_letters.join("")}
-                  padWithUnderscores={true}
-                />
-              </div>
-              <div style={{ paddingBottom: "0.2rem" }}>
-                <TextBox text={["Next letter in the Alphabet Game"]} />
-              </div>
-              <div className="Centered">
-                <ScoreBox str={play.next_letter} padWithUnderscores={false} />
-              </div>
+          <div className="info-rect transparent-bg">
+            <TextBox
+              text={[
+                sportScore(play.sport) + "!",
+                dayjs().to(dayjs.unix(play.completed_at)),
+                play.times_cycled.toString() + " cycles " + play.season_phrase,
+              ]}
+            />
+          </div>
+          <div className="score-rect transparent-bg">
+            <div>
+              <PlayerNameTextBox name={play.player_name} />
+            </div>
+            <div style={{ paddingBottom: "0.2rem" }}>
               <TextBox
                 text={[
-                  sportScore(play.sport) + "!",
-                  dayjs().to(dayjs.unix(play.completed_at)),
-                  play.times_cycled.toString() +
-                    " cycles " +
-                    play.season_phrase,
+                  "His name has the letter" +
+                    (play.matching_letters.length === 1 ? "" : "s"),
                 ]}
               />
-              <div
+            </div>
+            <div className="Centered">
+              <ScoreBox
+                str={play.matching_letters.join("")}
+                padWithUnderscores={true}
+              />
+            </div>
+            <div style={{ paddingBottom: "0.2rem" }}>
+              <TextBox text={["Next letter in the Alphabet Game"]} />
+            </div>
+            <div className="Centered">
+              <ScoreBox str={play.next_letter} padWithUnderscores={false} />
+            </div>
+            <div
+              style={{
+                marginTop: "0.5rem",
+                justifyContent: "center",
+                display: "flex",
+              }}
+            >
+              <a
+                href={`https://twitter.com/${play.sport}AlphabetGame/status/${play.tweet_id}`}
                 style={{
-                  marginTop: "0.5rem",
-                  justifyContent: "center",
-                  display: "flex",
+                  textDecoration: "none",
+                  color: "white",
+                  fontSize: "0.8rem",
                 }}
               >
-                <a
-                  href={`https://twitter.com/${play.sport}AlphabetGame/status/${play.tweet_id}`}
-                  style={{
-                    textDecoration: "none",
-                    color: "white",
-                    fontSize: "0.8rem",
-                  }}
-                >
-                  <TwitterIcon />
-                  <div>{`@${play.sport}AlphabetGame`}</div>
-                </a>
-              </div>
+                <TwitterIcon />
+                <div>{`@${play.sport}AlphabetGame`}</div>
+              </a>
             </div>
           </div>
         </CardContent>
@@ -138,7 +133,7 @@ const TextBox = (props: TextBoxProps) => {
   return (
     <div
       style={{
-        maxWidth: "100%",
+        maxWidth: "90%",
         display: "inline-block",
         WebkitTextSizeAdjust: "100%",
         textAlign: "center",
@@ -146,8 +141,8 @@ const TextBox = (props: TextBoxProps) => {
         fontWeight: 300,
         color: "#f9bc32",
         fontFamily: "Verdana,sans-serif",
-        fontSize: "0.8rem",
-        lineHeight: "0.8rem",
+        fontSize: "0.6rem",
+        lineHeight: "0.6rem",
         backgroundColor: "#00000066",
         padding: "0.3rem",
         borderRadius: "0.3rem",

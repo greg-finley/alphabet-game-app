@@ -33,24 +33,11 @@
   display: flex;
 }
 
-.flex-parent-element {
-  display: flex;
-  width: 100%;
-}
-
-.flex-child-element {
-  flex: 1;
-}
-
-.flex-child-element:first-child {
-  margin-right: 0.5rem;
-}
-
 .card-content {
   position: relative;
 }
 
-.rect1 {
+.player-rect {
   position: absolute;
   top: 0;
   left: 0;
@@ -58,16 +45,17 @@
   height: 50%;
 }
 
-.rect2 {
+.info-rect {
   position: absolute;
   top: 50%;
   left: 0;
   width: 26.2%;
   height: 50%;
-  border-right: 0.1px solid white;
+  border-right: 1px solid white;
+  border-top: 1px solid white;
 }
 
-.rect3 {
+.score-rect {
   position: absolute;
   top: 0;
   left: 26.2%;

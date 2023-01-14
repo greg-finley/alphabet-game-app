@@ -79,7 +79,8 @@ export default function ScoreboardCard(props: ScoreboardCardProps) {
             <div
               style={{
                 marginTop: "0.5rem",
-                justifyContent: "center",
+                justifyContent: "right",
+                marginRight: "0.2rem",
                 display: "flex",
               }}
             >
@@ -87,12 +88,16 @@ export default function ScoreboardCard(props: ScoreboardCardProps) {
                 href={`https://twitter.com/${play.sport}AlphabetGame/status/${play.tweet_id}`}
                 style={{
                   textDecoration: "none",
-                  color: "white",
-                  fontSize: "0.8rem",
+                  color: "#f9bc32",
+                  fontSize: "0.6rem",
                 }}
               >
-                <TwitterIcon />
-                <div>{`@${play.sport}AlphabetGame`}</div>
+                <div style={{ display: "flex", alignItems: "center" }}>
+                  <TwitterIcon
+                    style={{ fontSize: "1rem", marginRight: "0.2rem" }}
+                  />
+                  <div>{`@${play.sport}AlphabetGame`}</div>
+                </div>
               </a>
             </div>
           </div>

@@ -20,12 +20,16 @@ export default function ScoreboardCard(props: ScoreboardCardProps) {
     <Card
       sx={{
         backgroundColor: "#97929c",
-        color: "#f9bc32",
+
         marginBottom: "0.5rem",
       }}
     >
       <AspectRatio variant="outlined" ratio="1.91/1">
-        <CardContent className="card-content">
+        <CardContent
+          sx={{
+            color: "#f9bc32",
+          }}
+        >
           <div className="player-rect">
             <img
               style={{

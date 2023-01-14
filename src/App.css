@@ -33,17 +33,13 @@
   display: flex;
 }
 
-.card-content {
-  position: relative;
-}
-
 .player-rect {
   position: absolute;
   top: 0;
   left: 0;
   width: 26.2%;
   height: 50%;
-  border-right: 1px solid #f9bc32;
+  border-right: 1px solid black;
 }
 
 .info-rect {
@@ -52,8 +48,8 @@
   left: 0;
   width: 26.2%;
   height: 50%;
-  border-right: 1px solid #f9bc32;
-  border-top: 1px solid #f9bc32;
+  border-right: 1px solid black;
+  border-top: 1px solid black;
   display: flex;
   align-items: center;
   justify-content: center;

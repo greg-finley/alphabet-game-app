@@ -1,12 +1,12 @@
 import * as React from "react";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
-import { Play } from "../types";
+import { Play, NewSeason, NewCycle } from "../types";
 import AspectRatio from "@mui/joy/AspectRatio";
 import ScoreboardCard from "./ScoreboardCard";
 
 interface BaseCardProps {
-  content: Play;
+  content: Play | NewSeason | NewCycle;
 }
 
 export default function BaseCard(props: BaseCardProps) {
@@ -25,7 +25,15 @@ export default function BaseCard(props: BaseCardProps) {
             color: "#f9bc32",
           }}
         >
-          <ScoreboardCard play={content} />
+          {"play_id" in content ? (
+            <ScoreboardCard play={content} />
+          ) : "timesCycled" in content ? (
+            <p>
+              New cycle: {content.timesCycled} {content.seasonPhrase}
+            </p>
+          ) : (
+            <p>New season: {content.seasonPhrase}</p>
+          )}
         </CardContent>
       </AspectRatio>
     </Card>

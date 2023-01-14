@@ -37,6 +37,15 @@ export interface Play {
   tweet_text: string;
 }
 
+export interface NewSeason {
+  seasonPhrase: string;
+}
+
+export interface NewCycle {
+  timesCycled: number;
+  seasonPhrase: string;
+}
+
 export type State =
   | { type: "loading" }
   | { type: "error"; error: string }

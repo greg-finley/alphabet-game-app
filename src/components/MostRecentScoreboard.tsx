@@ -7,6 +7,7 @@ import { Avatar } from "@mui/material";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import ErrorMessage from "./ErrorMessage";
+import ReactGA from "react-ga4";
 
 interface MostRecentScoresProps {
   state: State;
@@ -18,6 +19,10 @@ function MostRecentScoreboard(props: MostRecentScoresProps) {
   const [sportIndex, setSportIndex] = React.useState(0);
 
   const handleTabClick = (event: React.SyntheticEvent, newValue: number) => {
+    ReactGA.event({
+      category: "User",
+      action: `Clicked ${sports[newValue]} tab`,
+    });
     setSportIndex(newValue);
   };
 

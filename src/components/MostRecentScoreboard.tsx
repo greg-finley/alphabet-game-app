@@ -1,6 +1,5 @@
 import * as React from "react";
 import { Play, sports, State } from "../types";
-import ScoreboardCard from "./ScoreboardCard";
 import InfiniteScroll from "react-infinite-scroll-component";
 import LoadingCircle from "./LoadingCircle";
 import { Avatar } from "@mui/material";
@@ -8,6 +7,7 @@ import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import ErrorMessage from "./ErrorMessage";
 import ReactGA from "react-ga4";
+import BaseCard from "./BaseCard";
 
 interface MostRecentScoresProps {
   state: State;
@@ -63,7 +63,7 @@ function Scores(props: ScoresProps) {
   const sportPlays = plays.filter((play) => play.sport === sports[sportIndex]);
 
   const [items, setItems] = React.useState(
-    [] as React.ReactElement<typeof ScoreboardCard>[]
+    [] as React.ReactElement<typeof BaseCard>[]
   );
 
   const fetchData = () => {
@@ -72,8 +72,8 @@ function Scores(props: ScoresProps) {
         sportPlays
           .slice(items.length, items.length + 5)
           .map((play, i) => (
-            <ScoreboardCard
-              play={play}
+            <BaseCard
+              content={play}
               key={sportIndex + "_" + i + items.length}
             />
           ))
@@ -86,7 +86,7 @@ function Scores(props: ScoresProps) {
       sportPlays
         .slice(0, 5)
         .map((play, i) => (
-          <ScoreboardCard play={play} key={sportIndex + "_" + i} />
+          <BaseCard content={play} key={sportIndex + "_" + i} />
         ))
     );
     // don't add sportsPlay else infinite loop

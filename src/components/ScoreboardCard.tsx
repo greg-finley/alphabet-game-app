@@ -1,5 +1,4 @@
 import * as React from "react";
-import Avatar from "@mui/material/Avatar";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import dayjs from "dayjs";
@@ -26,82 +25,75 @@ export default function ScoreboardCard(props: ScoreboardCardProps) {
         aspectRatio: "1.91/1",
       }}
     >
-      <CardContent
-        sx={{
-          flex: "1 0 auto",
-          textAlign: "center",
-          alignItems: "center",
-          justifyContent: "center",
-        }}
-      >
-        <div className="Centered">
-          <Avatar
-            src={playerImageSrc(play)}
-            alt={play.player_name}
-            sx={{
-              bgcolor: "white",
-            }}
-          >
-            {/* Fallback image */}
+      <CardContent>
+        <div className="flex-parent-element">
+          <div className="flex-child-element">
             <img
               style={{
-                width: "100%",
-                height: "100%",
+                width: "6rem",
+                height: "6rem",
                 objectFit: "cover",
+                backgroundColor: "white",
               }}
-              src="https://a.espncdn.com/combiner/i?img=/i/headshots/nophoto.png&h=110&w=110&scale=crop"
+              src={playerImageSrc(play)}
+              onError={(e) => {
+                (e.target as HTMLImageElement).src =
+                  "https://a.espncdn.com/combiner/i?img=/i/headshots/nophoto.png&h=110&w=110&scale=crop";
+              }}
               alt={play.player_name}
             />
-          </Avatar>
-        </div>
-        <div>
-          <PlayerNameTextBox name={play.player_name} />
-        </div>
-        <div style={{ paddingBottom: "0.2rem" }}>
-          <TextBox
-            text={[
-              "His name has the letter" +
-                (play.matching_letters.length === 1 ? "" : "s"),
-            ]}
-          />
-        </div>
-        <div className="Centered">
-          <ScoreBox
-            str={play.matching_letters.join("")}
-            padWithUnderscores={true}
-          />
-        </div>
-        <div style={{ paddingBottom: "0.2rem" }}>
-          <TextBox text={["Next letter in the Alphabet Game"]} />
-        </div>
-        <div className="Centered">
-          <ScoreBox str={play.next_letter} padWithUnderscores={false} />
-        </div>
-        <TextBox
-          text={[
-            sportScore(play.sport) + "!",
-            dayjs().to(dayjs.unix(play.completed_at)),
-            play.times_cycled.toString() + " cycles " + play.season_phrase,
-          ]}
-        />
-        <div
-          style={{
-            marginTop: "0.5rem",
-            justifyContent: "center",
-            display: "flex",
-          }}
-        >
-          <a
-            href={`https://twitter.com/${play.sport}AlphabetGame/status/${play.tweet_id}`}
-            style={{
-              textDecoration: "none",
-              color: "white",
-              fontSize: "0.8rem",
-            }}
-          >
-            <TwitterIcon />
-            <div>{`@${play.sport}AlphabetGame`}</div>
-          </a>
+          </div>
+          <div className="flex-child-element">
+            <div>
+              <PlayerNameTextBox name={play.player_name} />
+            </div>
+            <div style={{ paddingBottom: "0.2rem" }}>
+              <TextBox
+                text={[
+                  "His name has the letter" +
+                    (play.matching_letters.length === 1 ? "" : "s"),
+                ]}
+              />
+            </div>
+            <div className="Centered">
+              <ScoreBox
+                str={play.matching_letters.join("")}
+                padWithUnderscores={true}
+              />
+            </div>
+            <div style={{ paddingBottom: "0.2rem" }}>
+              <TextBox text={["Next letter in the Alphabet Game"]} />
+            </div>
+            <div className="Centered">
+              <ScoreBox str={play.next_letter} padWithUnderscores={false} />
+            </div>
+            <TextBox
+              text={[
+                sportScore(play.sport) + "!",
+                dayjs().to(dayjs.unix(play.completed_at)),
+                play.times_cycled.toString() + " cycles " + play.season_phrase,
+              ]}
+            />
+            <div
+              style={{
+                marginTop: "0.5rem",
+                justifyContent: "center",
+                display: "flex",
+              }}
+            >
+              <a
+                href={`https://twitter.com/${play.sport}AlphabetGame/status/${play.tweet_id}`}
+                style={{
+                  textDecoration: "none",
+                  color: "white",
+                  fontSize: "0.8rem",
+                }}
+              >
+                <TwitterIcon />
+                <div>{`@${play.sport}AlphabetGame`}</div>
+              </a>
+            </div>
+          </div>
         </div>
       </CardContent>
     </Card>

@@ -20,13 +20,13 @@ export default function ScoreboardCard(props: ScoreboardCardProps) {
     <Card
       sx={{
         backgroundColor: "#97929c",
-        color: "white",
+        color: "#f9bc32",
         marginBottom: "0.5rem",
       }}
     >
       <AspectRatio variant="outlined" ratio="1.91/1">
         <CardContent className="card-content">
-          <div className="player-rect transparent-bg">
+          <div className="player-rect">
             <img
               style={{
                 width: "100%",
@@ -42,16 +42,19 @@ export default function ScoreboardCard(props: ScoreboardCardProps) {
               alt={play.player_name}
             />
           </div>
-          <div className="info-rect transparent-bg">
+          <div className="info-rect">
             <TextBox
               text={[
-                sportScore(play.sport) + "!",
-                dayjs().to(dayjs.unix(play.completed_at)),
-                play.times_cycled.toString() + " cycles " + play.season_phrase,
+                "• " + sportScore(play.sport) + "!",
+                "• " + dayjs().to(dayjs.unix(play.completed_at)),
+                "• " +
+                  play.times_cycled.toString() +
+                  " alphabet cycles " +
+                  play.season_phrase,
               ]}
             />
           </div>
-          <div className="score-rect transparent-bg">
+          <div className="score-rect">
             <div>
               <PlayerNameTextBox name={play.player_name} />
             </div>
@@ -136,17 +139,15 @@ const TextBox = (props: TextBoxProps) => {
         maxWidth: "90%",
         display: "inline-block",
         WebkitTextSizeAdjust: "100%",
-        textAlign: "center",
         boxSizing: "border-box",
         fontWeight: 300,
-        color: "#f9bc32",
+        textAlign: "center",
         fontFamily: "Verdana,sans-serif",
         fontSize: "0.6rem",
         lineHeight: "0.6rem",
         backgroundColor: "#00000066",
         padding: "0.3rem",
         borderRadius: "0.3rem",
-        marginTop: "0.3rem",
         whiteSpace: "pre-wrap",
       }}
     >

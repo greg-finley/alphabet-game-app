@@ -1,11 +1,12 @@
 import * as React from "react";
 import Card from "@mui/material/Card";
-import CardContent from "@mui/material/CardContent";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 import { Play, Sport } from "../types";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import ScoreBox from "./ScoreBox";
+import { CardContent } from "@mui/material";
+import AspectRatio from "@mui/joy/AspectRatio";
 
 dayjs.extend(relativeTime);
 
@@ -20,18 +21,16 @@ export default function ScoreboardCard(props: ScoreboardCardProps) {
       sx={{
         backgroundColor: "#97929c",
         color: "white",
-        border: "1px solid black",
         marginBottom: "0.5rem",
-        aspectRatio: "1.91/1",
       }}
     >
-      <CardContent>
-        <div className="flex-parent-element">
-          <div className="flex-child-element">
+      <AspectRatio variant="outlined" ratio="1.91/1">
+        <CardContent className="card-content">
+          <div className="rect1 transparent-bg">
             <img
               style={{
-                width: "6rem",
-                height: "6rem",
+                width: "100%",
+                height: "100%",
                 objectFit: "cover",
                 backgroundColor: "white",
               }}
@@ -43,59 +42,66 @@ export default function ScoreboardCard(props: ScoreboardCardProps) {
               alt={play.player_name}
             />
           </div>
-          <div className="flex-child-element">
-            <div>
-              <PlayerNameTextBox name={play.player_name} />
-            </div>
-            <div style={{ paddingBottom: "0.2rem" }}>
+          <div className="rect2 transparent-bg"></div>
+          <div className="rect3 transparent-bg"></div>
+          <div className="flex-parent-element">
+            <div className="flex-child-element"></div>
+            <div className="flex-child-element">
+              <div>
+                <PlayerNameTextBox name={play.player_name} />
+              </div>
+              <div style={{ paddingBottom: "0.2rem" }}>
+                <TextBox
+                  text={[
+                    "His name has the letter" +
+                      (play.matching_letters.length === 1 ? "" : "s"),
+                  ]}
+                />
+              </div>
+              <div className="Centered">
+                <ScoreBox
+                  str={play.matching_letters.join("")}
+                  padWithUnderscores={true}
+                />
+              </div>
+              <div style={{ paddingBottom: "0.2rem" }}>
+                <TextBox text={["Next letter in the Alphabet Game"]} />
+              </div>
+              <div className="Centered">
+                <ScoreBox str={play.next_letter} padWithUnderscores={false} />
+              </div>
               <TextBox
                 text={[
-                  "His name has the letter" +
-                    (play.matching_letters.length === 1 ? "" : "s"),
+                  sportScore(play.sport) + "!",
+                  dayjs().to(dayjs.unix(play.completed_at)),
+                  play.times_cycled.toString() +
+                    " cycles " +
+                    play.season_phrase,
                 ]}
               />
-            </div>
-            <div className="Centered">
-              <ScoreBox
-                str={play.matching_letters.join("")}
-                padWithUnderscores={true}
-              />
-            </div>
-            <div style={{ paddingBottom: "0.2rem" }}>
-              <TextBox text={["Next letter in the Alphabet Game"]} />
-            </div>
-            <div className="Centered">
-              <ScoreBox str={play.next_letter} padWithUnderscores={false} />
-            </div>
-            <TextBox
-              text={[
-                sportScore(play.sport) + "!",
-                dayjs().to(dayjs.unix(play.completed_at)),
-                play.times_cycled.toString() + " cycles " + play.season_phrase,
-              ]}
-            />
-            <div
-              style={{
-                marginTop: "0.5rem",
-                justifyContent: "center",
-                display: "flex",
-              }}
-            >
-              <a
-                href={`https://twitter.com/${play.sport}AlphabetGame/status/${play.tweet_id}`}
+              <div
                 style={{
-                  textDecoration: "none",
-                  color: "white",
-                  fontSize: "0.8rem",
+                  marginTop: "0.5rem",
+                  justifyContent: "center",
+                  display: "flex",
                 }}
               >
-                <TwitterIcon />
-                <div>{`@${play.sport}AlphabetGame`}</div>
-              </a>
+                <a
+                  href={`https://twitter.com/${play.sport}AlphabetGame/status/${play.tweet_id}`}
+                  style={{
+                    textDecoration: "none",
+                    color: "white",
+                    fontSize: "0.8rem",
+                  }}
+                >
+                  <TwitterIcon />
+                  <div>{`@${play.sport}AlphabetGame`}</div>
+                </a>
+              </div>
             </div>
           </div>
-        </div>
-      </CardContent>
+        </CardContent>
+      </AspectRatio>
     </Card>
   );
 }

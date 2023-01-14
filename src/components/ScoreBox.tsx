@@ -13,8 +13,6 @@ export default function ScoreBox(props: ScoreBoxProps) {
       style={{
         lineHeight: 1.15,
         WebkitTextSizeAdjust: "100%",
-        fontSize: "16px",
-        fontFamily: "Open Sans,sans-serif",
         boxSizing: "border-box",
         border: "1px solid #434343",
         backgroundColor: "#313131",
@@ -24,6 +22,7 @@ export default function ScoreBox(props: ScoreBoxProps) {
         display: "flex",
         width: "fit-content",
         flexWrap: "wrap",
+        marginBottom: "0.2rem",
       }}
     >
       <div
@@ -31,8 +30,8 @@ export default function ScoreBox(props: ScoreBoxProps) {
           fontFamily: "DS-Digital",
           fontWeight: 400,
           color: "#d10505",
-          fontSize: "3rem",
-          lineHeight: "3rem",
+          fontSize: "2.5rem",
+          lineHeight: "2.5rem",
           padding: "0 6px",
           WebkitTextSizeAdjust: "100%",
           boxSizing: "border-box",

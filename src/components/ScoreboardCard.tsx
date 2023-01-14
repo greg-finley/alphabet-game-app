@@ -56,7 +56,7 @@ export default function ScoreboardCard(props: ScoreboardCardProps) {
           </div>
           <div className="score-rect">
             <div>
-              <PlayerNameTextBox name={play.player_name} />
+              <TextBox text={[play.player_name]} big={true} />
             </div>
             <div style={{ paddingBottom: "0.2rem" }}>
               <TextBox
@@ -72,9 +72,7 @@ export default function ScoreboardCard(props: ScoreboardCardProps) {
                 padWithUnderscores={true}
               />
             </div>
-            <div style={{ paddingBottom: "0.2rem" }}>
-              <TextBox text={["Next letter in the Alphabet Game"]} />
-            </div>
+            <TextBox text={["Next letter in the Alphabet Game"]} />
             <div className="Centered">
               <ScoreBox str={play.next_letter} padWithUnderscores={false} />
             </div>
@@ -104,56 +102,40 @@ export default function ScoreboardCard(props: ScoreboardCardProps) {
   );
 }
 
-interface PlayerNameTextBoxProps {
-  name: string;
-}
-
-const PlayerNameTextBox = (props: PlayerNameTextBoxProps) => {
-  const { name } = props;
-  return (
-    <div
-      style={{
-        WebkitTextSizeAdjust: "100%",
-        textAlign: "center",
-        fontWeight: 300,
-        fontFamily: "Verdana,sans-serif",
-        fontSize: "1.4rem",
-        lineHeight: "1.4rem",
-        marginTop: "0.7rem",
-      }}
-    >
-      {name}
-    </div>
-  );
-};
-
 interface TextBoxProps {
   text: string[];
+  big?: boolean;
 }
 
 const TextBox = (props: TextBoxProps) => {
-  const { text } = props;
+  const { text, big } = props;
+  const { fontSize, padding } = big
+    ? { fontSize: "1.2rem", padding: "0.3rem" }
+    : { fontSize: "0.6rem", padding: "0.25rem" };
   return (
-    <div
-      style={{
-        maxWidth: "90%",
-        display: "inline-block",
-        WebkitTextSizeAdjust: "100%",
-        boxSizing: "border-box",
-        fontWeight: 300,
-        textAlign: "center",
-        fontFamily: "Verdana,sans-serif",
-        fontSize: "0.6rem",
-        lineHeight: "0.6rem",
-        backgroundColor: "#00000066",
-        padding: "0.3rem",
-        borderRadius: "0.3rem",
-        whiteSpace: "pre-wrap",
-      }}
-    >
-      {text.map((line, index) => (
-        <div key={index}>{line}</div>
-      ))}
+    <div className="Centered">
+      <div
+        style={{
+          maxWidth: "90%",
+          display: "inline-block",
+          WebkitTextSizeAdjust: "100%",
+          boxSizing: "border-box",
+          fontWeight: 300,
+          textAlign: "center",
+          fontFamily: "Verdana,sans-serif",
+          fontSize: fontSize,
+          lineHeight: fontSize,
+          backgroundColor: "#00000066",
+          padding: padding,
+          borderRadius: "0.3rem",
+          whiteSpace: "pre-wrap",
+          marginBottom: "0.1rem",
+        }}
+      >
+        {text.map((line, index) => (
+          <div key={index}>{line}</div>
+        ))}
+      </div>
     </div>
   );
 };

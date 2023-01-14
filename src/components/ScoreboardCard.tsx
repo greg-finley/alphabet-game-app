@@ -60,7 +60,7 @@ export default function ScoreboardCard(props: ScoreboardCardProps) {
             />
           </div>
           <div className="score-rect">
-            <div>
+            <div style={{ marginBottom: "0.1rem" }}>
               <TextBox text={[play.player_name]} big={true} />
             </div>
             <div style={{ paddingBottom: "0.2rem" }}>
@@ -77,13 +77,15 @@ export default function ScoreboardCard(props: ScoreboardCardProps) {
                 padWithUnderscores={true}
               />
             </div>
-            <TextBox text={["Next letter in the Alphabet Game"]} />
+            <div style={{ paddingBottom: "0.2rem" }}>
+              <TextBox text={["Next letter in the Alphabet Game"]} />
+            </div>
             <div className="Centered">
               <ScoreBox str={play.next_letter} padWithUnderscores={false} />
             </div>
             <div
               style={{
-                marginTop: "0.5rem",
+                marginTop: "0.05rem",
                 justifyContent: "right",
                 marginRight: "0.2rem",
                 display: "flex",

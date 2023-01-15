@@ -4,6 +4,7 @@ import CardContent from "@mui/material/CardContent";
 import { Play, NewSeason, NewCycle } from "../types";
 import AspectRatio from "@mui/joy/AspectRatio";
 import ScoreboardCard from "./ScoreboardCard";
+import TextBox from "./TextBox";
 
 interface BaseCardProps {
   content: Play | NewSeason | NewCycle;
@@ -28,11 +29,18 @@ export default function BaseCard(props: BaseCardProps) {
           {"play_id" in content ? (
             <ScoreboardCard play={content} />
           ) : "timesCycled" in content ? (
-            <p>
-              New cycle: {content.timesCycled} {content.seasonPhrase}
-            </p>
+            <TextBox
+              text={[
+                `${content.timesCycled} Alphabet cycles`,
+                `${content.seasonPhrase}`,
+              ]}
+              big={true}
+            />
           ) : (
-            <p>New season: {content.seasonPhrase}</p>
+            <TextBox
+              text={[`Start of ${content.seasonPhrase.replace("in the ", "")}`]}
+              big={true}
+            />
           )}
         </CardContent>
       </AspectRatio>

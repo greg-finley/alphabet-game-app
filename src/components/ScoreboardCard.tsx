@@ -67,7 +67,6 @@ export default function ScoreboardCard(props: ScoreboardCardProps) {
         </div>
         <div
           style={{
-            marginTop: "0.05rem",
             justifyContent: "right",
             marginRight: "0.2rem",
             display: "flex",

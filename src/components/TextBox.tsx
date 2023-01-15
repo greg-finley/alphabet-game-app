@@ -7,9 +7,9 @@ interface TextBoxProps {
 
 export default function TextBox(props: TextBoxProps) {
   const { text, big } = props;
-  const { fontSize, padding } = big
-    ? { fontSize: "1.2rem", padding: "0.3rem" }
-    : { fontSize: "0.6rem", padding: "0.25rem" };
+  const { fontSize, padding, textAlign } = big
+    ? { fontSize: "1.2rem", padding: "0.3rem", textAlign: "center" as const }
+    : { fontSize: "0.6rem", padding: "0.25rem", textAlign: "left" as const };
   return (
     <div className="Centered">
       <div
@@ -18,6 +18,7 @@ export default function TextBox(props: TextBoxProps) {
           WebkitTextSizeAdjust: "100%",
           boxSizing: "border-box",
           fontWeight: 300,
+          textAlign: textAlign,
           fontFamily: "Verdana,sans-serif",
           fontSize: fontSize,
           lineHeight: fontSize,

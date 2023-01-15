@@ -2,7 +2,6 @@ import * as React from "react";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 import { Play, Sport } from "../types";
-import TwitterIcon from "@mui/icons-material/Twitter";
 import ScoreBox from "./ScoreBox";
 import TextBox from "./TextBox";
 
@@ -68,26 +67,37 @@ export default function ScoreboardCard(props: ScoreboardCardProps) {
         </div>
         <div
           style={{
-            justifyContent: "right",
-            marginRight: "0.2rem",
             display: "flex",
+            fontSize: "0.6rem",
           }}
         >
-          <a
-            href={`https://twitter.com/${play.sport}AlphabetGame/status/${play.tweet_id}`}
+          <div
             style={{
-              textDecoration: "none",
-              color: "#f9bc32",
-              fontSize: "0.6rem",
+              flex: 1,
+              justifyContent: "flex-start",
+              paddingLeft: "0.4rem",
             }}
           >
-            <div style={{ display: "flex", alignItems: "center" }}>
-              <TwitterIcon
-                style={{ fontSize: "1rem", marginRight: "0.2rem" }}
-              />
-              <div>{`@${play.sport}AlphabetGame`}</div>
-            </div>
-          </a>
+            sportsalphabetgame.com
+          </div>
+          <div
+            style={{
+              justifyContent: "flex-end",
+              textAlign: "right",
+              flex: 1,
+              paddingRight: "0.4rem",
+            }}
+          >
+            <a
+              href={`https://twitter.com/${play.sport}AlphabetGame/status/${play.tweet_id}`}
+              style={{
+                textDecoration: "none",
+                color: "#f9bc32",
+              }}
+            >
+              {`@${play.sport}AlphabetGame`}
+            </a>
+          </div>
         </div>
       </div>
     </>

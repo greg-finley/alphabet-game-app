@@ -40,6 +40,28 @@
   display: flex;
 }
 
+.Text-box {
+  display: inline-block;
+  box-sizing: border-box;
+  font-weight: 300;
+  text-align: left;
+  font-family: Verdana, sans-serif;
+  font-size: 0.6rem;
+  line-height: 0.6rem;
+  background-color: #00000066;
+  padding: 0.25rem;
+  border-radius: 0.3rem;
+  white-space: pre-wrap;
+  margin-bottom: 0.1rem;
+}
+
+.Text-box-big {
+  font-size: 1.2rem;
+  line-height: 1.2rem;
+  padding: 0.3rem;
+  text-align: center;
+}
+
 .player-rect {
   position: absolute;
   top: 0;

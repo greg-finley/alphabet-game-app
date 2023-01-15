@@ -107,6 +107,10 @@ function Scores(props: ScoresProps) {
   }, [sportIndex]);
 
   const fetchData = () => {
+    ReactGA.event({
+      category: "User",
+      action: `Fetched more items for ${sports[sportIndex]}`,
+    });
     setItems(
       items.concat(
         cardContents

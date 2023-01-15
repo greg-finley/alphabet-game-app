@@ -23,8 +23,8 @@ export default function Home(props: HomeProps) {
       <TopAppBar />
       <div className="App-container">
         <p className="App-text-intro">
-          Let's play the Alphabet Game, looking for the next letter in player
-          names as they:
+          Let's play the Sports Alphabet Game, looking for the next letter in
+          player names as they:
         </p>
         <p className="App-text-intro">• score NHL goals</p>
         <p className="App-text-intro">• dunk in the NBA</p>

@@ -49,7 +49,8 @@ export default function ScoreboardCard(props: ScoreboardCardProps) {
           <TextBox
             text={[
               "His name has the letter" +
-                (play.matching_letters.length === 1 ? "" : "s"),
+                (play.matching_letters.length === 1 ? "" : "s") +
+                ":",
             ]}
           />
         </div>
@@ -60,7 +61,7 @@ export default function ScoreboardCard(props: ScoreboardCardProps) {
           />
         </div>
         <div style={{ paddingBottom: "0.2rem" }}>
-          <TextBox text={["Next letter in the Alphabet Game"]} />
+          <TextBox text={["Next letter in the Alphabet Game:"]} />
         </div>
         <div className="Centered">
           <ScoreBox str={play.next_letter} padWithUnderscores={false} />

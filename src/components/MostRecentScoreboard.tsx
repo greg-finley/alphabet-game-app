@@ -9,6 +9,8 @@ import ErrorMessage from "./ErrorMessage";
 import ReactGA from "react-ga4";
 import BaseCard from "./BaseCard";
 
+type Item = React.ReactElement<typeof BaseCard>;
+
 interface MostRecentScoresProps {
   state: State;
 }
@@ -62,36 +64,59 @@ function Scores(props: ScoresProps) {
 
   const sportPlays = plays.filter((play) => play.sport === sports[sportIndex]);
 
-  const [items, setItems] = React.useState(
-    [] as React.ReactElement<typeof BaseCard>[]
+  const [items, setItems] = React.useState([] as Item[]);
+  const [currentSeasonPhrase, setCurrentSeasonPhrase] = React.useState<
+    string | undefined
+  >(undefined);
+  const [timesCycled, setTimesCycled] = React.useState<number | undefined>(
+    undefined
   );
+
+  React.useEffect(() => {
+    setItems(playsToItems(sportPlays.slice(0, 5), true));
+    // don't add sportsPlay else infinite loop
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [sportIndex]);
+
+  const playsToItems = (plays: Play[], initial?: boolean): Item[] => {
+    const items: Item[] = [];
+
+    plays.forEach((play, i) => {
+      const playCard = (
+        <BaseCard content={play} key={sportIndex + "_" + i + items.length} />
+      );
+
+      if (i === 0 && initial) {
+        setCurrentSeasonPhrase(sportPlays[0].season_phrase);
+        setTimesCycled(sportPlays[0].times_cycled);
+        items.push(playCard);
+        return;
+      } else if (play.season_phrase !== currentSeasonPhrase) {
+        // TODO: Put a card _after_ the play card saying we're in a new season
+        setCurrentSeasonPhrase(play.season_phrase);
+        setTimesCycled(0);
+        items.push(playCard);
+        return;
+      } else if (play.times_cycled !== timesCycled) {
+        // This is the second else so we don't put a card saying we now have 0 cycles
+        // TODO: Put a card before (?) the play card saying we've done a new cycle
+        setTimesCycled(play.times_cycled);
+        items.push(playCard);
+        return;
+      }
+      items.push(playCard);
+    });
+
+    return items;
+  };
 
   const fetchData = () => {
     setItems(
       items.concat(
-        sportPlays
-          .slice(items.length, items.length + 5)
-          .map((play, i) => (
-            <BaseCard
-              content={play}
-              key={sportIndex + "_" + i + items.length}
-            />
-          ))
+        playsToItems(sportPlays.slice(items.length, items.length + 5))
       )
     );
   };
-
-  React.useEffect(() => {
-    setItems(
-      sportPlays
-        .slice(0, 5)
-        .map((play, i) => (
-          <BaseCard content={play} key={sportIndex + "_" + i} />
-        ))
-    );
-    // don't add sportsPlay else infinite loop
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [sportIndex]);
 
   return items.length ? (
     <InfiniteScroll

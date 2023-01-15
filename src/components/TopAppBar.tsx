@@ -19,6 +19,8 @@ import StorageIcon from "@mui/icons-material/Storage";
 import HomeIcon from "@mui/icons-material/Home";
 import TwitterIcon from "@mui/icons-material/Twitter";
 
+import ReactGA from "react-ga4";
+
 export default function MainNavigation() {
   /*
   react useState hook to save the current open/close state of the drawer,
@@ -38,7 +40,15 @@ export default function MainNavigation() {
     ) {
       return;
     }
+    // ReactGA.event({
+    //   category: "User",
+    //   action: `Clicked ${sports[newValue]} tab`,
+    // });
     //changes the function state according to the value of open
+    ReactGA.event({
+      category: "User",
+      action: `Clicked ${open ? "open" : "close"} hamburger drawer`,
+    });
     setState(open);
   };
 
@@ -52,7 +62,12 @@ export default function MainNavigation() {
         </div>
         <Typography
           variant="h6"
-          sx={{ flexGrow: 1, fontWeight: 700, paddingLeft: "1rem" }}
+          sx={{
+            flexGrow: 1,
+            fontWeight: 700,
+            paddingLeft: "1rem",
+            textAlign: "center",
+          }}
         >
           Sports Alphabet Game
         </Typography>

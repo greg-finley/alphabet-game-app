@@ -17,7 +17,7 @@ export default function OnTwitter() {
       <ScrollRestoration />
       <TopAppBar />
       <div className="App-container">
-        <p className="App-text-intro">
+        <p className="App-text-other-pages">
           The Sports Alphabet Game is played on Twitter. Check out the accounts
           below.
         </p>

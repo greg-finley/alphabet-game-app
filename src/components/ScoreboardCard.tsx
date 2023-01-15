@@ -35,12 +35,9 @@ export default function ScoreboardCard(props: ScoreboardCardProps) {
       <div className="info-rect">
         <TextBox
           text={[
-            "• " + sportScore(play.sport) + "!",
-            "• " + dayjs().to(dayjs.unix(play.completed_at)),
-            "• " +
-              play.times_cycled.toString() +
-              " alphabet cycles " +
-              play.season_phrase,
+            sportScore(play.sport) + "!",
+            " ",
+            dayjs().to(dayjs.unix(play.completed_at)),
           ]}
         />
       </div>

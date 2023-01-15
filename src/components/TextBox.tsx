@@ -14,12 +14,10 @@ export default function TextBox(props: TextBoxProps) {
     <div className="Centered">
       <div
         style={{
-          maxWidth: "90%",
           display: "inline-block",
           WebkitTextSizeAdjust: "100%",
           boxSizing: "border-box",
           fontWeight: 300,
-          textAlign: "center",
           fontFamily: "Verdana,sans-serif",
           fontSize: fontSize,
           lineHeight: fontSize,

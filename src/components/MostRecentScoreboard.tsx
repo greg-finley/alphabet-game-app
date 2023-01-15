@@ -63,39 +63,32 @@ function Scores(props: ScoresProps) {
   const { plays, sportIndex } = props;
 
   const cardContents: BaseCardContent[] = [];
-  // TODO: Do we even need these? Just compare to the card coming after it?
-  var currentSeasonPhrase = "";
-  var timesCycled = 0;
-  plays
-    .filter((play) => play.sport === sports[sportIndex])
-    .forEach((play, i) => {
-      if (i === 0) {
-        currentSeasonPhrase = play.season_phrase;
-        timesCycled = play.times_cycled;
-        cardContents.push(play);
-        return;
-        // TODO: Do these need to look ahead one card?
-      } else if (play.season_phrase !== currentSeasonPhrase) {
-        currentSeasonPhrase = play.season_phrase;
-        timesCycled = 0;
-        cardContents.push(...[play, { seasonPhrase: currentSeasonPhrase }]);
-        return;
-      } else if (play.times_cycled !== timesCycled) {
-        // This is the second else so we don't put a card saying we now have 0 cycles
-        timesCycled = play.times_cycled;
-        cardContents.push(
-          ...[
-            play,
-            {
-              timesCycled: play.times_cycled + 1,
-              seasonPhrase: currentSeasonPhrase,
-            },
-          ]
-        );
-        return;
-      }
-      cardContents.push(play);
-    });
+  const sportPlays = plays.filter((play) => play.sport === sports[sportIndex]);
+
+  sportPlays.forEach((play, i) => {
+    const nextPlay: Play | undefined = sportPlays[i + 1];
+    // If there is no next play, we should report being at the begining of the season
+    // If the next play is in a different season, we should report being at the begining of the season
+    if (!nextPlay || nextPlay.season_phrase !== play.season_phrase) {
+      cardContents.push(...[play, { seasonPhrase: play.season_phrase }]);
+      return;
+    }
+    // If times cycled has increased, we should report it
+    if (nextPlay.times_cycled !== play.times_cycled) {
+      cardContents.push(
+        ...[
+          {
+            timesCycled: play.times_cycled,
+            seasonPhrase: play.season_phrase,
+          },
+          play,
+        ]
+      );
+      return;
+    }
+    // Otherwise, we should just report the play
+    cardContents.push(play);
+  });
 
   const [items, setItems] = React.useState(
     [] as React.ReactElement<typeof BaseCard>[]

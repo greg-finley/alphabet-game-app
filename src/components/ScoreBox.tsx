@@ -20,6 +20,7 @@ export default function ScoreBox(props: ScoreBoxProps) {
         textAlign: "center",
         boxShadow: "inset 0 0 15px 0 rgba(0,0,0,.7)",
         display: "flex",
+        alignItems: "center",
         width: "fit-content",
         flexWrap: "wrap",
         marginTop: "0.3rem",

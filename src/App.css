@@ -53,13 +53,13 @@
   border-radius: 0.3rem;
   white-space: pre-wrap;
   margin-bottom: 0.1rem;
+  align-items: center;
 }
 
 .Text-box-big {
   font-size: 1.2rem;
   line-height: 1.2rem;
   padding: 0.3rem;
-  text-align: center;
 }
 
 .player-rect {
@@ -95,7 +95,7 @@
 
 .score-and-text-box {
   position: absolute;
-  top: 25%;
+  top: 30%;
 }
 
 .box-left {

@@ -17,12 +17,12 @@ export default function ScoreBox(props: ScoreBoxProps) {
         border: "1px solid #434343",
         backgroundColor: "#313131",
         borderRadius: "4px",
-        textAlign: "left",
+        textAlign: "center",
         boxShadow: "inset 0 0 15px 0 rgba(0,0,0,.7)",
         display: "flex",
         width: "fit-content",
         flexWrap: "wrap",
-        marginBottom: "0.2rem",
+        marginTop: "0.3rem",
       }}
     >
       <div

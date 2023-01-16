@@ -9,11 +9,11 @@ dayjs.extend(relativeTime);
 
 interface ScoreboardCardProps {
   play: Play;
-  custom?: boolean;
+  customCard?: boolean; // Card generated on the fly, to post on Twitter
 }
 
 export default function ScoreboardCard(props: ScoreboardCardProps) {
-  const { play, custom } = props;
+  const { play, customCard: custom } = props;
   return (
     <>
       <div className="player-rect">
@@ -45,50 +45,37 @@ export default function ScoreboardCard(props: ScoreboardCardProps) {
         <div style={{ marginBottom: "0.1rem" }}>
           <TextBox text={[play.player_name]} big={true} />
         </div>
-        <div style={{ paddingBottom: "0.2rem" }}>
+        <div className="score-and-text-box box-left">
           <TextBox
             text={[
               "His name has the letter" +
                 (play.matching_letters.length === 1 ? "" : "s") +
                 ":",
+              <ScoreBox
+                str={play.matching_letters.join("")}
+                padWithUnderscores={true}
+              />,
             ]}
           />
         </div>
-        <div className="Centered">
-          <ScoreBox
-            str={play.matching_letters.join("")}
-            padWithUnderscores={true}
+        <div className="score-and-text-box box-right">
+          <TextBox
+            text={[
+              "Next letter in the Alphabet Game:",
+              <ScoreBox str={play.next_letter} padWithUnderscores={false} />,
+            ]}
           />
-        </div>
-        <div style={{ paddingBottom: "0.2rem" }}>
-          <TextBox text={["Next letter in the Alphabet Game:"]} />
-        </div>
-        <div className="Centered">
-          <ScoreBox str={play.next_letter} padWithUnderscores={false} />
         </div>
         <div
           style={{
-            display: "flex",
+            position: "absolute",
             fontSize: "0.6rem",
+            top: "90%",
+            right: "0%",
+            paddingRight: "0.5rem",
           }}
         >
-          <div
-            style={{
-              flex: 1,
-              justifyContent: "flex-start",
-              paddingLeft: "0.4rem",
-            }}
-          >
-            {!custom ? " " : "sportsalphabetgame.com"}
-          </div>
-          <div
-            style={{
-              justifyContent: "flex-end",
-              textAlign: "right",
-              flex: 1,
-              paddingRight: "0.4rem",
-            }}
-          >
+          {!custom ? (
             <a
               href={`https://twitter.com/${play.sport}AlphabetGame/status/${play.tweet_id}`}
               style={{
@@ -98,7 +85,9 @@ export default function ScoreboardCard(props: ScoreboardCardProps) {
             >
               {`@${play.sport}AlphabetGame`}
             </a>
-          </div>
+          ) : (
+            "sportsalphabetgame.com"
+          )}
         </div>
       </div>
     </>

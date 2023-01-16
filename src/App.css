@@ -44,7 +44,7 @@
   display: inline-block;
   box-sizing: border-box;
   font-weight: 300;
-  text-align: left;
+  text-align: center;
   font-family: Verdana, sans-serif;
   font-size: 0.6rem;
   line-height: 0.6rem;
@@ -91,4 +91,19 @@
   width: 75%;
   height: 100%;
   padding-top: 0.3rem;
+}
+
+.score-and-text-box {
+  position: absolute;
+  top: 25%;
+}
+
+.box-left {
+  left: 5%;
+  width: 40%;
+}
+
+.box-right {
+  left: 55%;
+  width: 40%;
 }

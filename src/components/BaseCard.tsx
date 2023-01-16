@@ -27,7 +27,7 @@ export default function BaseCard(props: BaseCardProps) {
             color: "#f9bc32",
           }}
         >
-          {"play_id" in content ? (
+          {"player_name" in content ? (
             <ScoreboardCard play={content} />
           ) : "timesCycled" in content ? (
             <div

@@ -9,10 +9,11 @@ dayjs.extend(relativeTime);
 
 interface ScoreboardCardProps {
   play: Play;
+  custom?: boolean;
 }
 
 export default function ScoreboardCard(props: ScoreboardCardProps) {
-  const { play } = props;
+  const { play, custom } = props;
   return (
     <>
       <div className="player-rect">
@@ -78,7 +79,7 @@ export default function ScoreboardCard(props: ScoreboardCardProps) {
               paddingLeft: "0.4rem",
             }}
           >
-            sportsalphabetgame.com
+            {!custom ? " " : "sportsalphabetgame.com"}
           </div>
           <div
             style={{

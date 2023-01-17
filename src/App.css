@@ -107,3 +107,28 @@
   right: 5%;
   width: 40%;
 }
+
+.score-container {
+  -webkit-text-size-adjust: 100%;
+  box-sizing: border-box;
+  border: 1px solid #434343;
+  background-color: #313131;
+  border-radius: 4px;
+  text-align: center;
+  box-shadow: inset 0 0 15px 0 rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  width: fit-content;
+  flex-wrap: wrap;
+  margin-top: 0.3rem;
+  padding: 0 6px;
+}
+
+.score-text {
+  font-family: DS-Digital, sans-serif;
+  font-weight: 400;
+  color: #d10505;
+  font-size: 2.5rem;
+  line-height: 2.5rem;
+  box-sizing: border-box;
+}

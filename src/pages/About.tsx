@@ -36,7 +36,7 @@ export default function About() {
       <TopAppBar />
       <div className="App-container">
         <div className={styles.aboutContainer}>
-          <h4 style={{ textAlign: "left" }}>Source Code</h4>
+          <h4 style={{ textAlign: "left" }}>Source code</h4>
           <GitHubLinks />
           <h4 style={{ textAlign: "left" }}>Contact</h4>
           <Contact />

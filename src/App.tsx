@@ -28,7 +28,7 @@ function App() {
 
   useEffect(() => {
     fetch(
-      `https://us-central1-greg-finley.cloudfunctions.net/alphabet-game-plays-api?matches_only=true&limit=0&lite=true`
+      "https://storage.googleapis.com/greg-finley-public/alphabet-data.json"
     )
       .then((response) => {
         if (!response.ok) {

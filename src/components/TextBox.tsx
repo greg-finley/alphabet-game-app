@@ -1,7 +1,7 @@
 import * as React from "react";
 
 interface TextBoxProps {
-  text: (string | JSX.Element)[];
+  text: (string | JSX.Element | null)[];
   big?: boolean;
 }
 
@@ -11,7 +11,7 @@ export default function TextBox(props: TextBoxProps) {
     <div className="Centered Text-box-container">
       <div className={`Text-box${big ? " Text-box-big" : ""}`}>
         {text.map((lineOrElement, index) =>
-          typeof lineOrElement === "string" ? (
+          lineOrElement === null ? null : typeof lineOrElement === "string" ? (
             <div key={index}>{lineOrElement}</div>
           ) : (
             lineOrElement

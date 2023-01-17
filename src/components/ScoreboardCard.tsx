@@ -9,11 +9,11 @@ dayjs.extend(relativeTime);
 
 interface ScoreboardCardProps {
   play: Play;
-  customCard?: boolean; // Card generated on the fly, to post on Twitter
+  customCard?: boolean; // Card generated on the fly, to post on Twitter. If so remove the "5 minutes ago" part and put the web url at the bottom instead of the Twitter handle
 }
 
 export default function ScoreboardCard(props: ScoreboardCardProps) {
-  const { play, customCard: custom } = props;
+  const { play, customCard } = props;
   const matchingLetterHeadline = matchingLetterLengthToHeadline(
     play.matching_letters.length
   );
@@ -39,8 +39,8 @@ export default function ScoreboardCard(props: ScoreboardCardProps) {
         <TextBox
           text={[
             sportScore(play.sport) + "!",
-            " ",
-            dayjs().to(dayjs.unix(play.completed_at)),
+            !customCard ? " " : null,
+            !customCard ? dayjs().to(dayjs.unix(play.completed_at)) : null,
           ]}
         />
       </div>
@@ -79,7 +79,7 @@ export default function ScoreboardCard(props: ScoreboardCardProps) {
             right: "6%",
           }}
         >
-          {!custom ? (
+          {!customCard ? (
             <a
               href={`https://twitter.com/${play.sport}AlphabetGame/status/${play.tweet_id}`}
               style={{

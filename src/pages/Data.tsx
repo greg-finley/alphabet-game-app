@@ -28,6 +28,11 @@ export default function Data(props: DataProps) {
           CSV. They are also available{" "}
           <a href="https://github.com/greg-finley/alphabet-game-plays-api#api">
             via an API
+          </a>{" "}
+          or
+          <a href="https://storage.googleapis.com/greg-finley-public/alphabet-data.json">
+            {" "}
+            as JSON
           </a>
           .
         </p>

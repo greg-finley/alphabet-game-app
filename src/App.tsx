@@ -27,8 +27,12 @@ function App() {
   const [state, dispatch] = useReducer(reducer, initialState);
 
   useEffect(() => {
+    // Pass a placeholder ts to avoid caching
+    const ms = new Date().getTime();
     fetch(
-      "https://storage.googleapis.com/greg-finley-public/alphabet-data.json"
+      "https://storage.googleapis.com/greg-finley-public/alphabet-data.json" +
+        "?ts=" +
+        ms
     )
       .then((response) => {
         if (!response.ok) {

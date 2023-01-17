@@ -3,15 +3,15 @@ import "../fonts/ds-digital.css";
 
 interface ScoreBoxProps {
   str: string;
-  center?: boolean;
+  fit?: boolean;
 }
 
 export default function ScoreBox(props: ScoreBoxProps) {
-  const { str, center } = props;
+  const { str, fit } = props;
   return (
     <div
-      className={`score-container ${center ? "Centered" : ""}`}
-      style={center ? { width: "fit-content" } : {}}
+      className={"score-container Centered"}
+      style={fit ? { width: "fit-content" } : {}}
     >
       <div className="score-text">{str}</div>
     </div>

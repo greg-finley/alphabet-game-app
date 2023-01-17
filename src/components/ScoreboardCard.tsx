@@ -70,8 +70,7 @@ export default function ScoreboardCard(props: ScoreboardCardProps) {
             position: "absolute",
             fontSize: "0.6rem",
             top: "90%",
-            right: "0%",
-            paddingRight: "0.5rem",
+            right: "6%",
           }}
         >
           {!custom ? (

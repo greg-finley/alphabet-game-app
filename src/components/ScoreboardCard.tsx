@@ -50,7 +50,10 @@ export default function ScoreboardCard(props: ScoreboardCardProps) {
             text={[
               "His name has the letter" +
                 (play.matching_letters.length === 1 ? "" : "s"),
-              <ScoreBox str={play.matching_letters.join("")} />,
+              <ScoreBox
+                str={play.matching_letters.join("")}
+                key={play.tweet_id + "letter"}
+              />,
             ]}
           />
         </div>
@@ -58,7 +61,7 @@ export default function ScoreboardCard(props: ScoreboardCardProps) {
           <TextBox
             text={[
               "Next letter in the Alphabet Game",
-              <ScoreBox str={play.next_letter} />,
+              <ScoreBox str={play.next_letter} key={play.tweet_id + "next"} />,
             ]}
           />
         </div>

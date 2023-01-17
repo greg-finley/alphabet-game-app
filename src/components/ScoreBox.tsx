@@ -3,12 +3,13 @@ import "../fonts/ds-digital.css";
 
 interface ScoreBoxProps {
   str: string;
+  center?: boolean;
 }
 
 export default function ScoreBox(props: ScoreBoxProps) {
-  const { str } = props;
+  const { str, center } = props;
   return (
-    <div className="score-container">
+    <div className={`score-container ${center ? "Centered" : ""}`}>
       <div className="score-text">{str}</div>
     </div>
   );

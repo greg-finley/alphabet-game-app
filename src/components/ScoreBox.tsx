@@ -9,7 +9,10 @@ interface ScoreBoxProps {
 export default function ScoreBox(props: ScoreBoxProps) {
   const { str, center } = props;
   return (
-    <div className={`score-container ${center ? "Centered" : ""}`}>
+    <div
+      className={`score-container ${center ? "Centered" : ""}`}
+      style={center ? { width: "fit-content" } : {}}
+    >
       <div className="score-text">{str}</div>
     </div>
   );

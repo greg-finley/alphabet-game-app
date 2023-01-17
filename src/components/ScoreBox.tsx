@@ -3,11 +3,10 @@ import "../fonts/ds-digital.css";
 
 interface ScoreBoxProps {
   str: string;
-  padWithUnderscores: boolean;
 }
 
 export default function ScoreBox(props: ScoreBoxProps) {
-  const { str, padWithUnderscores } = props;
+  const { str } = props;
   return (
     <div
       style={{
@@ -38,7 +37,7 @@ export default function ScoreBox(props: ScoreBoxProps) {
           boxSizing: "border-box",
         }}
       >
-        {padWithUnderscores ? str.padEnd(6, "_") : str}
+        {str}
       </div>
     </div>
   );

@@ -41,10 +41,7 @@ export default function BaseCard(props: BaseCardProps) {
                 text={[`Alphabet cycles`, `${content.seasonPhrase}:`]}
                 big={true}
               />
-              <ScoreBox
-                str={content.timesCycled.toString()}
-                padWithUnderscores={false}
-              />
+              <ScoreBox str={content.timesCycled.toString()} />
             </div>
           ) : (
             <TextBox

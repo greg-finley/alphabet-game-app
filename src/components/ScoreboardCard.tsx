@@ -14,6 +14,9 @@ interface ScoreboardCardProps {
 
 export default function ScoreboardCard(props: ScoreboardCardProps) {
   const { play, customCard: custom } = props;
+  const matchingLetterHeadline = matchingLetterLengthToHeadline(
+    play.matching_letters.length
+  );
   return (
     <>
       <div className="player-rect">
@@ -42,8 +45,11 @@ export default function ScoreboardCard(props: ScoreboardCardProps) {
         />
       </div>
       <div className="score-rect">
-        <div style={{ marginBottom: "0.1rem" }}>
+        <div>
           <TextBox text={[play.player_name]} big={true} />
+          {matchingLetterHeadline ? (
+            <TextBox text={[matchingLetterHeadline]} />
+          ) : null}
         </div>
         <div className="score-and-text-box box-left">
           <TextBox
@@ -116,4 +122,26 @@ const sportScore = (sport: Sport) => {
     case "MLB":
       return "Home run";
   }
+};
+
+const matchingLetterLengthToHeadline = (length: number) => {
+  if (length <= 1) {
+    return null;
+  }
+  if (length === 2) {
+    return "DOUBLE LETTER";
+  }
+  if (length === 3) {
+    return "TRIPLE LETTER";
+  }
+  if (length === 4) {
+    return "QUADRUPLE LETTER";
+  }
+  if (length === 5) {
+    return "QUINTUPLE LETTER";
+  }
+  if (length === 6) {
+    return "SEXTUPLE LETTER";
+  }
+  return "MEGA LETTER";
 };

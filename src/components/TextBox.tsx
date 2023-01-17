@@ -8,7 +8,7 @@ interface TextBoxProps {
 export default function TextBox(props: TextBoxProps) {
   const { text, big } = props;
   return (
-    <div className="Centered">
+    <div className="Centered Text-box-container">
       <div className={`Text-box${big ? " Text-box-big" : ""}`}>
         {text.map((lineOrElement, index) =>
           typeof lineOrElement === "string" ? (

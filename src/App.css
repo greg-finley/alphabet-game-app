@@ -42,6 +42,10 @@
   display: flex;
 }
 
+.Text-box-container {
+  margin-bottom: 0.1rem;
+}
+
 .Text-box {
   display: inline-block;
   box-sizing: border-box;

@@ -62,6 +62,7 @@ function App() {
       path: "/",
       element: <Home state={state} />,
     },
+    { path: "/custom", element: <Home state={state} isCustomPlay={true} /> },
     { path: "/about", element: <About /> },
     { path: "/data", element: <Data state={state} /> },
     { path: "/twitter", element: <OnTwitter /> },

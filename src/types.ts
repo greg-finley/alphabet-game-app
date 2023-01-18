@@ -25,11 +25,11 @@ export interface Play {
   player_id: number;
 }
 
-export interface NewSeason {
+interface NewSeason {
   seasonPhrase: string;
 }
 
-export interface NewCycle {
+interface NewCycle {
   timesCycled: number;
   seasonPhrase: string;
 }
@@ -38,3 +38,8 @@ export type State =
   | { type: "loading" }
   | { type: "error"; error: string }
   | { type: "success"; plays: Play[] };
+
+export type BaseCardContent =
+  | { play: Play; customCard: boolean }
+  | NewSeason
+  | NewCycle;

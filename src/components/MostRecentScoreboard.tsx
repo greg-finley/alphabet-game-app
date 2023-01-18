@@ -1,5 +1,5 @@
 import * as React from "react";
-import { NewSeason, NewCycle, Play, sports, State } from "../types";
+import { Play, sports, State } from "../types";
 import InfiniteScroll from "react-infinite-scroll-component";
 import LoadingCircle from "./LoadingCircle";
 import { Avatar } from "@mui/material";
@@ -8,16 +8,16 @@ import Tab from "@mui/material/Tab";
 import ErrorMessage from "./ErrorMessage";
 import ReactGA from "react-ga4";
 import BaseCard from "./BaseCard";
-
-type BaseCardContent = Play | NewSeason | NewCycle;
+import { BaseCardContent } from "../types";
 
 interface MostRecentScoresProps {
   state: State;
   defaultSportIndex: number;
+  customPlay: Play | undefined;
 }
 
 function MostRecentScoreboard(props: MostRecentScoresProps) {
-  const { state, defaultSportIndex } = props;
+  const { state, defaultSportIndex, customPlay } = props;
 
   const [sportIndex, setSportIndex] = React.useState(defaultSportIndex);
 
@@ -48,6 +48,12 @@ function MostRecentScoreboard(props: MostRecentScoresProps) {
         <LoadingCircle />
       ) : state.type === "error" ? (
         <ErrorMessage error={state.error} />
+      ) : customPlay ? (
+        <Scores
+          plays={[customPlay]}
+          sportIndex={sports.indexOf(customPlay.sport)}
+          customPlay={customPlay}
+        />
       ) : (
         <Scores plays={state.plays} sportIndex={sportIndex} />
       )}
@@ -58,20 +64,27 @@ function MostRecentScoreboard(props: MostRecentScoresProps) {
 interface ScoresProps {
   plays: Play[];
   sportIndex: number;
+  customPlay?: Play;
 }
 
 function Scores(props: ScoresProps) {
-  const { plays, sportIndex } = props;
+  const { plays, sportIndex, customPlay } = props;
 
   const cardContents: BaseCardContent[] = [];
   const sportPlays = plays.filter((play) => play.sport === sports[sportIndex]);
 
   sportPlays.forEach((play, i) => {
+    const formattedPlay = {
+      play,
+      customCard: !!customPlay,
+    };
     const nextPlay: Play | undefined = sportPlays[i + 1];
     // If there is no next play, we should report being at the begining of the season
     // If the next play is in a different season, we should report being at the begining of the season
     if (!nextPlay || nextPlay.season_phrase !== play.season_phrase) {
-      cardContents.push(...[play, { seasonPhrase: play.season_phrase }]);
+      cardContents.push(
+        ...[formattedPlay, { seasonPhrase: play.season_phrase }]
+      );
       return;
     }
     // If times cycled has increased, we should report it
@@ -82,13 +95,13 @@ function Scores(props: ScoresProps) {
             timesCycled: play.times_cycled,
             seasonPhrase: play.season_phrase,
           },
-          play,
+          formattedPlay,
         ]
       );
       return;
     }
     // Otherwise, we should just report the play
-    cardContents.push(play);
+    cardContents.push(formattedPlay);
   });
 
   const [items, setItems] = React.useState(

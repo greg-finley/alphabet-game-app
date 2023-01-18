@@ -24,7 +24,7 @@ export default function BaseCard(props: BaseCardProps) {
       <AspectRatio variant="outlined" ratio="1.91/1">
         <CardContent
           sx={{
-            color: "#f9bc32",
+            color: "#f5c456",
           }}
         >
           {"player_name" in content ? (

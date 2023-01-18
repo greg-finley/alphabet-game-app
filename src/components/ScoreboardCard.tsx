@@ -84,7 +84,7 @@ export default function ScoreboardCard(props: ScoreboardCardProps) {
               href={`https://twitter.com/${play.sport}AlphabetGame/status/${play.tweet_id}`}
               style={{
                 textDecoration: "none",
-                color: "#f9bc32",
+                color: "#f5c456",
               }}
             >
               {`@${play.sport}AlphabetGame`}

@@ -13,12 +13,13 @@ type BaseCardContent = Play | NewSeason | NewCycle;
 
 interface MostRecentScoresProps {
   state: State;
+  defaultSportIndex: number;
 }
 
 function MostRecentScoreboard(props: MostRecentScoresProps) {
-  const { state } = props;
+  const { state, defaultSportIndex } = props;
 
-  const [sportIndex, setSportIndex] = React.useState(0);
+  const [sportIndex, setSportIndex] = React.useState(defaultSportIndex);
 
   const handleTabClick = (event: React.SyntheticEvent, newValue: number) => {
     ReactGA.event({

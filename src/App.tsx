@@ -6,7 +6,7 @@ import Home from "./pages/Home";
 import Data from "./pages/Data";
 import About from "./pages/About";
 import OnTwitter from "./pages/OnTwitter";
-import { Play, State } from "./types";
+import { Play, sports, State } from "./types";
 
 type Action =
   | { type: "FETCH_SUCCESS"; payload: Play[] }
@@ -50,6 +50,13 @@ function App() {
       });
   }, []);
 
+  const sportsRouters = sports.map((sport) => {
+    return {
+      path: "/" + sport.toLowerCase(),
+      element: <Home state={state} defaultSportIndex={sports.indexOf(sport)} />,
+    };
+  });
+
   const router = createBrowserRouter([
     {
       path: "/",
@@ -59,6 +66,7 @@ function App() {
     { path: "/data", element: <Data state={state} /> },
     { path: "/twitter", element: <OnTwitter /> },
     { path: "*", element: <div>Not Found</div> },
+    ...sportsRouters,
   ]);
 
   ReactGA.initialize("G-8MTY2HPTR0");

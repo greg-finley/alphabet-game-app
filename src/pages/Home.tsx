@@ -8,10 +8,11 @@ import { ScrollRestoration } from "react-router-dom";
 
 interface HomeProps {
   state: State;
+  defaultSportIndex?: number;
 }
 
 export default function Home(props: HomeProps) {
-  const { state } = props;
+  const { state, defaultSportIndex } = props;
   ReactGA.event({
     category: "User",
     action: "Visited home page",
@@ -34,7 +35,10 @@ export default function Home(props: HomeProps) {
           <p className="App-text-intro" style={{ paddingBottom: "15px" }}>
             Pick the sport below, or follow along on Twitter!
           </p>
-          <MostRecentScoreboard state={state} />
+          <MostRecentScoreboard
+            state={state}
+            defaultSportIndex={defaultSportIndex || 0}
+          />
         </div>
       </div>
     </>

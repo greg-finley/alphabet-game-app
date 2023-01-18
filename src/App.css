@@ -26,7 +26,7 @@
   margin: 0;
   padding: 0;
   overflow: auto;
-  width: 360px;
+  min-width: 80vw;
 }
 
 .App-text-other-pages {

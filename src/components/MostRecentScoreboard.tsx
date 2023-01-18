@@ -35,7 +35,7 @@ function MostRecentScoreboard(props: MostRecentScoresProps) {
         value={sportIndex}
         onChange={handleTabClick}
         centered
-        sx={{ minWidth: "900px" }}
+        sx={{ minWidth: "80vw" }}
       >
         {sports.map((sport, index) => (
           <Tab
@@ -45,7 +45,7 @@ function MostRecentScoreboard(props: MostRecentScoresProps) {
               backgroundColor:
                 sportIndex === index ? "currentColor" : "#676b72",
               border: "1px solid black",
-              minWidth: "225px",
+              minWidth: "20vw",
             }}
           />
         ))}

@@ -21,7 +21,7 @@ export default function BaseCard(props: BaseCardProps) {
         marginBottom: "0.5rem",
       }}
     >
-      <AspectRatio variant="outlined" ratio="1.91/1">
+      <AspectRatio variant="outlined" ratio="1.8/1">
         <CardContent
           sx={{
             color: "#f5c456",

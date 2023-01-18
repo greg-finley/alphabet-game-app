@@ -56,9 +56,9 @@ export default function MainNavigation() {
     <AppBar position="sticky">
       <Toolbar>
         <div>
-          <Link to="/">
+          <a href="/">
             <img src="logo192.png" alt="Icon" height={"35vh"} />
-          </Link>
+          </a>
         </div>
         <Typography
           variant="h6"

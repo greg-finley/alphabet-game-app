@@ -45,7 +45,7 @@ export default function Home(props: HomeProps) {
 
     customPlay = {
       completed_at: parseInt(completedAt),
-      matching_letters: JSON.parse(matchingLetters),
+      matching_letters: matchingLetters.split(","),
       next_letter: nextLetter,
       player_id: parseInt(playerId),
       player_name: playerName,

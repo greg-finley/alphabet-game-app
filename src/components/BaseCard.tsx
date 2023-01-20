@@ -17,7 +17,6 @@ export default function BaseCard(props: BaseCardProps) {
     <Card
       sx={{
         backgroundColor: "#97929c",
-
         marginBottom: "0.5rem",
       }}
     >
@@ -42,14 +41,14 @@ export default function BaseCard(props: BaseCardProps) {
             >
               <TextBox
                 text={[`Alphabet cycles`, content.seasonPhrase]}
-                big={true}
+                size="big"
               />
               <ScoreBox str={content.timesCycled.toString()} fit={true} />
             </div>
           ) : (
             <TextBox
               text={[`Start of ${content.seasonPhrase.replace("in the ", "")}`]}
-              big={true}
+              size="big"
             />
           )}
         </CardContent>

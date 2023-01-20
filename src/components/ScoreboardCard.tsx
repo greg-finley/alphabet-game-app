@@ -46,7 +46,7 @@ export default function ScoreboardCard(props: ScoreboardCardProps) {
       </div>
       <div className="score-rect">
         <div>
-          <TextBox text={[play.player_name]} big={true} />
+          <TextBox text={[play.player_name]} size="big" />
           {matchingLetterHeadline ? (
             <TextBox text={[matchingLetterHeadline]} />
           ) : null}
@@ -87,7 +87,7 @@ export default function ScoreboardCard(props: ScoreboardCardProps) {
                 color: "#f5c456",
               }}
             >
-              {`@${play.sport}AlphabetGame`}
+              <TextBox text={[`@${play.sport}AlphabetGame`]} size="small" />
             </a>
           ) : (
             "sportsalphabetgame.com"

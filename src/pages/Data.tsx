@@ -23,7 +23,7 @@ export default function Data(props: DataProps) {
       <ScrollRestoration />
       <TopAppBar />
       <div className="App-container">
-        <p className="App-text-other-pages">
+        <p className="App-text">
           All scores that have been tweeted are available below to download as a
           CSV. They are also available{" "}
           <a href="https://github.com/greg-finley/alphabet-game-plays-api#api">

@@ -71,17 +71,19 @@ export default function Home(props: HomeProps) {
       <TopAppBar />
       <div className="App-container">
         <div className={styles.mostRecentScoresContainer}>
-          <p className="App-text-intro">
-            Let's play the Sports Alphabet Game, looking for the next letter in
-            player names as they:
-          </p>
-          <p className="App-text-intro">• score NHL goals</p>
-          <p className="App-text-intro">• dunk in the NBA</p>
-          <p className="App-text-intro">• score NFL touchdowns</p>
-          <p className="App-text-intro">• and hit MLB home runs.</p>
-          <p className="App-text-intro" style={{ paddingBottom: "15px" }}>
-            Pick the sport below, or follow along on Twitter!
-          </p>
+          <div style={{ width: "360px" }}>
+            <p className="App-text">
+              Let's play the Sports Alphabet Game, looking for the next letter
+              in player names as they:
+            </p>
+            <p className="App-text">• score NHL goals</p>
+            <p className="App-text">• dunk in the NBA</p>
+            <p className="App-text">• score NFL touchdowns</p>
+            <p className="App-text">• and hit MLB home runs.</p>
+            <p className="App-text" style={{ paddingBottom: "15px" }}>
+              Pick the sport below, or follow along on Twitter!
+            </p>
+          </div>
           <MostRecentScoreboard
             state={state}
             defaultSportIndex={defaultSportIndex || 0}

@@ -13,28 +13,11 @@
 }
 
 .App-text {
-  font-size: 0.8em;
-  margin: 0;
-  padding: 0;
-  text-align: left;
-  color: "white";
-}
-
-.App-text-intro {
   font-size: 1rem;
   text-align: left;
   margin: 0;
   padding: 0;
   overflow: auto;
-  width: 360px;
-}
-
-.App-text-other-pages {
-  font-size: 1em;
-  text-align: left;
-  margin: 0;
-  padding: 0;
-  padding-bottom: 15px;
 }
 
 .Centered {

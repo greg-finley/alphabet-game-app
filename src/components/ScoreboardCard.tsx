@@ -75,7 +75,7 @@ export default function ScoreboardCard(props: ScoreboardCardProps) {
           style={{
             position: "absolute",
             fontSize: "0.6rem",
-            top: "90%",
+            top: "87%",
             right: "6%",
           }}
         >
@@ -90,7 +90,7 @@ export default function ScoreboardCard(props: ScoreboardCardProps) {
               <TextBox text={[`@${play.sport}AlphabetGame`]} size="small" />
             </a>
           ) : (
-            "sportsalphabetgame.com"
+            <TextBox text={["sportsalphabetgame.com"]} size="small" />
           )}
         </div>
       </div>

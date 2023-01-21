@@ -18,7 +18,7 @@ export default function Home(props: HomeProps) {
   let customPlay: Play | undefined;
   const [searchParams] = useSearchParams();
 
-  // Test with a url like https://www.sportsalphabetgame.com/custom?completed_at=1673587932&next_letter=D&player_id=8478403&player_name=Connor+McDavid&season_phrase=in+the+2022-23+season&sport=NHL&times_cycled=22&tweet_id=1613770857377136640&matching_letters=A%2CB%2CC&matching_letters=A&matching_letters=B&matching_letters=C
+  // Test with a url like http://localhost:3000/custom?completed_at=1673587932&next_letter=D&player_id=8478403&player_name=Connor+McDavid&season_phrase=in+the+2022-23+season&sport=NHL&times_cycled=22&tweet_id=1613770857377136640&matching_letters=A%2CB%2CC&matching_letters=A&matching_letters=B&matching_letters=C
   if (isCustomPlay) {
     const playerName = searchParams.get("player_name");
     const completedAt = searchParams.get("completed_at");

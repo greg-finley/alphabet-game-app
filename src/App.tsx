@@ -7,6 +7,7 @@ import Data from "./pages/Data";
 import About from "./pages/About";
 import OnTwitter from "./pages/OnTwitter";
 import { Play, sports, State } from "./types";
+import ScrollToTop from "./components/ScrollToTop";
 
 type Action =
   | { type: "FETCH_SUCCESS"; payload: Play[] }
@@ -66,6 +67,7 @@ function App() {
     { path: "/about", element: <About /> },
     { path: "/data", element: <Data state={state} /> },
     { path: "/twitter", element: <OnTwitter /> },
+    { path: "/scroll", element: <ScrollToTop /> },
     { path: "*", element: <div>Not Found</div> },
     ...sportsRouters,
   ]);

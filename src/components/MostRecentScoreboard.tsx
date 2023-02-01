@@ -7,6 +7,7 @@ import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import ErrorMessage from "./ErrorMessage";
 import ReactGA from "react-ga4";
+import ScrollToTop from "react-scroll-to-top";
 import BaseCard from "./BaseCard";
 import { BaseCardContent } from "../types";
 
@@ -31,6 +32,7 @@ function MostRecentScoreboard(props: MostRecentScoresProps) {
 
   return (
     <div>
+      <ScrollToTopWithTrack />
       <Tabs value={sportIndex} onChange={handleTabClick} centered>
         {sports.map((sport, index) => (
           <Tab
@@ -160,6 +162,21 @@ function Scores(props: ScoresProps) {
     </p>
   ) : (
     <></>
+  );
+}
+
+function ScrollToTopWithTrack() {
+  return (
+    <div
+      onClick={() => {
+        ReactGA.event({
+          category: "User",
+          action: "Clicked scroll to top button",
+        });
+      }}
+    >
+      <ScrollToTop smooth />
+    </div>
   );
 }
 

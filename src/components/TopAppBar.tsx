@@ -40,11 +40,6 @@ export default function MainNavigation() {
     ) {
       return;
     }
-    // ReactGA.event({
-    //   category: "User",
-    //   action: `Clicked ${sports[newValue]} tab`,
-    // });
-    //changes the function state according to the value of open
     ReactGA.event({
       category: "User",
       action: `Clicked ${open ? "open" : "close"} hamburger drawer`,

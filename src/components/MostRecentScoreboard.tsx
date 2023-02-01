@@ -175,7 +175,14 @@ function ScrollToTopWithTrack() {
         });
       }}
     >
-      <ScrollToTop smooth />
+      <ScrollToTop
+        smooth
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      />
     </div>
   );
 }

@@ -162,3 +162,9 @@
   font-size: 0.8rem;
   vertical-align: middle;
 }
+
+.download-csv-button {
+  display: flex;
+  justify-content: left;
+  padding-top: 15px;
+}

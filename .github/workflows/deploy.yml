@@ -3,6 +3,7 @@ on:
   push:
 jobs:
   test:
+    permissions: read-all
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:

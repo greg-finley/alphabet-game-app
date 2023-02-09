@@ -3,12 +3,12 @@ on:
   push:
 jobs:
   test:
-    permissions: read-all
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
       - uses: actions/checkout@v3
       - id: "auth"
+        if: github.actor != 'dependabot[bot]'
         uses: "google-github-actions/auth@v0"
         with:
           credentials_json: "${{ secrets.gcp_credentials }}"

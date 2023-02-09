@@ -3,12 +3,13 @@ import * as React from "react";
 import CsvDownloader from "react-csv-downloader";
 
 interface CSVProps {
-  data: Record<string, any>[];
+  data: Record<string, any>[] | Promise<Record<string, any>[]>;
   filename: string;
+  title: string;
 }
 
 export default function CSV(props: CSVProps) {
-  const { data, filename } = props;
+  const { data, filename, title } = props;
   return (
     <CsvDownloader
       datas={data}
@@ -16,7 +17,7 @@ export default function CSV(props: CSVProps) {
       suffix={true}
       wrapColumnChar={'"'}
     >
-      <button>Download CSV</button>
+      <button>{title}</button>
     </CsvDownloader>
   );
 }

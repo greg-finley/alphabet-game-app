@@ -47,7 +47,11 @@ export default function BaseCard(props: BaseCardProps) {
             </div>
           ) : (
             <TextBox
-              text={[`Start of ${content.seasonPhrase.replace("in the ", "")}`]}
+              text={[
+                `Start of ${content.seasonPhrase
+                  .replace("in the ", "")
+                  .replace("during ", "")}`,
+              ]}
               size="big"
             />
           )}

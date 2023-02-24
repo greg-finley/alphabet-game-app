@@ -155,11 +155,6 @@ function Scores(props: ScoresProps) {
     >
       {items}
     </InfiniteScroll>
-  ) : // Don't flicker the message; this can be removed once MLB has plays
-  sports[sportIndex] === "MLB" ? (
-    <p className="App-text" style={{ textAlign: "center", paddingTop: "10px" }}>
-      <b>See you when spring training starts!</b>
-    </p>
   ) : (
     <></>
   );
